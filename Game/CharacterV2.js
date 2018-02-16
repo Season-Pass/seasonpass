@@ -13,6 +13,7 @@
   * This file has yet to be added to GameV2.html
   - puzzle characteristics
   > ability to move objects to solve puzzles?
+  Hello everyone!!
 */
 
   //var controls = {zSpeed:0,xSpeed:0,ySpeed:0,yRotSpeed:0};
