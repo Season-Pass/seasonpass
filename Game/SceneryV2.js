@@ -11,6 +11,7 @@
   - shadows, and particles.
   * feel free to play with the parameters and options in the functions
   - Move objects such as stalactites to other folder?
+  - might replace global variables later
 
   Nadia Kubatin
 */
@@ -19,10 +20,8 @@
   // light
   var ambiLight, spotLight, light, pointLight, hemilight;
   // environment
-  var sphere; // temporary character model will be moved to character file later
-  var stalactite;
+  var icicles;
   var caveWall, caveFloor, passageFloor, cylinder;
-  //var icicles = new THREE.Group();
   // particle system
   var snow;
 
@@ -55,7 +54,6 @@
                             } );
       snow = new THREE.Points( particleGeometry, particleMaterial );
       snow.recieveShadow = true;
-      scene.add( snow );
     }
 
     /*
@@ -112,7 +110,6 @@
       caveWall.position.y = 43;
       caveWall.receiveShadow = true;
       caveWall.castShadow = false;
-      scene.add(caveWall);
     }
 
     /*
@@ -144,7 +141,6 @@
       caveFloor = new THREE.Mesh( geometryCi, materialCi );
       caveFloor.rotation.x = THREE.Math.degToRad( 90 );
       caveFloor.receiveShadow = true;
-      scene.add(caveFloor);
     }
 
     /*
@@ -173,7 +169,6 @@
       cylinder.position.y=23;
       cylinder.rotation.x = THREE.Math.degToRad( 90 );
       cylinder.castShadow = false;
-      scene.add(cylinder);
     }
 
     /*
@@ -204,41 +199,42 @@
       passageFloor.position.y = 0;
       passageFloor.position.z = -130;
       passageFloor.receiveShadow = true;
-      scene.add(passageFloor);
     }
 
     /*
       creates the icicles in the room.
       parameters (x,y,z,radius,height,segments, rotation)
       icicles are in order from left to right.
+      Is a group object.
     */
     function initIcicles(){
+      icicles = new THREE.Group();
       // outer ring bottom
-      createIcicle(0, 9, 90, 2, 18, 0);
-      createIcicle(-24, 5, 72, 2, 10, 0);
-      createIcicle(-25, 13, 70, 2, 26, 0);
-      createIcicle(-27, 8, 68.5, 2, 16, 0);
-      createIcicle(-63, 15, 55, 3, 30, 0);
-      createIcicle(-70, 9, 35, 2, 18, 0);
-      createIcicle(-80, 9, 25, 2, 18, 0);
-      createIcicle(-82, 5, 23, 2, 10, 0);
-      createIcicle(-72, 20, -5, 3.5, 40, 0);
-      createIcicle(-70, 7, -25, 2, 14, 0);
-      createIcicle(-50, 11, -65, 2, 21, 0);
-      createIcicle(-50, 4, -70, 2, 8, 0);
-      createIcicle(-27, 17, -75, 2, 34, 0);
+      icicles.add(createIcicle(0, 9, 90, 2, 18, 0));
+      icicles.add(createIcicle(-24, 5, 72, 2, 10, 0));
+      icicles.add(createIcicle(-25, 13, 70, 2, 26, 0));
+      icicles.add(createIcicle(-27, 8, 68.5, 2, 16, 0));
+      icicles.add(createIcicle(-63, 15, 55, 3, 30, 0));
+      icicles.add(createIcicle(-70, 9, 35, 2, 18, 0));
+      icicles.add(createIcicle(-80, 9, 25, 2, 18, 0));
+      icicles.add(createIcicle(-82, 5, 23, 2, 10, 0));
+      icicles.add(createIcicle(-72, 20, -5, 3.5, 40, 0));
+      icicles.add(createIcicle(-70, 7, -25, 2, 14, 0));
+      icicles.add(createIcicle(-50, 11, -65, 2, 21, 0));
+      icicles.add(createIcicle(-50, 4, -70, 2, 8, 0));
+      icicles.add(createIcicle(-27, 17, -75, 2, 34, 0));
       // inner ring bottom
-      createIcicle(0, 5, 25, 2, 10, 0);
-      createIcicle(-5, 2.5, -22, 2, 5, 0);
-      createIcicle(-23, 6, -5, 2, 12, 0);
-      createIcicle(-15, 2.5, 15, 2, 5, 0);
-      createIcicle(-15, 1.5, -15, 1.5, 3, 0);
+      icicles.add(createIcicle(0, 5, 25, 2, 10, 0));
+      icicles.add(createIcicle(-5, 2.5, -22, 2, 5, 0));
+      icicles.add(createIcicle(-23, 6, -5, 2, 12, 0));
+      icicles.add(createIcicle(-15, 2.5, 15, 2, 5, 0));
+      icicles.add(createIcicle(-15, 1.5, -15, 1.5, 3, 0));
       // top
-      createIcicle(0, 83.2, 25, 2, 10, 180);
-      createIcicle(-15, 89, 15, 2, 5, 180);
-      createIcicle(-23, 83.3, -5, 2, 12, 180);
-      createIcicle(-15, 87.8, -15, 1.5, 6, 180);
-      createIcicle(-5, 86.8, -22, 2, 7, 180);
+      icicles.add(createIcicle(0, 83.2, 25, 2, 10, 180));
+      icicles.add(createIcicle(-15, 89, 15, 2, 5, 180));
+      icicles.add(createIcicle(-23, 83.3, -5, 2, 12, 180));
+      icicles.add(createIcicle(-15, 87.8, -15, 1.5, 6, 180));
+      icicles.add(createIcicle(-5, 86.8, -22, 2, 7, 180));
     }
 
     /*
@@ -257,11 +253,11 @@
                           shininess: 100,
                           reflectivity: .5
                         } );
-      stalactite = new THREE.Mesh( geometryco, materialco );
+      var stalactite = new THREE.Mesh( geometryco, materialco );
       stalactite.position.set(x,y,z);
       stalactite.rotation.x = THREE.Math.degToRad( rotation );
       stalactite.castShadow = true;
-      scene.add(stalactite);
+      return stalactite;
     }
 
     /*
@@ -282,8 +278,6 @@
       spotLight.castShadow = true;
       scene.add(ambiLight);
       scene.add(hemilight);
-      scene.add(pointLight);
-      scene.add(spotLight);
     }
 
     /*
