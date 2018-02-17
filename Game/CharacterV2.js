@@ -16,13 +16,29 @@
 */
 
   //var controls = {zSpeed:0,xSpeed:0,ySpeed:0,yRotSpeed:0};
+  var map;
+  var sphere; // model for small scale tests. Will be removed
 
-  //var map = new THREE.Group();
-  //map.add(caveWall);
-  //map.add(caveFloor);
-  //map.add(passageFloor);
-  //map.add(icicles);
-  //map.add(snow);
+  /*
+    creates an object for the map.
+    This contains every object in the Scene
+    other than characters.
+    This will possibly be what is used for controls.
+    It will be updated everytime a new object is created.
+    In the meantime, map can be used to code for controls as a whole.
+    There is no need to change individual child objects.
+  */
+  function createMap(){
+    map = new THREE.Group();
+    map.add(caveWall);
+    map.add(caveFloor);
+    map.add(passageFloor);
+    map.add(icicles);
+    map.add(snow);
+    map.add(pointLight);
+    map.add(spotLight);
+    scene.add(map);
+  }
 
   /*
     creates a geometry and texture for a sphere.
@@ -38,6 +54,10 @@
     scene.add(sphere);
   }
 
+  /*
+    temporary placement controls example.
+    Currently being edited.
+  */
   function keydown(event){
     //console.log("Keydown:"+event.key);
 		//console.dir(event);
@@ -53,6 +73,10 @@
 		}
   }
 
+  /*
+    temporary placement controls example.
+    Currently being edited.
+  */
   function keyup(){
     //console.log("Keydown:"+event.key);
 		//console.dir(event);
@@ -66,12 +90,4 @@
       case "ArrowLeft": controls.yRotSpeed=0; break;
 			case "ArrowRight": controls.yRotSpeed=0; break;
 		}
-  }
-
-  function moveChar(){
-
-  }
-
-  function stopChar(){
-
   }
