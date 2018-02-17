@@ -1,12 +1,12 @@
 /*
   * This is the main file for initiating the scene
-  * as wells as any other features such as controls, cameras and the renderer.
+  * as wells as any other features such as animation, cameras and the renderer.
   * It includes the init and render(animate) function.
   * Helpers will also be inluded here.
   * All files called in this file must be called first in GameV2.html.
   - Should I move the camera to a different file?
 
-  -Nadia Kubatin
+  Nadia Kubatin
 */
 
   // variables
@@ -18,6 +18,7 @@
                     0.1, 1000
                   );
   var orbitControls = new THREE.OrbitControls(camera); // will be removed
+  // animation
   var clock = new THREE.Clock();
   var delta;
   // helpers (will be removed at a later time)
@@ -49,6 +50,7 @@
       initShadows();
       initParticles();
       // Character.js
+      createMap();
       //initSphere(); // - temporary character model
       // add helpers (will be removed at a later time)
       var spotLightHelper = new THREE.SpotLightHelper( spotLight );
@@ -72,7 +74,7 @@
       camera.lookAt(new THREE.Vector3(0,30,-80));
       animateParticles();
       //map.translateX(controls.xSpeed*delta*10);
-    //  map.translateY(controls.ySpeed*delta*10);
+      //map.translateY(controls.ySpeed*delta*10);
       //map.translateZ(controls.zSpeed*delta*10);
     // render using requestAnimationFrame
       renderer.render(scene, camera);
@@ -107,6 +109,10 @@
     camera.position.z = -50;
   }
 
+  /*
+    This function is not in use currently.
+    It is under revision.
+  */
   function initControls(){
     clock.start();
 
@@ -115,37 +121,9 @@
   }
 
   /*
-    *can be used in Character controls
-  function keydown(event){
-    //console.log("Keydown:"+event.key);
-		//console.dir(event);
-		switch (event.key){
-			case "w": controls.zSpeed = -1;  break;
-			case "s": controls.zSpeed=1; break;
-      case "a": controls.xSpeed=-1; break;
-			case "d": controls.xSpeed=1; break;
-      case "r": controls.ySpeed=1; break;
-			case "f": controls.ySpeed=-1; break;
-      case "ArrowLeft": controls.yRotSpeed = 1; break;
-      case "ArrowRight": controls.yRotSpeed = -1; break;
-		}
-  }
-
-  function keyup(){
-    //console.log("Keydown:"+event.key);
-		//console.dir(event);
-		switch (event.key){
-			case "w": controls.zSpeed=0; break;
-			case "s": controls.zSpeed=0; break;
-      case "a": controls.xSpeed=0; break;
-			case "d": controls.xSpeed=0; break;
-      case "r": controls.ySpeed=0; break;
-			case "f": controls.ySpeed=0; break;
-      case "ArrowLeft": controls.yRotSpeed=0; break;
-			case "ArrowRight": controls.yRotSpeed=0; break;
-		}
-  }*/
-
+    Will be written at a later time.
+    Will be used to handle window changes.
+  */
   function eventHandler(){
 
   }
