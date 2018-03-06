@@ -21,6 +21,7 @@
   var ambiLight, spotLight, light, pointLight, hemilight;
   // environment
   var caveWall, caveFloor, passageFloor, cylinder;
+  var boundry;
   // particle system
   var snow;
 
@@ -114,6 +115,35 @@
       caveWall.receiveShadow = true;
       caveWall.castShadow = false;
       scene.add(caveWall);
+    }
+
+    /*
+      Binds the character to a single arrea within the cave to prevent
+      it from falling out of the scene.
+      * will be moved later to a seperate file.
+    */
+    function initBoundry(){
+      var points = [];
+      for ( var i = 0; i < 9; i ++ ) {
+         points.push( new THREE.Vector2(
+                      Math.sin( i * 0.17 ) * 95 + 5, ( i - 4.6 ) * 13
+         ));
+       }
+       var geometryBo = new THREE.LatheGeometry( points, 50, 0, 1.05*Math.PI );
+       var materialBo = new THREE.MeshPhongMaterial( {
+                          color: 0xcce6ff,
+                          transparent: true,
+                          opacity: 0,
+                          shininess: 100,
+                          reflectivity: .5,
+                          side:THREE.DoubleSide
+                        } );
+      var pmaterialBo = new Physijs.createMaterial(materialBo,0.9,0.5);
+      //caveWall = new THREE.Mesh( geometryLa, materialLa );
+      boundry = new Physijs.ConcaveMesh( geometryBo, pmaterialBo,0 );
+      boundry.rotation.x = THREE.Math.degToRad( 180 );
+      boundry.position.y = 43;
+      scene.add(boundry);
     }
 
     /*

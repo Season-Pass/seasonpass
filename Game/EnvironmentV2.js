@@ -45,6 +45,7 @@
       // ScenaryV2.js
       initCaveFloor();
       initCaveWall();
+      initBoundry();
       initPassageFloor();
       initIcicles();
       initLight();
