@@ -49,7 +49,11 @@
   function initSphere(){
     var geometrysp = new THREE.SphereGeometry(3, 40, 40);
     var materialsp = new THREE.MeshLambertMaterial( { color: 0xff0000} );
-    sphere = new THREE.Mesh( geometrysp, materialsp );
+    var pmaterialsp = new Physijs.createMaterial(materialsp,0.9,0.5);
+    //sphere = new THREE.Mesh( geometrysp, materialsp );
+    sphere = new Physijs.SphereMesh( geometrysp, pmaterialsp );
+    sphere.position.y = 5;
+    sphere.setDamping(0.1,0.1);
     sphere.castShadow = true;
     scene.add(sphere);
   }

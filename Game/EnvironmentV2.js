@@ -11,7 +11,7 @@
 
   // variables
   var renderer = new THREE.WebGLRenderer();
-  var scene = new THREE.Scene();
+  var scene = new Physijs.Scene();
   var camera = new THREE.PerspectiveCamera(
                     45,
                     window.innerWidth / window.innerHeight,
@@ -37,6 +37,7 @@
   */
   function init() {
 
+      initPhysijs();
       initRenderer();
       initCamera();
       initControls(camera);
@@ -44,13 +45,11 @@
       initCaveFloor();
       initCaveWall();
       initPassageFloor();
-      //initPassageWall();
       initIcicles();
       initLight();
       initShadows();
       initParticles();
       // Character.js
-      createMap();
       //initSphere(); // - temporary character model
       // add helpers (will be removed at a later time)
       var spotLightHelper = new THREE.SpotLightHelper( spotLight );
@@ -76,6 +75,7 @@
       //map.translateX(controls.xSpeed*delta*10);
       //map.translateY(controls.ySpeed*delta*10);
       //map.translateZ(controls.zSpeed*delta*10);
+	    scene.simulate();
     // render using requestAnimationFrame
       renderer.render(scene, camera);
       requestAnimationFrame(render);
@@ -93,6 +93,14 @@
     document.body.appendChild( renderer.domElement );
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  }
+
+  /*
+    This function creates the script for physics.
+  */
+  function initPhysijs(){
+    Physijs.scripts.worker = 'libs/js/physijs_worker.js';
+    Physijs.scripts.ammo = 'libs/js/ammo.js';
   }
 
   /*
