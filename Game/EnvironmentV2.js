@@ -28,6 +28,7 @@
 
 
   init();
+  initControls();
   render();
 
   /*
@@ -40,7 +41,7 @@
       initPhysijs();
       initRenderer();
       initCamera();
-      initControls(camera);
+      initControls();
       // ScenaryV2.js
       initCaveFloor();
       initCaveWall();
@@ -50,7 +51,7 @@
       initShadows();
       initParticles();
       // Character.js
-      //initSphere(); // - temporary character model
+      initSphere(); // - temporary character model
       // add helpers (will be removed at a later time)
       var spotLightHelper = new THREE.SpotLightHelper( spotLight );
       scene.add(new THREE.AxesHelper( 100 ));
@@ -67,14 +68,12 @@
     * will need to add camera restraints
   */
   function render() {
-    // controls and settings for the camera
+    // controls and settings for the camera and character
       delta = clock.getDelta();
       orbitControls.update(delta); // will be removed at a later time
       camera.lookAt(new THREE.Vector3(0,30,-80));
       animateParticles();
-      //map.translateX(controls.xSpeed*delta*10);
-      //map.translateY(controls.ySpeed*delta*10);
-      //map.translateZ(controls.zSpeed*delta*10);
+      updateCharacter();
 	    scene.simulate();
     // render using requestAnimationFrame
       renderer.render(scene, camera);
@@ -118,8 +117,8 @@
   }
 
   /*
-    This function is not in use currently.
-    It is under revision.
+    This function initiates controls
+    for the character and adds event listeners.
   */
   function initControls(){
     clock.start();
