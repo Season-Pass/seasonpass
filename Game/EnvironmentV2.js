@@ -65,15 +65,14 @@
     we update orbit controls in order
     to view the entire map.
     Finally, we render the scene.
-    * will need to include a second perspective camera
-    * will need to add controls for camera (lookAt object)
     * will need to add camera restraints
   */
   function render() {
     // controls and settings for the camera and character
       delta = clock.getDelta();
-      orbitControls.update(delta); // will be removed at a later time
-      camera.lookAt(new THREE.Vector3(0,30,-80));
+      //orbitControls.update(delta); // will be removed at a later time
+      camera.lookAt(new THREE.Vector3(sphere.position.x,10,sphere.position.z));
+      camera.position.z = sphere.position.z;
       animateParticles();
       updateCharacter();
 	    scene.simulate();
@@ -113,9 +112,9 @@
     * might move to new file
   */
   function initCamera(){
-    camera.position.x = 250;
-    camera.position.y = 50;
-    camera.position.z = -50;
+    camera.position.x = 150;
+    camera.position.y = 20;
+    camera.position.z = 0;
   }
 
   /*
