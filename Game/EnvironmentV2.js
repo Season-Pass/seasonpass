@@ -58,6 +58,7 @@
       scene.add(new THREE.AxesHelper( 100 ));
       scene.add( spotLightHelper );
       //scene.add(gridHelper);
+      window.addEventListener('resize',onWindowResize, false);
   }
 
   /*
@@ -129,9 +130,10 @@
   }
 
   /*
-    Will be written at a later time.
-    Will be used to handle window changes.
+    Handles changes in the window size.
   */
-  function eventHandler(){
-
+  function onWindowResize(){
+    camera.aspect = window.innerWidth/window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
   }
