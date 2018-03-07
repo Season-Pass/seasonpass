@@ -12,15 +12,25 @@
   // variables
   var renderer = new THREE.WebGLRenderer();
   var scene = new Physijs.Scene();
+
+  // cameras
   var camera = new THREE.PerspectiveCamera(
                     45,
                     window.innerWidth / window.innerHeight,
                     0.1, 1000
                   );
-  var orbitControls = new THREE.OrbitControls(camera); // will be removed
+  var devCamera = new THREE.PerspectiveCamera( // devCamera will be removed
+                    50,
+                    window.innerWidth / window.innerHeight,
+                    0.1, 1000
+                  );
+  var orbitControls = new THREE.OrbitControls(devCamera); // will be removed
+  var devCameraActive = false; // will be removed
+
   // animation
   var clock = new THREE.Clock();
   var delta;
+
   // helpers (will be removed at a later time)
   var gridSize = 1000;
   var gridDivisions = 100;
@@ -41,7 +51,9 @@
       initPhysijs();
       initRenderer();
       initCamera();
+      initDevCamera(); // will be removed
       initControls();
+
       // ScenaryV2.js
       initCaveFloor();
       initCaveWall();
@@ -51,13 +63,16 @@
       initLight();
       initShadows();
       initParticles();
+
       // Character.js
       initSphere(); // - temporary character model
+
       // add helpers (will be removed at a later time)
       var spotLightHelper = new THREE.SpotLightHelper( spotLight );
       scene.add(new THREE.AxesHelper( 100 ));
       scene.add( spotLightHelper );
       //scene.add(gridHelper);
+
       window.addEventListener('resize',onWindowResize, false);
   }
 
@@ -70,14 +85,21 @@
   function render() {
     // controls and settings for the camera and character
       delta = clock.getDelta();
-      //orbitControls.update(delta); // will be removed at a later time
+      orbitControls.update(delta); // will be removed at a later time
       camera.lookAt(new THREE.Vector3(sphere.position.x,10,sphere.position.z));
       camera.position.z = sphere.position.z;
+
       animateParticles();
       updateCharacter();
 	    scene.simulate();
+
     // render using requestAnimationFrame
-      renderer.render(scene, camera);
+      if (devCameraActive){
+        renderer.render( scene, devCamera );
+      }else {
+        renderer.render( scene, camera );
+      }
+      //renderer.render(scene, camera);
       requestAnimationFrame(render);
   }
 
@@ -115,6 +137,16 @@
     camera.position.x = 150;
     camera.position.y = 20;
     camera.position.z = 0;
+  }
+
+  /*
+    This creates a camera soley for
+    the purpose of looking at the scene.
+  */
+  function initDevCamera(){
+    devCamera.position.x = 200;
+    devCamera.position.y = 50;
+    devCamera.position.z = 500;
   }
 
   /*

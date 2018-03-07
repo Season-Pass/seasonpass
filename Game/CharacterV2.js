@@ -54,6 +54,10 @@
       case "a": controls.left = true; break;
 			case "d": controls.right = true; break;
       case " ": controls.jump = true; break;
+
+      // switch cameras (will be removed at another time)
+			case "1": devCameraActive = true; break;
+			case "2": devCameraActive = false; break;
 		}
   }
 
