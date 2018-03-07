@@ -93,7 +93,7 @@
                       Math.sin( i * 0.17 ) * 95 + 5, ( i - 4.6 ) * 13
          ));
        }
-       var geometryLa = new THREE.LatheGeometry( points, 50, 0, 1.05*Math.PI );
+       var geometryLa = new THREE.LatheGeometry( points, 50, 0, 1.03*Math.PI );
        var textureLa = new THREE.TextureLoader().load('libs/ice-cave-c2.png');
        var normalTextureLa = new THREE.TextureLoader().load('libs/ice-cave-2c.png');
        var bumpTextureLa = new THREE.TextureLoader().load('libs/ice-cave-3-b.png');
@@ -208,6 +208,35 @@
       cylinder.position.y=23;
       cylinder.rotation.x = THREE.Math.degToRad( 90 );
       cylinder.castShadow = false;
+    }
+
+    function initPassageWall2(){
+      var loader = new THREE.JSONLoader();
+		  loader.load('libs/PassageWall3.json',
+					function ( geometry, materials ) {
+						var material = new THREE.MeshPhongMaterial( {
+                            color: 0x00ff00,
+                            side:THREE.DoubleSide
+                          } );
+						var passageWall = new THREE.Mesh( geometry, material );
+						//console.log(JSON.stringify(suzanne.scale));// = new THREE.Vector3(4.0,1.0,1.0);
+						scene.add( passageWall  );
+						//var s = 0.5;
+						passageWall.scale.y=50;
+						passageWall.scale.x=50;
+						passageWall.scale.z=70;
+						passageWall.position.z = -145;
+						passageWall.position.y = 69.5;
+            passageWall.position.x = -50;
+            passageWall.rotation.z = THREE.Math.degToRad( 270 );
+            passageWall.rotation.x = THREE.Math.degToRad( 90 );
+						//passageWall.position.x = -5;
+						passageWall.castShadow = true;
+					},
+					function(xhr){
+						console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );},
+					function(err){console.log("error in loading: "+err);}
+				);
     }
 
     /*

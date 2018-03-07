@@ -58,7 +58,8 @@
       initCaveFloor();
       initCaveWall();
       initBoundry();
-      initPassageFloor();
+      initPassageWall2();
+      //initPassageFloor();
       initIcicles();
       initLight();
       initShadows();
