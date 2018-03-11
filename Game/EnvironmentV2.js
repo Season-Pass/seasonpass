@@ -58,6 +58,7 @@
       initCaveFloor();
       initCaveWall();
       initBoundry();
+      initPassageWall1();
       initPassageWall2();
       //initPassageFloor();
       initIcicles();
@@ -147,7 +148,7 @@
   function initDevCamera(){
     devCamera.position.x = 200;
     devCamera.position.y = 50;
-    devCamera.position.z = 500;
+    devCamera.position.z = -10;
   }
 
   /*
