@@ -49,6 +49,8 @@
       initShadows();
       initParticles();
       // Character.js
+      initGameMusic();
+      // SoundV2.js
       //initSphere(); // - temporary character model
       // add helpers (will be removed at a later time)
       var spotLightHelper = new THREE.SpotLightHelper( spotLight );
