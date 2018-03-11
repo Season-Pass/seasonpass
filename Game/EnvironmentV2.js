@@ -67,8 +67,14 @@
       initParticles();
 
       // Character.js
+<<<<<<< HEAD
+      initGameMusic();
+      // SoundV2.js
+      //initSphere(); // - temporary character model
+=======
       initSphere(); // - temporary character model
 
+>>>>>>> aa5bde5fe1983aa1ea041e5d4e309e32bb903021
       // add helpers (will be removed at a later time)
       var spotLightHelper = new THREE.SpotLightHelper( spotLight );
       scene.add(new THREE.AxesHelper( 100 ));
