@@ -231,7 +231,7 @@
             passageWall.rotation.x = THREE.Math.degToRad( 90 );
 						//passageWall.position.x = -5;
 						passageWall.castShadow = false;
-            //scene.add( passageWall  );
+            scene.add( passageWall  );
 					},
 					function(xhr){
 						console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );},
@@ -263,7 +263,7 @@
             passageWall.rotation.x = THREE.Math.degToRad( 90 );
 						//passageWall.position.x = -5;
 						passageWall.castShadow = true;
-            scene.add( passageWall  );
+            //scene.add( passageWall  );
 					},
 					function(xhr){
 						console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );},
