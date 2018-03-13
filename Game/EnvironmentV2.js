@@ -42,15 +42,8 @@
       // ScenaryV2.js
       initCaveFloor();
       initCaveWall();
-<<<<<<< HEAD
       initPassageFloor();
       //initPassageWall();
-=======
-      initBoundry();
-      initPassageWall1();
-      initPassageWall2();
-      //initPassageFloor();
->>>>>>> 2ca0af60ced365825cc9398565b160195637dfd3
       initIcicles();
       initLight();
       initShadows();
@@ -60,9 +53,8 @@
       mainGameMusic();
       // SoundV2.js
       //initSphere(); // - temporary character model
-=======
       initSphere(); // - temporary character model
-      
+
       // SoundV2.js
       initGameMusic();
 
