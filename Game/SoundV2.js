@@ -15,16 +15,16 @@ var pause, play;  // sounds for user interface\
 
 
 function mainGameMusic(){             // main theme playing
-  bossTheme = new THREE.AudioListener();
-  scene.add( bossTheme );
+  mainTheme = new THREE.AudioListener();
+  scene.add( mainTheme );
 
-  var sound1 = new THREE.Audio( bossTheme );
+  var sound1 = new THREE.Audio( mainTheme );
   // global audio source
   var audloader1 = new THREE.AudioLoader();
-  audloader1.load( 'libs/sounds/BossThemeV1.m4a', function(buffer){
+  audloader1.load( 'libs/sounds/MainThemeV2.m4a', function(buffer){
     sound1.setBuffer( buffer );
     sound1.setLoop( true );
-    sound1.setVolume( 0.05 );
+    sound1.setVolume( 0.10 );
     sound1.play();
   });
 }
