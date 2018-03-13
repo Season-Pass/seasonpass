@@ -2,9 +2,6 @@
   * This file will contain sounds for the Game.
   * Sounds include music, environment sounds, character Sounds.
   * Character sounds are not necessarily dialogue.
-  * This file has yet to be written.
-  * This file has yet to be called in Environment.
-  * This file has yet to be included in GameV2.html.
 */
 var charSteps, charJump, charAttack, charNoise, lowHealth; // noises from main character
 
@@ -17,7 +14,7 @@ var snow, wind; // environment Sounds
 var pause, play;  // sounds for user interface\
 
 
-function initGameMusic(){
+function mainGameMusic(){             // main theme playing
   bossTheme = new THREE.AudioListener();
   scene.add( bossTheme );
 
@@ -37,4 +34,5 @@ Jump: https://freesound.org/people/Lefty_Studios/sounds/369515/
 Attack:
 Penguin Noise: https://freesound.org/people/soundbytez/sounds/111079/
 Enemy Attack 1 Laser: https://freesound.org/people/cryanrautha/sounds/343851/
+Wind environment: https://freesound.org/people/qubodup/sounds/211610/
 */
