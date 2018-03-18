@@ -86,6 +86,7 @@
       delta = clock.getDelta();
 
       updateCamera();
+      updateCharacter();
       animateParticles();
 
     // render using requestAnimationFrame
