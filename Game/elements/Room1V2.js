@@ -1,0 +1,219 @@
+/*
+  * This program generates one room for the game.
+  > other rooms will be located in other files
+  - might add snow objects
+  - function particles should be changed to encompass whole map
+  > might be moved to seperate folder with lights and shadows
+  -  file may be changed to include only whole map effects such as lighting
+  - shadows, and particles.
+  * feel free to play with the parameters and options in the functions
+  - Move objects such as stalactites to other folder?
+
+  Nadia Kubatin
+*/
+
+
+
+  // environment
+  var caveWall, caveFloor, passageFloor, cylinder;
+  var boundry;
+
+
+
+
+    /*
+      creates a geometry and texture for
+      a lathe which acts as the cave wall.
+      It imports a texture, bump map, and normal map to form a material.
+      It also sets the position of the plane and makes it recieve shadows.
+      This is an ice cave wall, while the geometry forms
+      half the lathe, rotates it and positions it for inside viewing.
+      Physics has been added to allow collisions.
+    */
+    function initCaveWall(){
+      var points = [];
+      for ( var i = 0; i < 9; i ++ ) {
+        // Math.sin(i * a) * b + c, (i - d) * e
+        // i<9 can be modified to change the total height
+        // a: curve, b: bottom width, c: total width, d: size, e: stretch
+         points.push( new THREE.Vector2(
+                      Math.sin( i * 0.17 ) * 95 + 5, ( i - 4.6 ) * 13
+         ));
+       }
+       var geometryLa = new THREE.LatheGeometry( points, 50, 0, 1.03*Math.PI );
+       var textureLa = new THREE.TextureLoader().load('libs/Images/ice-cave-c2.png');
+       var normalTextureLa = new THREE.TextureLoader().load('libs/Images/ice-cave-2c.png');
+       var bumpTextureLa = new THREE.TextureLoader().load('libs/Images/ice-cave-3-b.png');
+       var materialLa = new THREE.MeshPhongMaterial( {
+                          color: 0xcce6ff,
+                          map:textureLa,
+                          bumpMap: bumpTextureLa,
+                          normalMap: normalTextureLa,
+                          shininess: 100,
+                          reflectivity: .5,
+                          side:THREE.DoubleSide
+                        } );
+      var pmaterialLa = new Physijs.createMaterial(materialLa,0.9,0.5);
+      //caveWall = new THREE.Mesh( geometryLa, materialLa );
+      caveWall = new Physijs.ConcaveMesh( geometryLa, pmaterialLa,0 );
+      caveWall.rotation.x = THREE.Math.degToRad( 180 );
+      caveWall.rotation.y = THREE.Math.degToRad( 170 );
+      caveWall.position.y = 43;
+      caveWall.receiveShadow = true;
+      caveWall.castShadow = false;
+      scene.add(caveWall);
+    }
+
+    /*
+      Binds the character to a single arrea within the cave to prevent
+      it from falling out of the scene.
+      * will be moved later to a seperate file.
+    */
+    function initBoundry(){
+      var points = [];
+      for ( var i = 0; i < 9; i ++ ) {
+         points.push( new THREE.Vector2(
+                      Math.sin( i * 0.17 ) * 95 + 5, ( i - 4.6 ) * 13
+         ));
+       }
+       var geometryBo = new THREE.LatheGeometry( points, 50, 0, 1.05*Math.PI );
+       var materialBo = new THREE.MeshPhongMaterial( {
+                          color: 0xcce6ff,
+                          transparent: true,
+                          opacity: 0,
+                          side:THREE.DoubleSide
+                        } );
+      var pmaterialBo = new Physijs.createMaterial(materialBo,0.9,0.5);
+      boundry = new Physijs.ConcaveMesh( geometryBo, pmaterialBo,0 );
+      boundry.rotation.x = THREE.Math.degToRad( 180 );
+      boundry.rotation.y = THREE.Math.degToRad( 10 );
+      boundry.position.y = 43;
+      scene.add(boundry);
+
+      var block1 = initPlane();
+      block1.rotation.y = THREE.Math.degToRad( -20 );
+      block1.position.set(32, 15, -91);
+      scene.add(block1);
+
+      var block2 = initPlane();
+      block2.rotation.y = THREE.Math.degToRad( -30 );
+      block2.position.set(50, 15, -83);
+      scene.add(block2);
+    }
+
+    /*
+      creates the floor of the passage out of the cave
+      and uses the same textures as the cave wall.
+      * will play with parameters to find better fit.
+      * might be changed to blender object or other shape.
+      * Physics have not been added.
+    */
+    function initPlane(){
+      var geometryPF = new THREE.PlaneBufferGeometry( 20, 40, 199, 199 );
+      var materialPF = new THREE.MeshPhongMaterial( {
+                        color: 0x66b3ff,
+                        transparent: true,
+                        opacity: 0,
+                        side:THREE.DoubleSide
+                       } );
+      var pmaterialPF = new Physijs.createMaterial(materialPF,0.9,0.5);
+      plane = new Physijs.BoxMesh( geometryPF, materialPF,0 );
+      return plane;
+    }
+
+    /*
+      creates a geometry and texture for
+      a circle and combines them to form the object.
+      It imports a texture and bump map to form a material.
+      This is the floor of the ice cave.
+      Physics has been added to the floor.
+      * will change shadow and color options to include
+      - more realistic shadow interactions
+      * might include normal map at later time
+    */
+    function initCaveFloor(){
+      var geometryCi = new THREE.CircleGeometry( 98, 32 );
+      var normalTextureCi = new THREE.TextureLoader().load('libs/Images/ice-floor-b.png');
+      var bumpTextureCi = new THREE.TextureLoader().load('libs/Images/ice-floor-3.png');
+      var materialCi = new THREE.MeshPhongMaterial( {
+                          color: 0x66b3ff,
+                          //specular: 0x66b3ff,
+                          //emissive: 0x0b2441,
+                          emissive: 0x000000,
+                          emissiveIntensity: 10,
+                          bumpMap: bumpTextureCi,
+                          //normalMap: normalTextureCi,
+                          //normalScale: THREE.Vector2(.5,.5),
+                          shininess: 100,
+                          reflectivity: .5,
+                          side:THREE.DoubleSide
+                        } );
+      var pmaterialCi = new Physijs.createMaterial(materialCi,0.9,0.5);
+      //caveFloor = new THREE.Mesh( geometryCi, materialCi );
+      caveFloor = new Physijs.BoxMesh( geometryCi, pmaterialCi,0 );
+      caveFloor.rotation.x = THREE.Math.degToRad( 90 );
+      caveFloor.receiveShadow = true;
+      scene.add(caveFloor);
+    }
+
+    function initPassageWall2(){
+      var loader = new THREE.JSONLoader();
+		  loader.load('libs/PassageWall3.json',
+					function ( geometry, materials ) {
+						var material = new THREE.MeshPhongMaterial( {
+                            color: 0x00ff00,
+                            side:THREE.DoubleSide
+                          } );
+            var pmaterial = new Physijs.createMaterial(material,0.9,0.5);
+						var passageWall = new Physijs.SphereMesh( geometry, pmaterial,0);
+						//console.log(JSON.stringify(suzanne.scale));// = new THREE.Vector3(4.0,1.0,1.0);
+						//var s = 0.5;
+						passageWall.scale.y=50;
+						passageWall.scale.x=50;
+						passageWall.scale.z=70;
+						passageWall.position.z = -145;
+						passageWall.position.y = 69.5;
+            passageWall.position.x = -50;
+            passageWall.rotation.z = THREE.Math.degToRad( 270 );
+            passageWall.rotation.x = THREE.Math.degToRad( 90 );
+						//passageWall.position.x = -5;
+						passageWall.castShadow = false;
+            scene.add( passageWall  );
+					},
+					function(xhr){
+						console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );},
+					function(err){console.log("error in loading: "+err);}
+				);
+    }
+
+    function initPassageWall1(){
+      var loader = new THREE.JSONLoader();
+		  loader.load('libs/PassageWallHalf2b.json',
+					function ( geometry, materials ) {
+						var material = new THREE.MeshPhongMaterial( {
+                            color: 0x00ff00,
+                            side:THREE.DoubleSide
+                          } );
+            var pmaterial = new Physijs.createMaterial(material,0.9,0.5);
+            //var passageWall = new THREE.Mesh( geometry, material );
+						var passageWall = new Physijs.ConcaveMesh( geometry, pmaterial,0);
+            passageWall.setDamping(0.1,0.1);
+						console.log(JSON.stringify(passageWall.scale));// = new THREE.Vector3(4.0,1.0,1.0);
+
+						passageWall.scale.y=50;
+						passageWall.scale.x=50;
+						passageWall.scale.z=70;
+						passageWall.position.z = -100;
+						passageWall.position.y = 89.5; //69.5
+            passageWall.position.x = -50;
+            passageWall.rotation.z = THREE.Math.degToRad( 270 );
+            passageWall.rotation.x = THREE.Math.degToRad( 90 );
+						//passageWall.position.x = -5;
+						passageWall.castShadow = true;
+            //scene.add( passageWall  );
+					},
+					function(xhr){
+						console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );},
+					function(err){console.log("error in loading: "+err);}
+				);
+    }
