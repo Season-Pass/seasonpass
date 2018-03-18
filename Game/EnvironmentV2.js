@@ -12,7 +12,6 @@
   var renderer = new THREE.WebGLRenderer();
   var scene = new Physijs.Scene();
   // animation
-  var scene = new THREE.Scene();
   var clock = new THREE.Clock();
   var delta;
   // helpers (will be removed at a later time)
@@ -24,6 +23,7 @@
 
 
   init();
+  initControls();
   render();
 
 
@@ -38,27 +38,23 @@
 
       initPhysijs();
       initRenderer();
-      initControls();
 
       // Camera.js
       initCamera();
       initDevCamera(); // will be removed
 
-      // ScenaryV2.js
+      // Room1V2.js
       initCaveFloor();
       initCaveWall();
       initBoundry();
-      initPassageWall1();
       initPassageWall2();
-      initControls(camera);
-      // ScenaryV2.js
-      initCaveFloor();
-      initCaveWall();
-      //initPassageWall();
+      initControls(camera); //******************
+      // Map.js
       initIcicles();
+      initParticles();
+      // Light.js
       initLight();
       initShadows();
-      initParticles();
       // Character.js
       initSphere(); // - temporary character model
       // SoundV2.js
@@ -88,6 +84,7 @@
       updateCamera();
       updateCharacter();
       animateParticles();
+      scene.simulate();
 
     // render using requestAnimationFrame
       renderer.render(scene, camera);
