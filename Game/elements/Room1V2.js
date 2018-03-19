@@ -16,7 +16,8 @@
 
   // environment
   var caveWall, caveFloor, passageFloor, cylinder;
-  var boundry;
+  var boundry, loader1, loader2;
+  var passageWall1, passageWall2;
 
 
 
@@ -157,28 +158,32 @@
     }
 
     function initPassageWall2(){
-      var loader = new THREE.JSONLoader();
-		  loader.load('libs/PassageWall3.json',
+      loader1 = new THREE.JSONLoader();
+		  loader1.load('libs/PassageWall3.json',
 					function ( geometry, materials ) {
+            var texturePa = new THREE.TextureLoader().load('libs/Images/ice-cave-c2.png');
+            var normalTexturePa = new THREE.TextureLoader().load('libs/Images/testNormal.png');
 						var material = new THREE.MeshPhongMaterial( {
-                            color: 0x00ff00,
+                            color: 0x66b3ff,
+                            //map:texturePa,
+                            //normalMap: normalTexturePa,
                             side:THREE.DoubleSide
                           } );
             var pmaterial = new Physijs.createMaterial(material,0.9,0.5);
-						var passageWall = new Physijs.SphereMesh( geometry, pmaterial,0);
+						passageWall1 = new Physijs.SphereMesh( geometry, pmaterial,0);
 						//console.log(JSON.stringify(suzanne.scale));// = new THREE.Vector3(4.0,1.0,1.0);
 						//var s = 0.5;
-						passageWall.scale.y=50;
-						passageWall.scale.x=50;
-						passageWall.scale.z=70;
-						passageWall.position.z = -145;
-						passageWall.position.y = 69.5;
-            passageWall.position.x = -50;
-            passageWall.rotation.z = THREE.Math.degToRad( 270 );
-            passageWall.rotation.x = THREE.Math.degToRad( 90 );
+						passageWall1.scale.y=50;
+						passageWall1.scale.x=50;
+						passageWall1.scale.z=70;
+						passageWall1.position.z = -145;
+						passageWall1.position.y = 69.5;
+            passageWall1.position.x = -50;
+            passageWall1.rotation.z = THREE.Math.degToRad( 270 );
+            passageWall1.rotation.x = THREE.Math.degToRad( 90 );
 						//passageWall.position.x = -5;
-						passageWall.castShadow = false;
-            scene.add( passageWall  );
+						passageWall1.castShadow = false;
+            scene.add( passageWall1  );
 					},
 					function(xhr){
 						console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );},
@@ -187,30 +192,41 @@
     }
 
     function initPassageWall1(){
-      var loader = new THREE.JSONLoader();
-		  loader.load('libs/PassageWallHalf2b.json',
+      loader2 = new THREE.JSONLoader();
+		  loader2.load('libs/PassageWallHalf2b.json',
 					function ( geometry, materials ) {
+            var normalTexturePa = new THREE.TextureLoader().load('libs/Images/ice-floor-b.png');
+            var bumpTexturePa = new THREE.TextureLoader().load('libs/Images/ice-floor-3.png');
 						var material = new THREE.MeshPhongMaterial( {
-                            color: 0x00ff00,
-                            side:THREE.DoubleSide
+                              color: 0x66b3ff,
+                              //specular: 0x66b3ff,
+                              //emissive: 0x0b2441,
+                              emissive: 0x000000,
+                              emissiveIntensity: 10,
+                              bumpMap: bumpTexturePa,
+                              //normalMap: normalTextureCi,
+                              //normalScale: THREE.Vector2(.5,.5),
+                              shininess: 0,
+                              reflectivity: .5,
+                              side:THREE.DoubleSide
                           } );
             var pmaterial = new Physijs.createMaterial(material,0.9,0.5);
             //var passageWall = new THREE.Mesh( geometry, material );
-						var passageWall = new Physijs.ConcaveMesh( geometry, pmaterial,0);
-            passageWall.setDamping(0.1,0.1);
-						console.log(JSON.stringify(passageWall.scale));// = new THREE.Vector3(4.0,1.0,1.0);
+						passageWall2 = new Physijs.ConcaveMesh( geometry, pmaterial,0);
+            passageWall2.setDamping(0.1,0.1);
+						console.log(JSON.stringify(passageWall2.scale));// = new THREE.Vector3(4.0,1.0,1.0);
 
-						passageWall.scale.y=50;
-						passageWall.scale.x=50;
-						passageWall.scale.z=70;
-						passageWall.position.z = -100;
-						passageWall.position.y = 89.5; //69.5
-            passageWall.position.x = -50;
-            passageWall.rotation.z = THREE.Math.degToRad( 270 );
-            passageWall.rotation.x = THREE.Math.degToRad( 90 );
-						//passageWall.position.x = -5;
-						passageWall.castShadow = true;
-            //scene.add( passageWall  );
+						passageWall2.scale.y=50;
+						passageWall2.scale.x=50;
+						passageWall2.scale.z=70;
+						passageWall2.position.z = -145;
+						passageWall2.position.y = 69.5; //69.5
+            passageWall2.position.x = -50;
+            passageWall2.rotation.z = THREE.Math.degToRad( 270 );
+            passageWall2.rotation.x = THREE.Math.degToRad( 90 );
+						//passageWall2.position.x = -5;
+						passageWall2.castShadow = true;
+            scene.add( passageWall2  );
 					},
 					function(xhr){
 						console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );},

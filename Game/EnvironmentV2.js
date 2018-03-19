@@ -47,7 +47,8 @@
       initCaveFloor();
       initCaveWall();
       initBoundry();
-      initPassageWall2();
+      //initPassageWall2();
+      initPassageWall1();
       initControls(camera); //******************
       // Map.js
       initIcicles();
@@ -87,7 +88,12 @@
       scene.simulate();
 
     // render using requestAnimationFrame
-      renderer.render(scene, camera);
+      if (devCameraActive){
+        renderer.render( scene, devCamera );
+      }else {
+        renderer.render( scene, camera );
+      }
+      //renderer.render(scene, camera);
       requestAnimationFrame(render);
   }
 

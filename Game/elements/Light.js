@@ -8,7 +8,7 @@
 
 
   // light
-  var ambiLight, spotLight, light, pointLight, hemilight;
+  var ambiLight, spotLight, light, pointLight, pointLight2, hemilight;
 
 
 
@@ -23,14 +23,17 @@
       ambiLight = new THREE.AmbientLight(0x111111, 1.5);
       hemilight = new THREE.HemisphereLight( 0xffffff, 0x66c2ff, .07 );
       pointLight = new THREE.PointLight( 0xffffff, 1.2, 250 );
+      pointLight2 = new THREE.PointLight( 0xffffff, 1.2, 250 );
       spotLight = new THREE.SpotLight(0xffffff, .4, 125, .2, 0, 1);
       pointLight.position.set( 0, 15, 0 );
+      pointLight2.position.set( 0, 15, -130 );
       spotLight.position.set(0,125,0);
       pointLight.castShadow = true;
       spotLight.castShadow = true;
       scene.add(ambiLight);
       scene.add(hemilight);
       scene.add(pointLight);
+      scene.add(pointLight2);
       scene.add(spotLight);
     }
 
