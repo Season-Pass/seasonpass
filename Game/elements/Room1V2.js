@@ -157,7 +157,11 @@
       scene.add(caveFloor);
     }
 
-    function initPassageWall2(){
+    /*
+      First attempt at loading in a blender object.
+      Will work on it a bit more at another time.
+    */
+    function initPassageWall1(){
       loader1 = new THREE.JSONLoader();
 		  loader1.load('libs/PassageWall3.json',
 					function ( geometry, materials ) {
@@ -191,9 +195,58 @@
 				);
     }
 
-    function initPassageWall1(){
+    /*
+
+    */
+    function initPassageWall2(){
       loader2 = new THREE.JSONLoader();
 		  loader2.load('libs/PassageWallHalf2b.json',
+					function ( geometry, materials ) {
+            var normalTexturePa = new THREE.TextureLoader().load('libs/Images/ice-floor-b.png');
+            var bumpTexturePa = new THREE.TextureLoader().load('libs/Images/ice-floor-3.png');
+						var material = new THREE.MeshPhongMaterial( {
+                              color: 0x66b3ff,
+                              //specular: 0x66b3ff,
+                              //emissive: 0x0b2441,
+                              emissive: 0x000000,
+                              emissiveIntensity: 10,
+                              bumpMap: bumpTexturePa,
+                              //normalMap: normalTextureCi,
+                              //normalScale: THREE.Vector2(.5,.5),
+                              shininess: 0,
+                              reflectivity: .5,
+                              side:THREE.DoubleSide
+                          } );
+            var pmaterial = new Physijs.createMaterial(material,0.9,0.5);
+            //var passageWall = new THREE.Mesh( geometry, material );
+						passageWall2 = new Physijs.ConcaveMesh( geometry, pmaterial,0);
+            passageWall2.setDamping(0.1,0.1);
+						console.log(JSON.stringify(passageWall2.scale));// = new THREE.Vector3(4.0,1.0,1.0);
+
+						passageWall2.scale.y=50;
+						passageWall2.scale.x=50;
+						passageWall2.scale.z=70;
+						passageWall2.position.z = -145;
+						passageWall2.position.y = 69.5; //69.5
+            passageWall2.position.x = -50;
+            passageWall2.rotation.z = THREE.Math.degToRad( 270 );
+            passageWall2.rotation.x = THREE.Math.degToRad( 90 );
+						//passageWall2.position.x = -5;
+						passageWall2.castShadow = true;
+            scene.add( passageWall2  );
+					},
+					function(xhr){
+						console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );},
+					function(err){console.log("error in loading: "+err);}
+				);
+    }
+
+    /*
+
+    */
+    function initPassageWall3(){
+      loader2 = new THREE.JSONLoader();
+		  loader2.load('libs/PassageWallHalf2a.json',
 					function ( geometry, materials ) {
             var normalTexturePa = new THREE.TextureLoader().load('libs/Images/ice-floor-b.png');
             var bumpTexturePa = new THREE.TextureLoader().load('libs/Images/ice-floor-3.png');

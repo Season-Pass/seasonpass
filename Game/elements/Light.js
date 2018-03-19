@@ -8,7 +8,8 @@
 
 
   // light
-  var ambiLight, spotLight, light, pointLight, pointLight2, hemilight;
+  var ambiLight, spotLight, light, hemilight;
+  var pointLight, pointLight2, pointLight3;
 
 
 
@@ -22,19 +23,30 @@
     function initLight(){
       ambiLight = new THREE.AmbientLight(0x111111, 1.5);
       hemilight = new THREE.HemisphereLight( 0xffffff, 0x66c2ff, .07 );
-      pointLight = new THREE.PointLight( 0xffffff, 1.2, 250 );
-      pointLight2 = new THREE.PointLight( 0xffffff, 1.2, 250 );
       spotLight = new THREE.SpotLight(0xffffff, .4, 125, .2, 0, 1);
-      pointLight.position.set( 0, 15, 0 );
-      pointLight2.position.set( 0, 15, -130 );
       spotLight.position.set(0,125,0);
-      pointLight.castShadow = true;
       spotLight.castShadow = true;
       scene.add(ambiLight);
       scene.add(hemilight);
+      scene.add(spotLight);
+      initPointLight();
+    }
+
+    function initPointLight(){
+      pointLight = new THREE.PointLight( 0xffffff, 1.2, 250 );
+      pointLight2 = new THREE.PointLight( 0xffffff, 1.2, 250 );
+      pointLight3 = new THREE.PointLight( 0xffffff, 3, 350, .5 );
+      pointLight4 = new THREE.PointLight( 0xffffff, 1.2, 350, .5 );
+      pointLight.position.set( 0, 15, 0 );
+      pointLight2.position.set( 0, 15, -130 );
+      pointLight3.position.set( -300, 15, -300 );
+      pointLight4.position.set( -200, 15, -570 );
+      pointLight.castShadow = true;
+      pointLight3.castShadow = true;
       scene.add(pointLight);
       scene.add(pointLight2);
-      scene.add(spotLight);
+      scene.add(pointLight3);
+      scene.add(pointLight4);
     }
 
     /*

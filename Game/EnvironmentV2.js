@@ -50,6 +50,9 @@
       //initPassageWall2();
       initPassageWall1();
       initControls(camera); //******************
+      // Room2V2.js
+      //initWall();
+      initWall2();
       // Map.js
       initIcicles();
       initParticles();
@@ -65,6 +68,15 @@
       var spotLightHelper = new THREE.SpotLightHelper( spotLight );
       scene.add(new THREE.AxesHelper( 100 ));
       scene.add( spotLightHelper );
+      var sphereSize = 20;
+      var pointLightHelper = new THREE.PointLightHelper( pointLight, sphereSize );
+      scene.add( pointLightHelper );
+      var pointLightHelper2 = new THREE.PointLightHelper( pointLight2, sphereSize );
+      scene.add( pointLightHelper2 );
+      var pointLightHelper3 = new THREE.PointLightHelper( pointLight3, sphereSize );
+      scene.add( pointLightHelper3 );
+      var pointLightHelper4 = new THREE.PointLightHelper( pointLight4, sphereSize );
+      scene.add( pointLightHelper4 );
       //scene.add(gridHelper);
 
       window.addEventListener('resize',onWindowResize, false);
