@@ -7,17 +7,18 @@
 
 
 
+
   // light
   var ambiLight, spotLight, light, hemilight;
-  var pointLight, pointLight2, pointLight3;
+  var pointLight, pointLight2, pointLight3, pointLight4;
+
 
 
 
     /*
-      Creates four spotlights and an ambient light
+      Creates four pointlights, a spotlight, and an ambient light
       and sets color, intensity and position
       as well as sets shadows and targets for the light.
-      * might split into multiple functions per lights
       * will play with light parameters and colors to find better fit
     */
     function initLight(){
@@ -32,6 +33,9 @@
       initPointLight();
     }
 
+    /*
+      Creates the main lighting for the game using pointlights.
+    */
     function initPointLight(){
       pointLight = new THREE.PointLight( 0xffffff, 1.2, 250 );
       pointLight2 = new THREE.PointLight( 0xffffff, 1.2, 250 );

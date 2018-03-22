@@ -42,17 +42,14 @@
       // Camera.js
       initCamera();
       initDevCamera(); // will be removed
-
       // Room1V2.js
       initCaveFloor();
       initCaveWall();
       initBoundry();
       //initPassageWall2();
       initPassageWall1();
-      initControls(camera); //******************
       // Room2V2.js
-      //initWall();
-      initWall2();
+      initWall();
       // Map.js
       initIcicles();
       initParticles();
@@ -86,8 +83,6 @@
     We update the camera in order
     to view the entire map.
     Finally, we render the scene.
-    * will need to include a second perspective camera
-    * will need to add controls for camera (lookAt object)
     * will need to add camera restraints
   */
   function render() {

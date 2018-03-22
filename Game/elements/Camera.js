@@ -6,19 +6,22 @@
 */
 
 
+
+
   // variables
   var camera = new THREE.PerspectiveCamera(
                     45,
                     window.innerWidth / window.innerHeight,
                     0.1, 1000
                   );
-  var devCamera = new THREE.PerspectiveCamera( // devCamera will be removed
+  // Variables below will be removed at a later time
+  var devCamera = new THREE.PerspectiveCamera(
                     50,
                     window.innerWidth / window.innerHeight,
                     0.1, 1000
                   );
-  var orbitControls = new THREE.OrbitControls(devCamera); // will be removed
-  var devCameraActive = false; // will be removed
+  var orbitControls = new THREE.OrbitControls(devCamera);
+  var devCameraActive = false;
 
 
 
@@ -53,4 +56,15 @@
     devCamera.position.x = 200;
     devCamera.position.y = 50;
     devCamera.position.z = -10;
+  }
+
+  /*
+    Will update the camera's proximity to the character
+    depending on the location so that the view will
+    change depending on the room.
+    This will make it easier to view the scene and therefore
+    play the game and move the character.
+  */
+  function cameraZoom(){
+
   }

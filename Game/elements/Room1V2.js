@@ -2,15 +2,11 @@
   * This program generates one room for the game.
   > other rooms will be located in other files
   - might add snow objects
-  - function particles should be changed to encompass whole map
-  > might be moved to seperate folder with lights and shadows
-  -  file may be changed to include only whole map effects such as lighting
-  - shadows, and particles.
   * feel free to play with the parameters and options in the functions
-  - Move objects such as stalactites to other folder?
 
   Nadia Kubatin
 */
+
 
 
 
@@ -55,7 +51,6 @@
                           side:THREE.DoubleSide
                         } );
       var pmaterialLa = new Physijs.createMaterial(materialLa,0.9,0.5);
-      //caveWall = new THREE.Mesh( geometryLa, materialLa );
       caveWall = new Physijs.ConcaveMesh( geometryLa, pmaterialLa,0 );
       caveWall.rotation.x = THREE.Math.degToRad( 180 );
       caveWall.rotation.y = THREE.Math.degToRad( 170 );
@@ -66,7 +61,7 @@
     }
 
     /*
-      Binds the character to a single arrea within the cave to prevent
+      Binds the character to a single area within the cave to prevent
       it from falling out of the scene.
       * will be moved later to a seperate file.
     */
@@ -103,11 +98,7 @@
     }
 
     /*
-      creates the floor of the passage out of the cave
-      and uses the same textures as the cave wall.
-      * will play with parameters to find better fit.
-      * might be changed to blender object or other shape.
-      * Physics have not been added.
+      Creates a plane for use in the initBarrier function.
     */
     function initPlane(){
       var geometryPF = new THREE.PlaneBufferGeometry( 20, 40, 199, 199 );
@@ -123,7 +114,7 @@
     }
 
     /*
-      creates a geometry and texture for
+      Creates a geometry and texture for
       a circle and combines them to form the object.
       It imports a texture and bump map to form a material.
       This is the floor of the ice cave.
@@ -150,7 +141,6 @@
                           side:THREE.DoubleSide
                         } );
       var pmaterialCi = new Physijs.createMaterial(materialCi,0.9,0.5);
-      //caveFloor = new THREE.Mesh( geometryCi, materialCi );
       caveFloor = new Physijs.BoxMesh( geometryCi, pmaterialCi,0 );
       caveFloor.rotation.x = THREE.Math.degToRad( 90 );
       caveFloor.receiveShadow = true;

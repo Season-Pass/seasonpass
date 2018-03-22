@@ -1,6 +1,6 @@
 /*
   * This file will contain character model information.
-  - Character design using Three.js and grouping or blender.
+  - Character design using blender.
   - Character controls
   > Space/X = jump has not been implemented
   > "Look up" function?

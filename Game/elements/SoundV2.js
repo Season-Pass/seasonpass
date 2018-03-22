@@ -12,6 +12,8 @@
 */
 
 
+
+
   // noises from main character
   var charSteps, charJump, charAttack, charNoise, lowHealth;
   // noises from enemy
@@ -22,6 +24,8 @@
   var snow, wind;
   // sounds for user interface
   var pause, play;
+
+
 
 
     function initGameMusic(){

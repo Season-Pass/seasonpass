@@ -6,8 +6,12 @@
 */
 
 
+
+
   // particle system
   var snow;
+  // map objects
+  // to be added later (snow piles)
 
 
 
