@@ -29,15 +29,20 @@
 
 
 
+  function init(){
+
+    initPhysijs();
+    initMain();
+    initRenderer();
+
+  }
+
   /*
     We initialize everything in the scene
     and add it to the scene.
     Functions are from other files.
   */
-  function init() {
-
-      initPhysijs();
-      initRenderer();
+  function initMain() {
 
       // Camera.js
       initCamera();
