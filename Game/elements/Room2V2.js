@@ -23,13 +23,13 @@
      var geometryWa = new THREE.CylinderGeometry( 200, 200, 300, 64, 64, true, 0, -2.4);
      var textureWa = new THREE.TextureLoader().load('libs/Images/wall1.png');
      //var normalTextureLa = new THREE.TextureLoader().load('libs/Images/ice-cave-2c.png');
-     var bumpTextureWa = new THREE.TextureLoader().load('libs/Images/ice-cave-3-b.png');
+     var bumpTextureWa = new THREE.TextureLoader().load('libs/Images/wall1-b.png');
      var materialWa = new THREE.MeshPhongMaterial( {
                         color: 0xe6f2ff,
                         map:textureWa,
                         specular: 0xe6f2ff,
-                        emissive: 0x0b2441,
-                        //bumpMap: bumpTextureWa,
+                        emissive: 0x0d1e26, //0b2441
+                        bumpMap: bumpTextureWa,
                         //normalMap: normalTextureWa,
                         shininess: 100,
                         reflectivity: .5,
@@ -47,10 +47,18 @@
     scene.add(wall);
   }
 
-  function initColumn(){
+  function initColumn(x,y,z){
 
   }
 
   function createBox(h,w,d){
-    
+
+  }
+
+  function createCylinderPass(){
+
+  }
+
+  function createLinearPass(){
+
   }

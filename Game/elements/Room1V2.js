@@ -1,7 +1,6 @@
 /*
   * This program generates one room for the game.
   > other rooms will be located in other files
-  - might add snow objects
   * feel free to play with the parameters and options in the functions
 
   Nadia Kubatin
@@ -13,7 +12,7 @@
   // environment
   var caveWall, caveFloor, passageFloor, cylinder;
   var boundry, loader1, loader2;
-  var passageWall1, passageWall2;
+  var passageWall, passageWall2;
 
 
 
@@ -178,6 +177,7 @@
 						//passageWall.position.x = -5;
 						passageWall1.castShadow = false;
             scene.add( passageWall1  );
+            passageWall = passageWall1;
 					},
 					function(xhr){
 						console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );},

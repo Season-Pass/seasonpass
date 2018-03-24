@@ -1,6 +1,7 @@
 /*
   * This file will contain map objects such as
   * icicles, particles, and other small objects.
+  * Will add snow piles.
 
   Nadia Kubatin
 */

@@ -10,7 +10,7 @@
 
   // variables
   var renderer = new THREE.WebGLRenderer();
-  var scene = new Physijs.Scene();
+  var scene;
   // animation
   var clock = new THREE.Clock();
   var delta;
@@ -32,6 +32,7 @@
   function init(){
 
     initPhysijs();
+    scene = initScene();
     initMain();
     initRenderer();
 
@@ -67,19 +68,7 @@
       initGameMusic();
 
       // add helpers (will be removed at a later time)
-      var spotLightHelper = new THREE.SpotLightHelper( spotLight );
-      scene.add(new THREE.AxesHelper( 100 ));
-      scene.add( spotLightHelper );
-      var sphereSize = 20;
-      var pointLightHelper = new THREE.PointLightHelper( pointLight, sphereSize );
-      scene.add( pointLightHelper );
-      var pointLightHelper2 = new THREE.PointLightHelper( pointLight2, sphereSize );
-      scene.add( pointLightHelper2 );
-      var pointLightHelper3 = new THREE.PointLightHelper( pointLight3, sphereSize );
-      scene.add( pointLightHelper3 );
-      var pointLightHelper4 = new THREE.PointLightHelper( pointLight4, sphereSize );
-      scene.add( pointLightHelper4 );
-      //scene.add(gridHelper);
+      initHelpers();
 
       window.addEventListener('resize',onWindowResize, false);
   }
@@ -107,6 +96,14 @@
       }
       //renderer.render(scene, camera);
       requestAnimationFrame(render);
+  }
+
+  /*
+
+  */
+  function initScene(){
+    var scene = new Physijs.Scene();
+    return scene;
   }
 
   /*
@@ -148,4 +145,24 @@
     camera.aspect = window.innerWidth/window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
+  }
+
+  /*
+    This function creates helpers.
+    It will be removed at a later time.
+  */
+  function initHelpers(){
+    var spotLightHelper = new THREE.SpotLightHelper( spotLight );
+    scene.add(new THREE.AxesHelper( 100 ));
+    scene.add( spotLightHelper );
+    var sphereSize = 20;
+    var pointLightHelper = new THREE.PointLightHelper( pointLight, sphereSize );
+    scene.add( pointLightHelper );
+    var pointLightHelper2 = new THREE.PointLightHelper( pointLight2, sphereSize );
+    scene.add( pointLightHelper2 );
+    var pointLightHelper3 = new THREE.PointLightHelper( pointLight3, sphereSize );
+    scene.add( pointLightHelper3 );
+    var pointLightHelper4 = new THREE.PointLightHelper( pointLight4, sphereSize );
+    scene.add( pointLightHelper4 );
+    //scene.add(gridHelper);
   }
