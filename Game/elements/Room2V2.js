@@ -47,12 +47,40 @@
     scene.add(wall);
   }
 
+  function initFloors(){
+    var col = createBox();
+    col.rotation.x = THREE.Math.degToRad( 90 );
+    col.position.set(0, -84, -220)
+    scene.add(col);
+  }
+
   function initColumn(x,y,z){
 
   }
 
-  function createBox(h,w,d){
+  function createBox(){
+    var length = 30, width = 15;
 
+    var shape = new THREE.Shape();
+    shape.moveTo( 0,0 );
+    shape.lineTo( 0, width );
+    shape.lineTo( length, width );
+    shape.lineTo( length, 0 );
+    shape.lineTo( 0, 0 );
+
+    var extrudeSettings = {
+    	steps: 10,
+    	amount: 20,
+    	bevelEnabled: true,
+    	bevelThickness: 5,
+    	bevelSize: 3,
+    	bevelSegments: 5
+    };
+
+    var geometry = new THREE.ExtrudeGeometry( shape, extrudeSettings );
+    var material = new THREE.MeshPhongMaterial( { color: 0x66b3ff } );
+    var mesh = new THREE.Mesh( geometry, material ) ;
+    return mesh;
   }
 
   function createCylinderPass(){

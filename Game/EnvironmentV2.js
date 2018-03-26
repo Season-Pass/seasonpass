@@ -56,6 +56,7 @@
       initPassageWall1();
       // Room2V2.js
       initWall();
+      initFloors();
       // Map.js
       initIcicles();
       initParticles();
@@ -84,6 +85,7 @@
       delta = clock.getDelta();
 
       updateCamera();
+      cameraZoom();
       updateCharacter();
       animateParticles();
       scene.simulate();

@@ -66,5 +66,13 @@
     play the game and move the character.
   */
   function cameraZoom(){
-
+    if(sphere.position.z<-98){
+      if(camera.position.x>100){
+        camera.position.x--;
+      }
+    } else if(sphere.position.z>-98){
+      if(camera.position.x<150){
+        camera.position.x++;
+      }
+    }
   }
