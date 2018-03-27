@@ -85,29 +85,41 @@
       boundry.position.y = 43;
       scene.add(boundry);
 
-      var block1 = initPlane();
-      block1.rotation.y = THREE.Math.degToRad( -20 );
-      block1.position.set(32, 15, -91);
-      scene.add(block1);
+      createBlock(30,40,32,15,-91,-20,0);
+      createBlock(30,40,50,15,-83,-35,0);
+      createBlock(30,10,10,-.05,-100,0,83);
+      createBlock(30,10,10,-3,-110,0,70);
+      createBlock(30,10,10,-8,-118,0,48);
+      createBlock(30,50,10,-33,-135,0,30);
+      createBlock(30,10,10,-58,-152,0,48);
+      createBlock(30,30,10,-67,-163,0,55);
+      createBlock(30,20,10,-78,-185,0,75);
+      createBlock(30,40,10,-80,-205,0,90);
+      createBlock(600,200,25,-50,-390,90,0);
+      createBlock(600,200,-4,-50,-390,90,0);
 
-      var block2 = initPlane();
-      block2.rotation.y = THREE.Math.degToRad( -30 );
-      block2.position.set(50, 15, -83);
-      scene.add(block2);
+    }
+
+    function createBlock(w,h,x,y,z,r,r2){
+      var block = initPlane(w,h);
+      block.rotation.y = THREE.Math.degToRad( r );
+      block.rotation.x = THREE.Math.degToRad( r2 );
+      block.position.set(x, y, z);
+      scene.add(block);
     }
 
     /*
       Creates a plane for use in the initBarrier function.
     */
-    function initPlane(){
-      var geometryPF = new THREE.PlaneBufferGeometry( 20, 40, 199, 199 );
+    function initPlane(w,h){
+      var geometryPF = new THREE.PlaneBufferGeometry( w, h, 199, 199 );
       var materialPF = new THREE.MeshPhongMaterial( {
                         color: 0x66b3ff,
                         transparent: true,
                         opacity: 0,
                         side:THREE.DoubleSide
                        } );
-      var pmaterialPF = new Physijs.createMaterial(materialPF,0.9,0.5);
+      var pmaterialPF = new Physijs.createMaterial(materialPF,0,0.5);
       plane = new Physijs.BoxMesh( geometryPF, materialPF,0 );
       return plane;
     }
@@ -178,98 +190,6 @@
 						passageWall1.castShadow = false;
             scene.add( passageWall1  );
             passageWall = passageWall1;
-					},
-					function(xhr){
-						console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );},
-					function(err){console.log("error in loading: "+err);}
-				);
-    }
-
-    /*
-
-    */
-    function initPassageWall2(){
-      loader2 = new THREE.JSONLoader();
-		  loader2.load('libs/PassageWallHalf2b.json',
-					function ( geometry, materials ) {
-            var normalTexturePa = new THREE.TextureLoader().load('libs/Images/ice-floor-b.png');
-            var bumpTexturePa = new THREE.TextureLoader().load('libs/Images/ice-floor-3.png');
-						var material = new THREE.MeshPhongMaterial( {
-                              color: 0x66b3ff,
-                              //specular: 0x66b3ff,
-                              //emissive: 0x0b2441,
-                              emissive: 0x000000,
-                              emissiveIntensity: 10,
-                              bumpMap: bumpTexturePa,
-                              //normalMap: normalTextureCi,
-                              //normalScale: THREE.Vector2(.5,.5),
-                              shininess: 0,
-                              reflectivity: .5,
-                              side:THREE.DoubleSide
-                          } );
-            var pmaterial = new Physijs.createMaterial(material,0.9,0.5);
-            //var passageWall = new THREE.Mesh( geometry, material );
-						passageWall2 = new Physijs.ConcaveMesh( geometry, pmaterial,0);
-            passageWall2.setDamping(0.1,0.1);
-						console.log(JSON.stringify(passageWall2.scale));// = new THREE.Vector3(4.0,1.0,1.0);
-
-						passageWall2.scale.y=50;
-						passageWall2.scale.x=50;
-						passageWall2.scale.z=70;
-						passageWall2.position.z = -145;
-						passageWall2.position.y = 69.5; //69.5
-            passageWall2.position.x = -50;
-            passageWall2.rotation.z = THREE.Math.degToRad( 270 );
-            passageWall2.rotation.x = THREE.Math.degToRad( 90 );
-						//passageWall2.position.x = -5;
-						passageWall2.castShadow = true;
-            scene.add( passageWall2  );
-					},
-					function(xhr){
-						console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );},
-					function(err){console.log("error in loading: "+err);}
-				);
-    }
-
-    /*
-
-    */
-    function initPassageWall3(){
-      loader2 = new THREE.JSONLoader();
-		  loader2.load('libs/PassageWallHalf2a.json',
-					function ( geometry, materials ) {
-            var normalTexturePa = new THREE.TextureLoader().load('libs/Images/ice-floor-b.png');
-            var bumpTexturePa = new THREE.TextureLoader().load('libs/Images/ice-floor-3.png');
-						var material = new THREE.MeshPhongMaterial( {
-                              color: 0x66b3ff,
-                              //specular: 0x66b3ff,
-                              //emissive: 0x0b2441,
-                              emissive: 0x000000,
-                              emissiveIntensity: 10,
-                              bumpMap: bumpTexturePa,
-                              //normalMap: normalTextureCi,
-                              //normalScale: THREE.Vector2(.5,.5),
-                              shininess: 0,
-                              reflectivity: .5,
-                              side:THREE.DoubleSide
-                          } );
-            var pmaterial = new Physijs.createMaterial(material,0.9,0.5);
-            //var passageWall = new THREE.Mesh( geometry, material );
-						passageWall2 = new Physijs.ConcaveMesh( geometry, pmaterial,0);
-            passageWall2.setDamping(0.1,0.1);
-						console.log(JSON.stringify(passageWall2.scale));// = new THREE.Vector3(4.0,1.0,1.0);
-
-						passageWall2.scale.y=50;
-						passageWall2.scale.x=50;
-						passageWall2.scale.z=70;
-						passageWall2.position.z = -145;
-						passageWall2.position.y = 69.5; //69.5
-            passageWall2.position.x = -50;
-            passageWall2.rotation.z = THREE.Math.degToRad( 270 );
-            passageWall2.rotation.x = THREE.Math.degToRad( 90 );
-						//passageWall2.position.x = -5;
-						passageWall2.castShadow = true;
-            scene.add( passageWall2  );
 					},
 					function(xhr){
 						console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );},

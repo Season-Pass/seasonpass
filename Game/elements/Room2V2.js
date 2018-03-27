@@ -48,17 +48,10 @@
   }
 
   function initFloors(){
-    var col = createBox();
-    col.rotation.x = THREE.Math.degToRad( 90 );
-    col.position.set(0, -84, -220)
-    scene.add(col);
+    createBox(0, -94.5, -223);
   }
 
-  function initColumn(x,y,z){
-
-  }
-
-  function createBox(){
+  function createBox(x,y,z){
     var length = 30, width = 15;
 
     var shape = new THREE.Shape();
@@ -79,8 +72,11 @@
 
     var geometry = new THREE.ExtrudeGeometry( shape, extrudeSettings );
     var material = new THREE.MeshPhongMaterial( { color: 0x66b3ff } );
-    var mesh = new THREE.Mesh( geometry, material ) ;
-    return mesh;
+    var mesh = new THREE.Mesh( geometry, material, 0 ) ;
+    mesh.rotation.x = THREE.Math.degToRad( 90 );
+    mesh.position.set(x, y, z);
+    mesh.scale.z = 3;
+    scene.add(mesh);
   }
 
   function createCylinderPass(){

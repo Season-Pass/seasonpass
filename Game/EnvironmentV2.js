@@ -52,7 +52,6 @@
       initCaveFloor();
       initCaveWall();
       initBoundry();
-      //initPassageWall2();
       initPassageWall1();
       // Room2V2.js
       initWall();
