@@ -8,6 +8,7 @@
 
 
 
+  // Variables
   var floor;
   var wall;
   var column;
@@ -17,7 +18,7 @@
 
 
   /*
-
+    Creates the background of the room.
   */
   function initWall(){
      var geometryWa = new THREE.CylinderGeometry( 200, 200, 300, 64, 64, true, 0, -2.4);
@@ -37,7 +38,6 @@
                       } );
     var pmaterialWa = new Physijs.createMaterial(materialWa,0.9,0.5);
     wall = new Physijs.ConcaveMesh( geometryWa, pmaterialWa,0 );
-    //wall.rotation.x = THREE.Math.degToRad( 180 );
     wall.rotation.y = THREE.Math.degToRad( -23 );
     wall.position.y = -40;
     wall.position.x = 0;
@@ -47,12 +47,19 @@
     scene.add(wall);
   }
 
+  /*
+    Creates the column for the character to jump on.
+  */
   function initFloors(){
-    createBox(0, -94.5, -223);
+    createBox(50,100,-72, -94.5, -250);
   }
 
-  function createBox(x,y,z){
-    var length = 30, width = 15;
+  /*
+    Creates a bevel geometry to create a box with
+    smooth edges for use in creating columns.
+  */
+  function createBox(w,l,x,y,z){
+    var length = l, width = w;
 
     var shape = new THREE.Shape();
     shape.moveTo( 0,0 );
@@ -79,10 +86,16 @@
     scene.add(mesh);
   }
 
+  /*
+
+  */
   function createCylinderPass(){
 
   }
 
+  /*
+
+  */
   function createLinearPass(){
 
   }

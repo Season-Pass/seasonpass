@@ -5,7 +5,7 @@
   * Helpers will also be inluded here.
   * All files called in this file must be called first in GameV2.html.
 
-  -Nadia Kubatin
+  Nadia Kubatin
 */
 
   // variables
@@ -22,6 +22,8 @@
 
 
 
+  // Calls to main methods
+  // Might separate render() into render() and animate()
   init();
   initControls();
   render();
@@ -29,6 +31,9 @@
 
 
 
+  /*
+    The main init function that creates everything used in GameV2.
+  */
   function init(){
 
     initPhysijs();
@@ -39,7 +44,7 @@
   }
 
   /*
-    We initialize everything in the scene
+    We initialize everything in the main scene
     and add it to the scene.
     Functions are from other files.
   */
@@ -66,7 +71,6 @@
       initSphere(); // - temporary character model
       // SoundV2.js
       initGameMusic();
-
       // add helpers (will be removed at a later time)
       initHelpers();
 
@@ -89,18 +93,20 @@
       animateParticles();
       scene.simulate();
 
-    // render using requestAnimationFrame
+      // Will be removed with devCamera at another time
+      // renderer.render( scene, camera );
       if (devCameraActive){
         renderer.render( scene, devCamera );
       }else {
         renderer.render( scene, camera );
       }
-      //renderer.render(scene, camera);
+
+    // render using requestAnimationFrame
       requestAnimationFrame(render);
   }
 
   /*
-
+    Creates the scene
   */
   function initScene(){
     var scene = new Physijs.Scene();

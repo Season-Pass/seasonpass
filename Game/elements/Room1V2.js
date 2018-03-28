@@ -2,6 +2,7 @@
   * This program generates one room for the game.
   > other rooms will be located in other files
   * feel free to play with the parameters and options in the functions
+  > Might move the boundry functions to another file named Restrictions
 
   Nadia Kubatin
 */
@@ -100,6 +101,9 @@
 
     }
 
+    /*
+      Creates a plane and sets it position and rotation.
+    */
     function createBlock(w,h,x,y,z,r,r2){
       var block = initPlane(w,h);
       block.rotation.y = THREE.Math.degToRad( r );
@@ -110,6 +114,7 @@
 
     /*
       Creates a plane for use in the initBarrier function.
+      The plane has opacity 0, meaning it cannot be seen.
     */
     function initPlane(w,h){
       var geometryPF = new THREE.PlaneBufferGeometry( w, h, 199, 199 );
@@ -151,7 +156,7 @@
                           reflectivity: .5,
                           side:THREE.DoubleSide
                         } );
-      var pmaterialCi = new Physijs.createMaterial(materialCi,0.9,0.5);
+      var pmaterialCi = new Physijs.createMaterial(materialCi, 1, 0);
       caveFloor = new Physijs.BoxMesh( geometryCi, pmaterialCi,0 );
       caveFloor.rotation.x = THREE.Math.degToRad( 90 );
       caveFloor.receiveShadow = true;
@@ -176,8 +181,6 @@
                           } );
             var pmaterial = new Physijs.createMaterial(material,0.9,0.5);
 						passageWall1 = new Physijs.SphereMesh( geometry, pmaterial,0);
-						//console.log(JSON.stringify(suzanne.scale));// = new THREE.Vector3(4.0,1.0,1.0);
-						//var s = 0.5;
 						passageWall1.scale.y=50;
 						passageWall1.scale.x=50;
 						passageWall1.scale.z=70;
@@ -186,7 +189,6 @@
             passageWall1.position.x = -50;
             passageWall1.rotation.z = THREE.Math.degToRad( 270 );
             passageWall1.rotation.x = THREE.Math.degToRad( 90 );
-						//passageWall.position.x = -5;
 						passageWall1.castShadow = false;
             scene.add( passageWall1  );
             passageWall = passageWall1;
