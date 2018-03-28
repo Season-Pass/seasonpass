@@ -73,7 +73,7 @@
     */
     function initIcicles(){
       // outer ring bottom
-      scene.add(createIcicle(0, 9, 90, 2, 18, 0));
+      scene.add(createIcicle(-1, 9, 90, 2, 18, 0));
       scene.add(createIcicle(-24, 5, 72, 2, 10, 0));
       scene.add(createIcicle(-25, 13, 70, 2, 26, 0));
       scene.add(createIcicle(-27, 8, 68.5, 2, 16, 0));
@@ -87,7 +87,7 @@
       scene.add(createIcicle(-50, 4, -70, 2, 8, 0));
       scene.add(createIcicle(-27, 17, -75, 2, 34, 0));
       // inner ring bottom
-      scene.add(createIcicle(0, 5, 25, 2, 10, 0));
+      scene.add(createIcicle(-1, 5, 25, 2, 10, 0));
       scene.add(createIcicle(-5, 2.5, -22, 2, 5, 0));
       scene.add(createIcicle(-23, 6, -5, 2, 12, 0));
       scene.add(createIcicle(-15, 2.5, 15, 2, 5, 0));
