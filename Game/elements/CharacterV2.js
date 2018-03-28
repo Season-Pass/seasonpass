@@ -1,7 +1,7 @@
 /*
   * This file will contain character model information.
   - Character design using blender.
-  - Character controls
+  * This file also contains the game controls.
   > Space/X = jump has not been implemented
   > "Look up" function?
   - Animations are different from movement
@@ -26,12 +26,13 @@
     It also sets the position of the sphere.
     * This sphere is a temporary placement for
     * a future character model.
+    * It will be replaced by a blender object.
   */
   function initSphere(){
     var geometrysp = new THREE.SphereGeometry(3, 40, 40);
     var materialsp = new THREE.MeshLambertMaterial( { color: 0xff0000} );
-    var pmaterialsp = new Physijs.createMaterial(materialsp,0.9,0.5);
-    sphere = new Physijs.SphereMesh( geometrysp, pmaterialsp );
+    var pmaterialsp = new Physijs.createMaterial(materialsp, 1, 0);
+    sphere = new Physijs.SphereMesh( geometrysp, pmaterialsp, 1 );
     sphere.position.y = 5;
     sphere.setDamping(0.1,0.1);
     sphere.castShadow = true;
@@ -43,6 +44,7 @@
     wsda will be used to move the character.
     * A jump key has not been included yet.
     * Might add more possible controls later.
+    - Attack, grab, etc.
   */
   function keydown(event){
     console.log("Keydown:"+event.key);
@@ -83,22 +85,23 @@
     * Jump has yet to be implemented.
   */
   function updateCharacter(){
-    var forward = sphere.getWorldDirection();
+    var y = -30;
 
 		if (controls.fwd){
-			sphere.setLinearVelocity(new THREE.Vector3(-controls.speed,0,0));
+			sphere.setLinearVelocity(new THREE.Vector3(-controls.speed, y, 0));
 		} else if (controls.bwd){
-			sphere.setLinearVelocity(new THREE.Vector3(controls.speed,0,0));
+			sphere.setLinearVelocity(new THREE.Vector3(controls.speed, y, 0));
 		} else {
 			var velocity = sphere.getLinearVelocity();
-			velocity.x=velocity.z=0;
+      velocity.x=velocity.z=0;
+      velocity.y= y;
 			sphere.setLinearVelocity(velocity); //stop the xz motion
 		}
 
 		if (controls.left){
-			sphere.setLinearVelocity(new THREE.Vector3(0,0,controls.speed));
+			sphere.setLinearVelocity(new THREE.Vector3(0, y,controls.speed));
 		} else if (controls.right){
-			sphere.setLinearVelocity(new THREE.Vector3(0,0,-controls.speed));
+			sphere.setLinearVelocity(new THREE.Vector3(0, y,-controls.speed));
 		}
 
     /*if(controls.jump){

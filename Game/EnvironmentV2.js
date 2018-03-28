@@ -110,6 +110,7 @@
   */
   function initScene(){
     var scene = new Physijs.Scene();
+    scene.setGravity(0,-30,0);
     return scene;
   }
 
