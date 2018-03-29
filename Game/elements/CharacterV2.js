@@ -54,7 +54,6 @@
 			case "s": controls.bwd = true; break;
       case "a": controls.left = true; break;
 			case "d": controls.right = true; break;
-      case " ": controls.jump = true; break;
 
       // switch cameras (will be removed at another time)
 			case "1": devCameraActive = true; break;
@@ -75,7 +74,7 @@
 			case "s": controls.bwd = false; break;
       case "a": controls.left = false; break;
 			case "d": controls.right = false; break;
-      case " ": controls.jump = false; break;
+      case " ": controls.jump = true; break;
 		}
   }
 
@@ -83,32 +82,78 @@
     This function dicates what each key does.
     * Must include a method for multiple actions.
     * Jump has yet to be implemented.
+    * This function desperatly needs to be refactored.
+    * Will play with parameters to optimize controls.
+    * The world's most horrifying if else statement (O_O)
   */
   function updateCharacter(){
     var y = -30;
 
-		if (controls.fwd){
-			sphere.setLinearVelocity(new THREE.Vector3(-controls.speed, y, 0));
+    if(controls.jump){
+      if(sphere.position.y<5){
+        var velocity = sphere.getLinearVelocity();
+        velocity.y = 15;
+        sphere.setLinearVelocity(velocity);
+        controls.jump = false;
+      }
+      if (controls.fwd){
+        var velocity = sphere.getLinearVelocity();
+        velocity.x = -controls.speed;
+  			sphere.setLinearVelocity(velocity);
+  		} else if (controls.bwd){
+        var velocity = sphere.getLinearVelocity();
+        velocity.x = controls.speed;
+  			sphere.setLinearVelocity(velocity);
+  		} else if (controls.left){
+        var velocity = sphere.getLinearVelocity();
+        velocity.z = controls.speed;
+  			sphere.setLinearVelocity(velocity);
+  		} else if (controls.right){
+        var velocity = sphere.getLinearVelocity();
+        velocity.z = -controls.speed;
+  			sphere.setLinearVelocity(velocity);
+  		} else {
+  			var velocity = sphere.getLinearVelocity();
+        velocity.x=velocity.z=0;
+        //velocity.y= -15;
+  			sphere.setLinearVelocity(velocity);
+  		}
+    } else if (controls.fwd){
+      var velocity = sphere.getLinearVelocity();
+      if(velocity.y>0){
+        velocity.x = -controls.speed;
+        sphere.setLinearVelocity(velocity);
+      } else{
+        sphere.setLinearVelocity(new THREE.Vector3(-controls.speed, y, 0));
+      }
 		} else if (controls.bwd){
-			sphere.setLinearVelocity(new THREE.Vector3(controls.speed, y, 0));
+      var velocity = sphere.getLinearVelocity();
+      if(velocity.y>0){
+        velocity.x = controls.speed;
+        sphere.setLinearVelocity(velocity);
+      } else{
+        sphere.setLinearVelocity(new THREE.Vector3(controls.speed, y, 0));
+      }
+		} else if (controls.left){
+      var velocity = sphere.getLinearVelocity();
+      if(velocity.y>0){
+        velocity.z = controls.speed;
+        sphere.setLinearVelocity(velocity);
+      } else{
+        sphere.setLinearVelocity(new THREE.Vector3(0, y,controls.speed));
+      }
+		} else if (controls.right){
+      var velocity = sphere.getLinearVelocity();
+      if(velocity.y>0){
+        velocity.z = -controls.speed;
+        sphere.setLinearVelocity(velocity);
+      } else{
+        sphere.setLinearVelocity(new THREE.Vector3(0, y,-controls.speed));
+      }
 		} else {
 			var velocity = sphere.getLinearVelocity();
       velocity.x=velocity.z=0;
-      velocity.y= y;
+      //velocity.y= -15;
 			sphere.setLinearVelocity(velocity); //stop the xz motion
 		}
-
-		if (controls.left){
-			sphere.setLinearVelocity(new THREE.Vector3(0, y,controls.speed));
-		} else if (controls.right){
-			sphere.setLinearVelocity(new THREE.Vector3(0, y,-controls.speed));
-		}
-
-    /*if(controls.jump){
-      sphere.setLinearVelocity(new THREE.Vector3(0,controls.speed,0));
-    } else{
-      var velocity = sphere.getLinearVelocity();
-			velocity.y=0;
-			sphere.setLinearVelocity(new THREE.Vector3(0,0,0));
-    }*/
   }
