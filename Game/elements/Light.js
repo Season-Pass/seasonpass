@@ -1,6 +1,7 @@
 /*
   * This file will hold lighting and effects
   * for each scene such as point lights.
+  * Ill try to make a light stream later.
 
   Nadia Kubatin
 */
@@ -16,7 +17,8 @@
 
 
     /*
-      Creates four pointlights, a spotlight, and an ambient light
+      Creates four pointlights, a spotlight, a hemisphere light
+      and an ambient light
       and sets color, intensity and position
       as well as sets shadows and targets for the light.
       * will play with light parameters and colors to find better fit
