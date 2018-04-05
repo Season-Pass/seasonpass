@@ -40,6 +40,21 @@
   }
 
   /*
+    Creates a geometry and texture for a sphere.
+    It also sets the position of the sphere.
+    * This sphere is a helper to find locations on the map.
+  */
+  function initPosTest(){
+    var geometrysp = new THREE.SphereGeometry(1, 40, 40);
+    var materialsp = new THREE.MeshBasicMaterial( { color: 0xff99ff} );
+    var sphere2 = new THREE.Mesh( geometrysp, materialsp );
+    sphere2.position.y = -79;
+    sphere2.position.x = 10;
+    sphere2.position.z = -215;
+    scene.add(sphere2);
+  }
+
+  /*
     These are the controls for the character model.
     wsda will be used to move the character.
     * A jump key has not been included yet.
@@ -87,37 +102,11 @@
     * The world's most horrifying if else statement (O_O)
   */
   function updateCharacter(){
-    var y = -30;
+    var y = -50;
+    var sphVel = sphere.getLinearVelocity();
 
     if(controls.jump){
-      if(sphere.position.y<5){
-        var velocity = sphere.getLinearVelocity();
-        velocity.y = 15;
-        sphere.setLinearVelocity(velocity);
-        controls.jump = false;
-      }
-      if (controls.fwd){
-        var velocity = sphere.getLinearVelocity();
-        velocity.x = -controls.speed;
-  			sphere.setLinearVelocity(velocity);
-  		} else if (controls.bwd){
-        var velocity = sphere.getLinearVelocity();
-        velocity.x = controls.speed;
-  			sphere.setLinearVelocity(velocity);
-  		} else if (controls.left){
-        var velocity = sphere.getLinearVelocity();
-        velocity.z = controls.speed;
-  			sphere.setLinearVelocity(velocity);
-  		} else if (controls.right){
-        var velocity = sphere.getLinearVelocity();
-        velocity.z = -controls.speed;
-  			sphere.setLinearVelocity(velocity);
-  		} else {
-  			var velocity = sphere.getLinearVelocity();
-        velocity.x=velocity.z=0;
-        //velocity.y= -15;
-  			sphere.setLinearVelocity(velocity);
-  		}
+      jump();
     } else if (controls.fwd){
       var velocity = sphere.getLinearVelocity();
       if(velocity.y>0){
@@ -156,4 +145,45 @@
       //velocity.y= -15;
 			sphere.setLinearVelocity(velocity); //stop the xz motion
 		}
+  }
+
+  function jump(){
+    if(sphere.position.y<position()){
+        var velocity = sphere.getLinearVelocity();
+        velocity.y = 15;
+        sphere.setLinearVelocity(velocity);
+        controls.jump = false;
+      }
+      if (controls.fwd){
+        var velocity = sphere.getLinearVelocity();
+        velocity.x = -controls.speed;
+  			sphere.setLinearVelocity(velocity);
+  		} else if (controls.bwd){
+        var velocity = sphere.getLinearVelocity();
+        velocity.x = controls.speed;
+  			sphere.setLinearVelocity(velocity);
+  		} else if (controls.left){
+        var velocity = sphere.getLinearVelocity();
+        velocity.z = controls.speed;
+  			sphere.setLinearVelocity(velocity);
+  		} else if (controls.right){
+        var velocity = sphere.getLinearVelocity();
+        velocity.z = -controls.speed;
+  			sphere.setLinearVelocity(velocity);
+  		} else {
+  			var velocity = sphere.getLinearVelocity();
+        velocity.x=velocity.z=0;
+        //velocity.y= -15;
+  			sphere.setLinearVelocity(velocity);
+  		}
+  }
+
+  function position(){
+    if(sphere.position.z>-98){
+      return 5;
+    } else if(sphere.position.z<-98 && sphere.position.z>-215){
+      return -200;
+    } else if(sphere.position.z<-215){
+      return -75;
+    }
   }

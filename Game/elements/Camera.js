@@ -43,7 +43,7 @@
     Creates a camera and sets its position.
   */
   function initCamera(){
-    camera.position.x = 150;
+    camera.position.x = 100;
     camera.position.y = 20;
     camera.position.z = 0;
   }
@@ -67,11 +67,11 @@
   */
   function cameraZoom(){
     if(sphere.position.z<-98){
-      if(camera.position.x>100){
+      if(camera.position.x>50){
         camera.position.x--;
       }
     } else if(sphere.position.z>-98){
-      if(camera.position.x<150){
+      if(camera.position.x<100){
         camera.position.x++;
       }
     }

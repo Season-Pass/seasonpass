@@ -20,6 +20,35 @@
       * will be moved later to a seperate file.
     */
     function initBoundry(){
+      // First Room Boundry
+      initLatheBound();
+      // Patch Holes in above bound
+      createBlock(30,40,32,15,-91,-20,0,0);
+      createBlock(30,40,50,15,-83,-35,0,0);
+      // Tunnel Floor in order
+      createBlock(30,10,10,-.5,-100,0,85,0);
+      createBlock(30,10,10,-3,-110,0,70,0);
+      createBlock(30,10,10,-8,-118,0,48,0);
+      createBlock(30,50,10,-33,-135,0,30,0);
+      createBlock(30,10,10,-58,-152,0,48,0);
+      createBlock(30,30,10,-67,-163,0,55,0);
+      createBlock(30,20,10,-78,-185,0,75,0);
+      // Second Room
+      createBlock(60,70,10,-80,-215,0,90,0); //first column
+      createBlock(60,40,10,-80,-308,0,90,0);
+      createBlock(60,40,10,-80,-383,0,90,0);
+      createBlock(60,40,10,-80,-458,0,90,0);
+      createBlock(60,40,10,-80,-533,0,90,0);
+      // Large Restrictions
+      createBlock(600,200,25,-50,-390,90,0,0); // large vertical closer to camera
+      createBlock(600,200,-4,-50,-390,90,0,0); // large vertical further from camera
+      createBlock(100,200,-70,-10,-200,0,0,1);
+    }
+
+    /*
+      Creates the first room's boundry
+    */
+    function initLatheBound(){
       var points = [];
       for ( var i = 0; i < 9; i ++ ) {
          points.push( new THREE.Vector2(
@@ -39,27 +68,13 @@
       boundry.rotation.y = THREE.Math.degToRad( 10 );
       boundry.position.y = 43;
       scene.add(boundry);
-
-      createBlock(30,40,32,15,-91,-20,0);
-      createBlock(30,40,50,15,-83,-35,0);
-      createBlock(30,10,10,-.05,-100,0,83);
-      createBlock(30,10,10,-3,-110,0,70);
-      createBlock(30,10,10,-8,-118,0,48);
-      createBlock(30,50,10,-33,-135,0,30);
-      createBlock(30,10,10,-58,-152,0,48);
-      createBlock(30,30,10,-67,-163,0,55);
-      createBlock(30,20,10,-78,-185,0,75);
-      createBlock(30,40,10,-80,-205,0,90);
-      createBlock(600,200,25,-50,-390,90,0);
-      createBlock(600,200,-4,-50,-390,90,0);
-
     }
 
     /*
       Creates a plane and sets it position and rotation.
     */
-    function createBlock(w,h,x,y,z,r,r2){
-      var block = initPlane(w,h);
+    function createBlock(w,h,x,y,z,r,r2,opacity){
+      var block = initPlane(w,h,opacity);
       block.rotation.y = THREE.Math.degToRad( r );
       block.rotation.x = THREE.Math.degToRad( r2 );
       block.position.set(x, y, z);
@@ -70,16 +85,15 @@
       Creates a plane for use in the initBarrier function.
       The plane has opacity 0, meaning it cannot be seen.
     */
-    function initPlane(w,h){
+    function initPlane(w,h,opacity){
       var geometryPF = new THREE.PlaneBufferGeometry( w, h, 199, 199 );
       var materialPF = new THREE.MeshPhongMaterial( {
-                        color: 0x66b3ff,
+                        color: 0x000000,
                         transparent: true,
-                        opacity: 0,
+                        opacity: opacity,
                         side:THREE.DoubleSide
                        } );
       var pmaterialPF = new Physijs.createMaterial(materialPF,0,0.5);
       plane = new Physijs.BoxMesh( geometryPF, materialPF,0 );
       return plane;
     }
-    

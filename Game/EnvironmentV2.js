@@ -15,7 +15,7 @@
   var clock = new THREE.Clock();
   var delta;
   // helpers (will be removed at a later time)
-  var gridSize = 1000;
+  var gridSize = 800;
   var gridDivisions = 100;
   var gridHelper = new THREE.GridHelper( gridSize, gridDivisions );
 
@@ -69,6 +69,7 @@
       initShadows();
       // Character.js
       initSphere(); // - temporary character model
+      initPosTest(); // will be removed later
       // SoundV2.js
       initGameMusic();
       // add helpers (will be removed at a later time)
