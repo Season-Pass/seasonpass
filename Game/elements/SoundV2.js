@@ -19,7 +19,7 @@
   // noises from enemy
   var enemySteps, enemyAttack;
   // music for the title, main, boss, winning, and losing themes.
-  var titleTheme, mainTheme, bossTheme, winTheme, loseTheme;
+  var musicTheme, titleTheme, mainTheme, bossTheme, winTheme, loseTheme;
   // environment Sounds
   var snow, wind;
   // sounds for user interface
@@ -29,16 +29,29 @@
 
 
     function initGameMusic(){
-      bossTheme = new THREE.AudioListener();
-      scene.add( bossTheme );
+      musicTheme = new THREE.AudioListener();
+      scene.add( sound );
 
-      var sound1 = new THREE.Audio( bossTheme );
+      var sound = new THREE.Audio( theme );
       // global audio source
-      var audloader1 = new THREE.AudioLoader();
-      audloader1.load( 'libs/sounds/BossThemeV1.m4a', function(buffer){
-        sound1.setBuffer( buffer );
-        sound1.setLoop( true );
-        sound1.setVolume( 0.05 );
-        sound1.play();
-      });
+      if (gameState.scene=='gameStart') {
+        var audloader = new THREE.AudioLoader();
+        audloader1.load( 'libs/sounds/MainThemeV2.m4a', function(buffer){
+          sound1.setBuffer( buffer );
+          sound1.setLoop( true );
+          sound1.setVolume( 0.05 );
+          sound1.play();
+        });
+      }
+      else if (gameState.scene=='bossState'){
+        var audloader = new THREE.AudioLoader();
+        audloader1.load( 'libs/sounds/BossThemeV1.m4a', function(buffer){
+          sound1.setBuffer( buffer );
+          sound1.setLoop( true );
+          sound1.setVolume( 0.05 );
+          sound1.play();
+      }
+    }
+    function initGameSounds(){
+      
     }
