@@ -65,10 +65,18 @@
     console.log("Keydown:"+event.key);
 		//console.dir(event);
 		switch (event.key){
-			case "w": controls.fwd = true;  break;
-			case "s": controls.bwd = true; break;
-      case "a": controls.left = true; break;
-			case "d": controls.right = true; break;
+			case "w":
+			case "ArrowUp":
+				controls.fwd = true;  break;
+			case "s":
+			case "ArrowDown":
+				controls.bwd = true; break;
+			case "a": 
+			case "ArrowLeft":
+				controls.left = true; break;
+			case "d":
+			case "ArrowRight":
+				controls.right = true; break;
 
       // switch cameras (will be removed at another time)
 			case "1": devCameraActive = true; break;
@@ -85,10 +93,18 @@
   function keyup(){
 		//console.dir(event);
     switch (event.key){
-			case "w": controls.fwd = false;  break;
-			case "s": controls.bwd = false; break;
-      case "a": controls.left = false; break;
-			case "d": controls.right = false; break;
+			case "w":
+			case "ArrowUp":
+				controls.fwd = false;  break;
+			case "s": 
+			case "ArrowDown":
+				controls.bwd = false; break;
+			case "a":
+			case "ArrowLeft":
+				controls.left = false; break;
+			case "d": 
+			case "ArrowRight":
+				controls.right = false; break;
       case " ": controls.jump = true; break;
 		}
   }
