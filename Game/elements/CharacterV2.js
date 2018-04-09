@@ -15,6 +15,16 @@
   Nadia Kubatin
 */
 
+	var info = document.createElement('div');
+	info.style.position = 'absolute';
+	info.style.width = 100;
+	info.style.heght = 100;
+	info.style.color = "white";
+	info.innerHTML = "Controls: Arrow Keys or AWSD to move and Space to jump";
+	info.style.top = 10 + 'px';
+	info.style.left = 10 + 'px';
+	document.body.appendChild(info);
+	
   var sphere; // model for small scale tests. Will be removed
   var controls =
           { fwd: false, bwd: false, left: false, right: false,
@@ -203,3 +213,5 @@
       return -75;
     }
   }
+  
+  	
