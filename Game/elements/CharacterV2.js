@@ -171,6 +171,7 @@
       //velocity.y= -15;
 			sphere.setLinearVelocity(velocity); //stop the xz motion
 		}
+		charReset();
   }
 
   function jump(){
@@ -203,6 +204,15 @@
   			sphere.setLinearVelocity(velocity);
   		}
   }
+
+	function charReset(){
+		if(sphere.position.y < -110){
+			sphere.__dirtyPosition = true;
+			sphere.position.x = 10;
+			sphere.position.y = -70;
+			sphere.position.z = -215;
+		}
+	}
 
   function position(){
     if(sphere.position.z>-98){
