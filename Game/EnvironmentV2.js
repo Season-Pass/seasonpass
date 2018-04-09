@@ -71,7 +71,7 @@
       initSphere(); // - temporary character model
       initPosTest(); // will be removed later
       // SoundV2.js
-      initGameMusic();
+      //initGameMusic();
       // add helpers (will be removed at a later time)
       initHelpers();
 
