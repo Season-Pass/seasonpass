@@ -30,9 +30,9 @@
 
     function initGameMusic(){
       musicTheme = new THREE.AudioListener();
-      scene.add( sound );
+      scene.add( musicTheme );
 
-      var sound = new THREE.Audio( theme );
+      var sound = new THREE.Audio( musicTheme );
       // global audio source
       if (gameState.scene=='gameStart') {
         var audloader = new THREE.AudioLoader();
@@ -42,16 +42,17 @@
           sound1.setVolume( 0.05 );
           sound1.play();
         });
-      }
-      else if (gameState.scene=='bossState'){
+      } else if (gameState.scene=='bossState'){
         var audloader = new THREE.AudioLoader();
         audloader1.load( 'libs/sounds/BossThemeV1.m4a', function(buffer){
           sound1.setBuffer( buffer );
           sound1.setLoop( true );
           sound1.setVolume( 0.05 );
           sound1.play();
+        });
       }
     }
+
     function initGameSounds(){
-      
+
     }
