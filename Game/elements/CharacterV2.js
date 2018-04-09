@@ -20,11 +20,11 @@
 	info.style.width = 100;
 	info.style.heght = 100;
 	info.style.color = "white";
-	info.innerHTML = "Controls: Arrow Keys or AWSD to move and Space to jump";
+	info.innerHTML = "Controls: AWSD to move and Space to jump";
 	info.style.top = 10 + 'px';
 	info.style.left = 10 + 'px';
 	document.body.appendChild(info);
-	
+
   var sphere; // model for small scale tests. Will be removed
   var controls =
           { fwd: false, bwd: false, left: false, right: false,
@@ -81,7 +81,7 @@
 			case "s":
 			case "ArrowDown":
 				controls.bwd = true; break;
-			case "a": 
+			case "a":
 			case "ArrowLeft":
 				controls.left = true; break;
 			case "d":
@@ -106,13 +106,13 @@
 			case "w":
 			case "ArrowUp":
 				controls.fwd = false;  break;
-			case "s": 
+			case "s":
 			case "ArrowDown":
 				controls.bwd = false; break;
 			case "a":
 			case "ArrowLeft":
 				controls.left = false; break;
-			case "d": 
+			case "d":
 			case "ArrowRight":
 				controls.right = false; break;
       case " ": controls.jump = true; break;
@@ -213,5 +213,3 @@
       return -75;
     }
   }
-  
-  	
