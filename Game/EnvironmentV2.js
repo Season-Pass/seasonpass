@@ -31,147 +31,139 @@
 
 
 
-  /*
-    The main init function that creates everything used in GameV2.
-  */
-  function init(){
+    /*
+      The main init function that creates everything used in GameV2.
+    */
+    function init(){
 
-    initPhysijs();
-    scene = initScene();
-    initMain();
-    initRenderer();
+      initPhysijs();
+      scene = initScene();
+      initMain();
+      createStart();
+      createGameOver();
+      createPause();
+      createEnd();
+      initRenderer();
 
-  }
+    }
 
-  /*
-    We initialize everything in the main scene
-    and add it to the scene.
-    Functions are from other files.
-  */
-  function initMain() {
+    /*
+      We initialize everything in the main scene
+      and add it to the scene.
+      Functions are from other files.
+    */
+    function initMain() {
 
-      // Camera.js
-      initCamera();
-      initDevCamera(); // will be removed
-      // Room1V2.js
-      initCaveFloor();
-      initCaveWall();
-      initBoundry();
-      initPassageWall1();
-      // Room2V2.js
-      initWall();
-      initFloors();
-      // Map.js
-      initIcicles();
-      initParticles();
-      // Light.js
-      initLight();
-      initShadows();
-      // Character.js
-      initSphere(); // - temporary character model
-      initPosTest(); // will be removed later
-      // SoundV2.js
-      //initGameMusic();
-      // add helpers (will be removed at a later time)
-      initHelpers();
+        // Camera.js
+        initCamera();
+        initDevCamera(); // will be removed
+        // Room1V2.js
+        initCaveFloor();
+        initCaveWall();
+        initBoundry();
+        initPassageWall1();
+        // Room2V2.js
+        initWall();
+        initFloors();
+        // Map.js
+        initIcicles();
+        initParticles();
+        // Light.js
+        initLight();
+        initShadows();
+        // Character.js
+        initSphere(); // - temporary character model
+        initPosTest(); // will be removed later
+        // SoundV2.js
+        //initGameMusic();
+        // add helpers (will be removed at a later time)
+        initHelpers();
 
-      window.addEventListener('resize',onWindowResize, false);
-  }
+        window.addEventListener('resize',onWindowResize, false);
+    }
 
-  /*
-    We update the camera in order
-    to view the entire map.
-    Finally, we render the scene.
-    * will need to add camera restraints
-  */
-  function render() {
-    // controls and settings for the camera
-      delta = clock.getDelta();
+    /*
+      We update the camera in order
+      to view the entire map.
+      Finally, we render the scene.
+      * will need to add camera restraints
+    */
+    function render() {
+      // controls and settings for the camera
+        delta = clock.getDelta();
 
-      updateCamera();
-      cameraZoom();
-      updateCharacter();
-      animateParticles();
-      scene.simulate();
+        switchGameState();
 
-      // Will be removed with devCamera at another time
-      // renderer.render( scene, camera );
-      if (devCameraActive){
-        renderer.render( scene, devCamera );
-      }else {
-        renderer.render( scene, camera );
-      }
+      // render using requestAnimationFrame
+        requestAnimationFrame(render);
+    }
 
-    // render using requestAnimationFrame
-      requestAnimationFrame(render);
-  }
+    /*
+      Creates the scene
+    */
+    function initScene(){
+      var scene = new Physijs.Scene();
+      scene.setGravity(0,-30,0);
+      return scene;
+    }
 
-  /*
-    Creates the scene
-  */
-  function initScene(){
-    var scene = new Physijs.Scene();
-    scene.setGravity(0,-30,0);
-    return scene;
-  }
+    /*
+      Function that initiates a renderer.
+      It gives the renderer a size and canvas.
+      It also tells it to compute soft shadows.
+      * might move renderer to separate file
+    */
+    function initRenderer(){
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      document.body.appendChild( renderer.domElement );
+      renderer.shadowMap.enabled = true;
+      renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    }
 
-  /*
-    Function that initiates a renderer.
-    It gives the renderer a size and canvas.
-    It also tells it to compute soft shadows.
-    * might move renderer to separate file
-  */
-  function initRenderer(){
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    document.body.appendChild( renderer.domElement );
-    renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-  }
+    /*
+      This function creates the script for physics.
+    */
+    function initPhysijs(){
+      Physijs.scripts.worker = 'physijs_worker.js';
+      Physijs.scripts.ammo = 'ammo.js';
+    }
 
-  /*
-    This function creates the script for physics.
-  */
-  function initPhysijs(){
-    Physijs.scripts.worker = 'physijs_worker.js';
-    Physijs.scripts.ammo = 'ammo.js';
-  }
+    /*
+      This function initiates controls
+      for the character and adds event listeners.
+    */
+    function initControls(){
+      clock.start();
 
-  /*
-    This function initiates controls
-    for the character and adds event listeners.
-  */
-  function initControls(){
-    clock.start();
+      window.addEventListener( 'keydown', keydown);
+      window.addEventListener( 'keyup', keyup );
+    }
 
-    window.addEventListener( 'keydown', keydown);
-    window.addEventListener( 'keyup', keyup );
-  }
+    /*
+      Handles changes in window resize
+    */
+    function onWindowResize(){
+      camera.aspect = window.innerWidth/window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    }
 
-  /*
-    Handles changes in window resize
-  */
-  function onWindowResize(){
-    camera.aspect = window.innerWidth/window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-  }
-
-  /*
-    This function creates helpers.
-    It will be removed at a later time.
-  */
-  function initHelpers(){
-    var spotLightHelper = new THREE.SpotLightHelper( spotLight );
-    scene.add(new THREE.AxesHelper( 100 ));
-    scene.add( spotLightHelper );
-    var sphereSize = 20;
-    var pointLightHelper = new THREE.PointLightHelper( pointLight, sphereSize );
-    scene.add( pointLightHelper );
-    var pointLightHelper2 = new THREE.PointLightHelper( pointLight2, sphereSize );
-    scene.add( pointLightHelper2 );
-    var pointLightHelper3 = new THREE.PointLightHelper( pointLight3, sphereSize );
-    scene.add( pointLightHelper3 );
-    var pointLightHelper4 = new THREE.PointLightHelper( pointLight4, sphereSize );
-    scene.add( pointLightHelper4 );
-    //scene.add(gridHelper);
-  }
+    /*
+      This function creates helpers.
+      It will be removed at a later time.
+    */
+    function initHelpers(){
+      var spotLightHelper = new THREE.SpotLightHelper( spotLight );
+      scene.add(new THREE.AxesHelper( 100 ));
+      scene.add( spotLightHelper );
+      var sphereSize = 20;
+      var pointLightHelper = new THREE.PointLightHelper( pointLight, sphereSize );
+      scene.add( pointLightHelper );
+      var pointLightHelper2 = new THREE.PointLightHelper( pointLight2, sphereSize );
+      scene.add( pointLightHelper2 );
+      var pointLightHelper3 = new THREE.PointLightHelper( pointLight3, sphereSize );
+      scene.add( pointLightHelper3 );
+      var pointLightHelper4 = new THREE.PointLightHelper( pointLight4, sphereSize );
+      scene.add( pointLightHelper4 );
+      //scene.add(gridHelper);
+    }

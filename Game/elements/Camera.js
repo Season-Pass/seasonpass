@@ -26,53 +26,53 @@
 
 
 
-  /*
-    This function updates the camera's
-    position and makes it follow the character.
-    It also updates orbit controls for the devCamera.
-  */
-  function updateCamera(){
-    orbitControls.update(delta); // will be removed at a later time
-    camera.lookAt(new THREE.Vector3(sphere.position.x,sphere.position.y+10,sphere.position.z));
-    camera.position.z = sphere.position.z;
-    camera.position.y = sphere.position.y+10
+    /*
+      This function updates the camera's
+      position and makes it follow the character.
+      It also updates orbit controls for the devCamera.
+    */
+    function updateCamera(){
+      orbitControls.update(delta); // will be removed at a later time
+      camera.lookAt(new THREE.Vector3(sphere.position.x,sphere.position.y+10,sphere.position.z));
+      camera.position.z = sphere.position.z;
+      camera.position.y = sphere.position.y+10
 
-  }
+    }
 
-  /*
-    Creates a camera and sets its position.
-  */
-  function initCamera(){
-    camera.position.x = 100;
-    camera.position.y = 20;
-    camera.position.z = 0;
-  }
+    /*
+      Creates a camera and sets its position.
+    */
+    function initCamera(){
+      camera.position.x = 100;
+      camera.position.y = 20;
+      camera.position.z = 0;
+    }
 
-  /*
-    This creates a camera soley for
-    the purpose of looking at the scene.
-  */
-  function initDevCamera(){
-    devCamera.position.x = 200;
-    devCamera.position.y = 50;
-    devCamera.position.z = -10;
-  }
+    /*
+      This creates a camera soley for
+      the purpose of looking at the scene.
+    */
+    function initDevCamera(){
+      devCamera.position.x = 200;
+      devCamera.position.y = 50;
+      devCamera.position.z = -10;
+    }
 
-  /*
-    Will update the camera's proximity to the character
-    depending on the location so that the view will
-    change depending on the room.
-    This will make it easier to view the scene and therefore
-    play the game and move the character.
-  */
-  function cameraZoom(){
-    if(sphere.position.z<-98){
-      if(camera.position.x>50){
-        camera.position.x--;
-      }
-    } else if(sphere.position.z>-98){
-      if(camera.position.x<100){
-        camera.position.x++;
+    /*
+      Will update the camera's proximity to the character
+      depending on the location so that the view will
+      change depending on the room.
+      This will make it easier to view the scene and therefore
+      play the game and move the character.
+    */
+    function cameraZoom(){
+      if(sphere.position.z<-98){
+        if(camera.position.x>50){
+          camera.position.x--;
+        }
+      } else if(sphere.position.z>-98){
+        if(camera.position.x<100){
+          camera.position.x++;
+        }
       }
     }
-  }

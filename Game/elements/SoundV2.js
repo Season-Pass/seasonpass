@@ -27,7 +27,29 @@
 
 
 
+    /*
+      To Eli,
 
+      The easiest thing for you to do would be to
+      create the function initGameMusic and create
+      a paramter called sound file. From there,
+      in each of the initScenes, you can
+      place at the end initGameMusic(specified file);.
+
+      This way, the music will play depending on
+      which scene is rendered in the switch staement.
+      You do not need to do anything to the switch statement.
+
+      Also, you can do something similar with sound effects
+      but make sure to create a separate function as
+      sound effects will be used differently and
+      will be called in events specified by init and animates
+
+      If you would like an example, search PA02 for
+      the sound functions for examples of structure and use.
+
+      -Nadia
+    */
     function initGameMusic(){
       musicTheme = new THREE.AudioListener();
       scene.add( musicTheme );
