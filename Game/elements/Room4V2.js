@@ -4,3 +4,53 @@
 
   Nadia Kubatin
 */
+
+
+
+
+  var bossFloor, bossWall, exit, boss, door;
+
+
+
+
+  /*
+
+  */
+  function initBossFloor(){
+
+  }
+
+  /*
+
+  */
+  function initBossWall(){
+
+  }
+
+  /*
+
+  */
+  function initSides(){
+
+  }
+
+  /*
+
+  */
+  function initBoss(){
+
+  }
+
+  /*
+
+  */
+  function initExit(){
+
+  }
+
+  /*
+
+  */
+  function initDoor(){
+
+  }
