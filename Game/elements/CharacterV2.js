@@ -16,11 +16,13 @@
 */
 
 	var info = document.createElement('div');
+	var instructions = "Controls: AWSD to move, Space to jump, C to toggle info"
+	var showControls = true;
 	info.style.position = 'absolute';
 	info.style.width = 100;
 	info.style.heght = 100;
 	info.style.color = "white";
-	info.innerHTML = "Controls: AWSD to move and Space to jump";
+	info.innerHTML = instructions;
 	info.style.top = 10 + 'px';
 	info.style.left = 10 + 'px';
 	document.body.appendChild(info);
@@ -116,7 +118,15 @@
 				//case "ArrowRight":
 					controls.right = false; break;
 	      case " ": controls.jump = true; break;
+		  case "c":
+			if(showControls == true){
+				showControls = false;
+				info.innerHTML = "";
+			} else{
+				showControls = true;
+				info.innerHTML = instructions;
 			}
+		}
 	  }
 
 	  /*
