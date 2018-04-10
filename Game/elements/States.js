@@ -42,7 +42,7 @@
       // lights
   		var light = createPointLight();
   		light.position.set(0,200,20);
-  		startScene.add(light);
+  		startScreen.add(light);
 
       // camera
   		startCam = new THREE.PerspectiveCamera( 90, window.innerWidth / window.innerHeight, 0.1, 1000 );
@@ -62,7 +62,7 @@
       // lights
   		var light = createPointLight();
   		light.position.set(0,200,20);
-  		startScene.add(light);
+  		gameOver.add(light);
 
       // camera
   		overCam = new THREE.PerspectiveCamera( 90, window.innerWidth / window.innerHeight, 0.1, 1000 );
@@ -82,7 +82,7 @@
       // lights
   		var light = createPointLight();
   		light.position.set(0,200,20);
-  		startScene.add(light);
+  		pauseScreen.add(light);
 
       // camera
   		pauseCam = new THREE.PerspectiveCamera( 90, window.innerWidth / window.innerHeight, 0.1, 1000 );
@@ -107,13 +107,29 @@
       // lights
   		var light = createPointLight();
   		light.position.set(0,200,20);
-  		startScene.add(light);
+  		endScreen.add(light);
 
       // camera
   		endCam = new THREE.PerspectiveCamera( 90, window.innerWidth / window.innerHeight, 0.1, 1000 );
   		endCam.position.set(0,50,1);
   		endCam.lookAt(0,0,0);
     }
+
+    /*
+  		Creates a point light
+  	*/
+  	function createPointLight(){
+  		var light;
+  		light = new THREE.PointLight( 0xffffff);
+  		light.castShadow = true;
+
+  		//Set up shadow properties for the light
+  		light.shadow.mapSize.width = 2048;  // default
+  		light.shadow.mapSize.height = 2048; // default
+  		light.shadow.camera.near = 0.5;       // default
+  		light.shadow.camera.far = 500      // default
+  		return light;
+  	}
 
     /*
 
