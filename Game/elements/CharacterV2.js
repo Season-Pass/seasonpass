@@ -76,16 +76,16 @@
 			//console.dir(event);
 			switch (event.key){
 				case "w":
-				case "ArrowUp":
+				//case "ArrowUp":
 					controls.fwd = true;  break;
 				case "s":
-				case "ArrowDown":
+				//case "ArrowDown":
 					controls.bwd = true; break;
 				case "a":
-				case "ArrowLeft":
+				//case "ArrowLeft":
 					controls.left = true; break;
 				case "d":
-				case "ArrowRight":
+				//case "ArrowRight":
 					controls.right = true; break;
 
 	      // switch cameras (will be removed at another time)
@@ -104,16 +104,16 @@
 			//console.dir(event);
 	    switch (event.key){
 				case "w":
-				case "ArrowUp":
+				//case "ArrowUp":
 					controls.fwd = false;  break;
 				case "s":
-				case "ArrowDown":
+				//case "ArrowDown":
 					controls.bwd = false; break;
 				case "a":
-				case "ArrowLeft":
+				//case "ArrowLeft":
 					controls.left = false; break;
 				case "d":
-				case "ArrowRight":
+				//case "ArrowRight":
 					controls.right = false; break;
 	      case " ": controls.jump = true; break;
 			}
