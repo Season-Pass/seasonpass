@@ -167,3 +167,4 @@
       scene.add( pointLightHelper4 );
       //scene.add(gridHelper);
     }
+	

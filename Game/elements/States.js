@@ -33,9 +33,10 @@
       * It may show a close up of the character model?
       * It may show some other scene.
     */
-    function createStart(){
+    function createStart(){   //implemented Start Scene-Victor
       startScreen = initScene();
-
+		startText = createSkyBox('libs/Images/startscene.png', 10);
+		startScreen.add(startText);
       // SCENE COMPONENTS GO HERE.
       // THE ACTUAL SCENE HAS YET TO BE CREATED.
 
