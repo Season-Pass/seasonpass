@@ -65,8 +65,10 @@
         // Room2V2.js
         initWall();
         initFloors();
-        // Room3V2.js
         createCylinderPass();
+        createLinearPass();
+        // Room3V2.js
+        initThirdFloor();
         // Map.js
         initIcicles();
         initParticles();
@@ -169,4 +171,3 @@
       scene.add( pointLightHelper4 );
       //scene.add(gridHelper);
     }
-	

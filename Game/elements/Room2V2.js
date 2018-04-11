@@ -82,7 +82,16 @@
       };
 
       var geometry = new THREE.ExtrudeGeometry( shape, extrudeSettings );
-      var material = new THREE.MeshPhongMaterial( { color: 0x66b3ff } );
+      var bumpTexture = new THREE.TextureLoader().load('libs/Images/ice-floor-3.png');
+      var material = new THREE.MeshPhongMaterial( {
+                          color: 0x66b3ff,
+                          emissive: 0x000000,
+                          emissiveIntensity: 10,
+                          bumpMap: bumpTexture,
+                          shininess: 100,
+                          reflectivity: .5,
+                          side:THREE.DoubleSide
+                        } );
       var mesh = new THREE.Mesh( geometry, material, 0 ) ;
       mesh.rotation.x = THREE.Math.degToRad( 90 );
       mesh.position.set(x, y, z);
@@ -94,7 +103,7 @@
 
     */
     function createCylinderPass(){
-      var geometryWa = new THREE.CylinderGeometry( 30, 30, 50, 64, 64, true, 0, -2.4);
+      var geometryWa = new THREE.CylinderGeometry( 30, 30, 70, 64, 64, true, 0, -2.4);
       var textureWa = new THREE.TextureLoader().load('libs/Images/ice-cave-c2.png');
       var normalTextureWa = new THREE.TextureLoader().load('libs/Images/ice-cave-2c.png');
       var bumpTextureWa = new THREE.TextureLoader().load('libs/Images/ice-cave-3-b.png');
@@ -110,12 +119,12 @@
                          side:THREE.DoubleSide
                        } );
      var pmaterialWa = new Physijs.createMaterial(materialWa,0.9,0.5);
-     passWall = new Physijs.ConcaveMesh( geometryWa, pmaterialWa,0 );
+     passWall = new THREE.Mesh( geometryWa, materialWa );
      passWall.rotation.y = THREE.Math.degToRad( -23 );
      passWall.rotation.x = THREE.Math.degToRad( 90 );
      passWall.position.y = -52;
      passWall.position.x = -5;
-     passWall.position.z = -560;
+     passWall.position.z = -580;
      passWall.receiveShadow = true;
      passWall.castShadow = false;
      scene.add(passWall);
@@ -125,5 +134,24 @@
 
     */
     function createLinearPass(){
-
+      var geometryPF = new THREE.PlaneBufferGeometry( 50, 100, 199, 199 );
+      var normalTexturePF = new THREE.TextureLoader().load('libs/Images/ice-floor-b.png');
+      var bumpTexturePF = new THREE.TextureLoader().load('libs/Images/ice-floor-3.png');
+      var materialPF = new THREE.MeshPhongMaterial( {
+                          color: 0x66b3ff,
+                          emissive: 0x000000,
+                          emissiveIntensity: 10,
+                          bumpMap: bumpTexturePF,
+                          shininess: 100,
+                          reflectivity: .5,
+                          side:THREE.DoubleSide
+                       } );
+      var pmaterialPF = new Physijs.createMaterial(materialPF,0,0.5);
+      passFoo = new Physijs.BoxMesh( geometryPF, materialPF,0 );
+      //passFoo.rotation.y = THREE.Math.degToRad( 90 );
+      passFoo.rotation.x = THREE.Math.degToRad( 90 );
+      passFoo.position.y = -79.5;
+      passFoo.position.x = 0;
+      passFoo.position.z = -565;
+      scene.add(passFoo);
     }

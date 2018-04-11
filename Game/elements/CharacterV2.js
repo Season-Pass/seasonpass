@@ -62,7 +62,7 @@
 	    var sphere2 = new THREE.Mesh( geometrysp, materialsp );
 	    sphere2.position.y = -79;
 	    sphere2.position.x = 10;
-	    sphere2.position.z = -215;
+	    sphere2.position.z = -610;
 	    scene.add(sphere2);
 	  }
 
