@@ -33,6 +33,11 @@
         // switch cameras (will be removed at another time)
         case "1": devCameraActive = true; break;
         case "2": devCameraActive = false; break;
+		//start screen
+		if (gameState.scene == 'start' && event.key=='p') {
+			gameState.scene = 'main';
+			return;
+		}
       }
     }
 

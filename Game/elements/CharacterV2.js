@@ -16,7 +16,7 @@
 */
 
 	var info = document.createElement('div');
-	var instructions = "Controls: AWSD to move, Space to jump, C to toggle info"
+	var instructions = "Controls: AWSD to move, Space to jump, C to toggle info, P to exit Start Screen"
 	var showControls = true;
 	info.style.position = 'absolute';
 	info.style.width = 100;
