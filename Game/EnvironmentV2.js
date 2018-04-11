@@ -43,6 +43,7 @@
       createGameOver();
       createPause();
       createEnd();
+      initGameMusic();
       initRenderer();
 
     }
@@ -79,7 +80,6 @@
         initSphere(); // - temporary character model
         initPosTest(); // will be removed later
         // SoundV2.js
-        //initGameMusic();
         // add helpers (will be removed at a later time)
         initHelpers();
 

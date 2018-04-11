@@ -1,6 +1,7 @@
 /*
   * This file holds functions for creating
   * and controlling the camera.
+  > Need to fix camera movement.
 
   Nadia Kubatin
 */

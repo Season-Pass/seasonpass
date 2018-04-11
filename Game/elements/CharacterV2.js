@@ -2,7 +2,6 @@
   * This file will contain character model information.
   - Character design using blender.
   * This file also contains the game controls.
-  > Space/X = jump has not been implemented
   > "Look up" function?
   - Animations are different from movement
   > make specific animations for certain actions
@@ -15,6 +14,9 @@
   Nadia Kubatin
 */
 
+
+
+	// information to be displayed on screen
 	var info = document.createElement('div');
 	var instructions = "Controls: AWSD to move, Space to jump, C to toggle info, P to exit Start Screen"
 	var showControls = true;
@@ -27,11 +29,15 @@
 	info.style.left = 10 + 'px';
 	document.body.appendChild(info);
 
+	// scene variables
   var sphere; // model for small scale tests. Will be removed
   var controls =
           { fwd: false, bwd: false, left: false, right: false,
             jump: false, speed: 30, devCameraActive: false
           }
+
+
+
 
 	  /*
 	    Creates a geometry and texture for a sphere.
@@ -69,7 +75,6 @@
 	  /*
 	    This function dicates what each key does.
 	    * Must include a method for multiple actions.
-	    * Jump has yet to be implemented.
 	    * This function desperatly needs to be refactored.
 	    * Will play with parameters to optimize controls.
 	    * The world's most horrifying if else statement (O_O)

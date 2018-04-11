@@ -1,6 +1,7 @@
 /*
-  *
-  *
+  * This file contains functions for creating
+  * controls for the game such as character movement
+  * and keys for switching scenes.
 */
 
 
@@ -9,13 +10,13 @@
     /*
       These are the controls for the character model.
       wsda will be used to move the character.
-      * A jump key has not been included yet.
+      * Arrow keys will be reimplemented when
+      * dev camera is removed.
       * Might add more possible controls later.
       - Attack, grab, etc.
     */
     function keydown(event){
       console.log("Keydown:"+event.key);
-      //console.dir(event);
      if (gameState.scene == 'start' && event.key=='p') {
 			gameState.scene = 'main';
 			return;
@@ -48,7 +49,6 @@
       * Might add more possible controls later.
     */
     function keyup(){
-      //console.dir(event);
       switch (event.key){
         case "w":
         //case "ArrowUp":
