@@ -12,7 +12,7 @@
   var floor;
   var wall;
   var column;
-  var platform;
+  var passWall;
 
 
 
@@ -94,7 +94,31 @@
 
     */
     function createCylinderPass(){
-
+      var geometryWa = new THREE.CylinderGeometry( 30, 30, 50, 64, 64, true, 0, -2.4);
+      var textureWa = new THREE.TextureLoader().load('libs/Images/ice-cave-c2.png');
+      var normalTextureWa = new THREE.TextureLoader().load('libs/Images/ice-cave-2c.png');
+      var bumpTextureWa = new THREE.TextureLoader().load('libs/Images/ice-cave-3-b.png');
+      var materialWa = new THREE.MeshPhongMaterial( {
+                         color: 0xe6f2ff,
+                         map:textureWa,
+                         specular: 0xe6f2ff,
+                         emissive: 0x0d1e26, //0b2441
+                         bumpMap: bumpTextureWa,
+                         //normalMap: normalTextureWa,
+                         shininess: 100,
+                         reflectivity: .5,
+                         side:THREE.DoubleSide
+                       } );
+     var pmaterialWa = new Physijs.createMaterial(materialWa,0.9,0.5);
+     passWall = new Physijs.ConcaveMesh( geometryWa, pmaterialWa,0 );
+     passWall.rotation.y = THREE.Math.degToRad( -23 );
+     passWall.rotation.x = THREE.Math.degToRad( 90 );
+     passWall.position.y = -52;
+     passWall.position.x = -5;
+     passWall.position.z = -560;
+     passWall.receiveShadow = true;
+     passWall.castShadow = false;
+     scene.add(passWall);
     }
 
     /*

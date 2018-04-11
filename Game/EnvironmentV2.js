@@ -65,6 +65,8 @@
         // Room2V2.js
         initWall();
         initFloors();
+        // Room3V2.js
+        createCylinderPass();
         // Map.js
         initIcicles();
         initParticles();
