@@ -77,7 +77,7 @@
     function charControls(){
       var y = -50;
 	    var sphVel = sphere.getLinearVelocity();
-      
+
       if(controls.jump){
         jump();
       } else if (controls.fwd){
@@ -121,7 +121,7 @@
     }
 
     function jump(){
-      if(sphere.position.y<position()){
+      if(sphere.position.y<position() && sphere.position.y>position()-5){
           var velocity = sphere.getLinearVelocity();
           velocity.y = 15;
           sphere.setLinearVelocity(velocity);

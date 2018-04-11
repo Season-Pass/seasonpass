@@ -68,6 +68,7 @@
         createCylinderPass();
         createLinearPass();
         // Room3V2.js
+        initThirdFloor();
         // Map.js
         initIcicles();
         initParticles();
