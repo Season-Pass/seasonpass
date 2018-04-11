@@ -16,7 +16,11 @@
     function keydown(event){
       console.log("Keydown:"+event.key);
       //console.dir(event);
-      switch (event.key){
+     if (gameState.scene == 'start' && event.key=='p') {
+			gameState.scene = 'main';
+			return;
+		}
+	 switch (event.key){
         case "w":
         //case "ArrowUp":
           controls.fwd = true;  break;
@@ -33,6 +37,7 @@
         // switch cameras (will be removed at another time)
         case "1": devCameraActive = true; break;
         case "2": devCameraActive = false; break;
+		//start screen
       }
     }
 

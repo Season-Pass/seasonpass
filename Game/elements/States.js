@@ -19,7 +19,7 @@
   var overCam, startCam, pauseCam, endCam;
   // stats
   var gameState =
-      { health:10, lives: 3, scene:'main', collide:false }
+      { health:10, lives: 3, scene:'start', collide:false }
       // colide may be used to code for enemy attacks
 
 
