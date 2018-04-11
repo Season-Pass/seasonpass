@@ -59,12 +59,108 @@
           controls.right = false; break;
         case " ": controls.jump = true; break;
       case "c":
-      if(showControls == true){
-        showControls = false;
-        info.innerHTML = "";
-      } else{
-        showControls = true;
-        info.innerHTML = instructions;
+        if(showControls == true){
+          showControls = false;
+          info.innerHTML = "";
+        } else{
+          showControls = true;
+          info.innerHTML = instructions;
+        }
       }
     }
-  }
+
+    function charControls(){
+      var y = -50;
+	    var sphVel = sphere.getLinearVelocity();
+      
+      if(controls.jump){
+        jump();
+      } else if (controls.fwd){
+        var velocity = sphere.getLinearVelocity();
+        if(velocity.y>0){
+          velocity.x = -controls.speed;
+          sphere.setLinearVelocity(velocity);
+        } else{
+          sphere.setLinearVelocity(new THREE.Vector3(-controls.speed, y, 0));
+        }
+      } else if (controls.bwd){
+        var velocity = sphere.getLinearVelocity();
+        if(velocity.y>0){
+          velocity.x = controls.speed;
+          sphere.setLinearVelocity(velocity);
+        } else{
+          sphere.setLinearVelocity(new THREE.Vector3(controls.speed, y, 0));
+        }
+      } else if (controls.left){
+        var velocity = sphere.getLinearVelocity();
+        if(velocity.y>0){
+          velocity.z = controls.speed;
+          sphere.setLinearVelocity(velocity);
+        } else{
+          sphere.setLinearVelocity(new THREE.Vector3(0, y,controls.speed));
+        }
+      } else if (controls.right){
+        var velocity = sphere.getLinearVelocity();
+        if(velocity.y>0){
+          velocity.z = -controls.speed;
+          sphere.setLinearVelocity(velocity);
+        } else{
+          sphere.setLinearVelocity(new THREE.Vector3(0, y,-controls.speed));
+        }
+      } else {
+        var velocity = sphere.getLinearVelocity();
+        velocity.x=velocity.z=0;
+        //velocity.y= -15;
+        sphere.setLinearVelocity(velocity); //stop the xz motion
+      }
+    }
+
+    function jump(){
+      if(sphere.position.y<position()){
+          var velocity = sphere.getLinearVelocity();
+          velocity.y = 15;
+          sphere.setLinearVelocity(velocity);
+          controls.jump = false;
+        }
+        if (controls.fwd){
+          var velocity = sphere.getLinearVelocity();
+          velocity.x = -controls.speed;
+          sphere.setLinearVelocity(velocity);
+        } else if (controls.bwd){
+          var velocity = sphere.getLinearVelocity();
+          velocity.x = controls.speed;
+          sphere.setLinearVelocity(velocity);
+        } else if (controls.left){
+          var velocity = sphere.getLinearVelocity();
+          velocity.z = controls.speed;
+          sphere.setLinearVelocity(velocity);
+        } else if (controls.right){
+          var velocity = sphere.getLinearVelocity();
+          velocity.z = -controls.speed;
+          sphere.setLinearVelocity(velocity);
+        } else {
+          var velocity = sphere.getLinearVelocity();
+          velocity.x=velocity.z=0;
+          //velocity.y= -15;
+          sphere.setLinearVelocity(velocity);
+        }
+    }
+
+    function charReset(){
+      if(sphere.position.y < -110){
+        sphere.__dirtyPosition = true;
+        sphere.position.x = 10;
+        sphere.position.y = -70;
+        sphere.position.z = -215;
+      }
+    }
+
+    function position(){
+      if(sphere.position.z>-98){
+        return 5;
+      } else if(sphere.position.z<-98 && sphere.position.z>-215){
+        return -200;
+      } else if(sphere.position.z<-215){
+        return -75;
+      }
+    }
