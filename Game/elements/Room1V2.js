@@ -2,7 +2,6 @@
   * This program generates one room for the game.
   > other rooms will be located in other files
   * feel free to play with the parameters and options in the functions
-  > Might move the boundry functions to another file named Restrictions
 
   Nadia Kubatin
 */
@@ -19,7 +18,7 @@
 
 
     /*
-      creates a geometry and texture for
+      Creates a geometry and texture for
       a lathe which acts as the cave wall.
       It imports a texture, bump map, and normal map to form a material.
       It also sets the position of the plane and makes it recieve shadows.
@@ -97,17 +96,16 @@
     /*
       First attempt at loading in a blender object.
       Will work on it a bit more at another time.
+      Physics cannot be added to object therefore
+      a series of small box meshes have been used
+      instead.
     */
     function initPassageWall1(){
       loader1 = new THREE.JSONLoader();
 		  loader1.load('libs/PassageWall3.json',
 					function ( geometry, materials ) {
-            var texturePa = new THREE.TextureLoader().load('libs/Images/ice-cave-c2.png');
-            var normalTexturePa = new THREE.TextureLoader().load('libs/Images/testNormal.png');
 						var material = new THREE.MeshPhongMaterial( {
                             color: 0x66b3ff,
-                            //map:texturePa,
-                            //normalMap: normalTexturePa,
                             side:THREE.DoubleSide
                           } );
             var pmaterial = new Physijs.createMaterial(material,0.9,0.5);

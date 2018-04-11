@@ -17,28 +17,28 @@
     */
     function keydown(event){
       console.log("Keydown:"+event.key);
-     if (gameState.scene == 'start' && event.key=='p') {
-			gameState.scene = 'main';
-			return;
-		}
-	 switch (event.key){
+      //
+      if (gameState.scene == 'start' && event.key=='p') {
+        gameState.scene = 'main';
+        return;
+      }
+      switch (event.key){
         case "w":
-        //case "ArrowUp":
+          //case "ArrowUp":
           controls.fwd = true;  break;
         case "s":
-        //case "ArrowDown":
+          //case "ArrowDown":
           controls.bwd = true; break;
         case "a":
-        //case "ArrowLeft":
+          //case "ArrowLeft":
           controls.left = true; break;
         case "d":
-        //case "ArrowRight":
+          //case "ArrowRight":
           controls.right = true; break;
 
         // switch cameras (will be removed at another time)
         case "1": devCameraActive = true; break;
         case "2": devCameraActive = false; break;
-		//start screen
       }
     }
 
@@ -51,75 +51,77 @@
     function keyup(){
       switch (event.key){
         case "w":
-        //case "ArrowUp":
+          //case "ArrowUp":
           controls.fwd = false;  break;
         case "s":
-        //case "ArrowDown":
+          //case "ArrowDown":
           controls.bwd = false; break;
         case "a":
-        //case "ArrowLeft":
+          //case "ArrowLeft":
           controls.left = false; break;
         case "d":
-        //case "ArrowRight":
+          //case "ArrowRight":
           controls.right = false; break;
-        case " ": controls.jump = true; break;
-      case "c":
-        if(showControls == true){
-          showControls = false;
-          info.innerHTML = "";
-        } else{
-          showControls = true;
-          info.innerHTML = instructions;
-        }
+        case " ":
+          controls.jump = true; break;
+        case "c":
+          if(showControls == true){
+            showControls = false;
+            info.innerHTML = "";
+          } else{
+            showControls = true;
+            info.innerHTML = instructions;
+          }
       }
     }
 
+    /*
+      This method determines the actions for
+      the character controls them selves
+      such as moving forward.
+    */
     function charControls(){
       var y = -50;
-	    var sphVel = sphere.getLinearVelocity();
+      var velocity = sphere.getLinearVelocity();
 
       if(controls.jump){
         jump();
       } else if (controls.fwd){
-        var velocity = sphere.getLinearVelocity();
-        if(velocity.y>0){
-          velocity.x = -controls.speed;
-          sphere.setLinearVelocity(velocity);
-        } else{
-          sphere.setLinearVelocity(new THREE.Vector3(-controls.speed, y, 0));
-        }
+        move(-controls.speed,y,0);
       } else if (controls.bwd){
-        var velocity = sphere.getLinearVelocity();
-        if(velocity.y>0){
-          velocity.x = controls.speed;
-          sphere.setLinearVelocity(velocity);
-        } else{
-          sphere.setLinearVelocity(new THREE.Vector3(controls.speed, y, 0));
-        }
+        move(controls.speed,y,0);
       } else if (controls.left){
-        var velocity = sphere.getLinearVelocity();
-        if(velocity.y>0){
-          velocity.z = controls.speed;
-          sphere.setLinearVelocity(velocity);
-        } else{
-          sphere.setLinearVelocity(new THREE.Vector3(0, y,controls.speed));
-        }
+        move(0, y, controls.speed);
       } else if (controls.right){
-        var velocity = sphere.getLinearVelocity();
-        if(velocity.y>0){
-          velocity.z = -controls.speed;
-          sphere.setLinearVelocity(velocity);
-        } else{
-          sphere.setLinearVelocity(new THREE.Vector3(0, y,-controls.speed));
-        }
+        move(0, y, -controls.speed);
       } else {
         var velocity = sphere.getLinearVelocity();
         velocity.x=velocity.z=0;
-        //velocity.y= -15;
         sphere.setLinearVelocity(velocity); //stop the xz motion
       }
     }
 
+    /*
+      This function creates the
+      movement of the character in the
+      x-z plane.
+    */
+    function move(x,y,z){
+      var velocity = sphere.getLinearVelocity();
+      if(velocity.y>0){
+        velocity.x = x;
+        velocity.z = z;
+        sphere.setLinearVelocity(velocity);
+      } else{
+        sphere.setLinearVelocity(new THREE.Vector3(x, y, z));
+      }
+    }
+
+    /*
+      This function allows the character
+      to jump.
+      It may need refactoring.
+    */
     function jump(){
       if(sphere.position.y<position() && sphere.position.y>position()-5){
           var velocity = sphere.getLinearVelocity();
@@ -146,11 +148,14 @@
         } else {
           var velocity = sphere.getLinearVelocity();
           velocity.x=velocity.z=0;
-          //velocity.y= -15;
           sphere.setLinearVelocity(velocity);
         }
     }
 
+    /*
+      This function teleports the character
+      back to a spot on the map in case it falls off.
+    */
     function charReset(){
       if(sphere.position.y < -110){
         sphere.__dirtyPosition = true;
@@ -160,6 +165,11 @@
       }
     }
 
+    /*
+      This function is used by jump
+      to limit the characters ability to jump
+      depending on where it is on the map.
+    */
     function position(){
       if(sphere.position.z>-98){
         return 5;

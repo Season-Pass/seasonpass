@@ -17,7 +17,6 @@
     /*
       Binds the character to a single area within the cave to prevent
       it from falling out of the scene.
-      * will be moved later to a seperate file.
     */
     function initBoundry(){
       // First Room Boundry

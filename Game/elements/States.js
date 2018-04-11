@@ -5,8 +5,6 @@
   - game over screen
   - end of game screen
   - health, attack, etc.
-  > has yet to be implemented.
-  > This file contains only the backbone for the functions!
   * For now the main scene is found in the Environment.js file
 
   Nadia Kubatin
@@ -32,13 +30,14 @@
       take you to a credits page.
       * It may show a close up of the character model?
       * It may show some other scene.
+
+      Victor Kubatin
     */
-    function createStart(){   //implemented Start Scene-Victor
+    function createStart(){
+      // scene components
       startScreen = initScene();
-		startText = createSkyBox('libs/Images/startscene.png', 10);
-		startScreen.add(startText);
-      // SCENE COMPONENTS GO HERE.
-      // THE ACTUAL SCENE HAS YET TO BE CREATED.
+      startText = createSkyBox('libs/Images/startscene.png', 10);
+      startScreen.add(startText);
 
       // lights
   		var light = createPointLight();
@@ -52,7 +51,8 @@
     }
 
     /*
-
+      This function creates a game over screen
+      in case the character dies.
     */
     function createGameOver(){
       gameOver = initScene();
@@ -72,7 +72,7 @@
     }
 
     /*
-
+      This function creates a pause screen.
     */
     function createPause(){
       pauseScreen = initScene();
@@ -133,7 +133,8 @@
   	}
 
     /*
-
+      This function switchs the scene
+      depending on what the state is.
     */
     function switchGameState(){
       switch(gameState.scene) {
@@ -168,7 +169,6 @@
           }else {
             renderer.render( scene, camera );
           }
-
   				break;
 
   			default:

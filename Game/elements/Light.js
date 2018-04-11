@@ -1,7 +1,7 @@
 /*
   * This file will hold lighting and effects
   * for each scene such as point lights.
-  * Ill try to make a light stream later.
+  * Ill try to make a light stream later. Or someone else can if they want to.
 
   Nadia Kubatin
 */
@@ -21,7 +21,7 @@
       and an ambient light
       and sets color, intensity and position
       as well as sets shadows and targets for the light.
-      * will play with light parameters and colors to find better fit
+      * Will play with light parameters and colors to find better fit
     */
     function initLight(){
       ambiLight = new THREE.AmbientLight(0x111111, 1.5);
@@ -56,11 +56,10 @@
     }
 
     /*
-      sets shadows and their settings for
+      Sets shadows and their settings for
       two lights, spotLight and light.
-      * will include conditioned shadows
-      * will add settings
-      * currently being editied
+      * need to include conditioned shadows
+      * need to add settings
     */
     function initShadows(){
       spotLight.shadow.mapSize.width = 2048;

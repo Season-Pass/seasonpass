@@ -18,8 +18,8 @@
 
 
     /*
-      creates particles using points and sprites.
-      currently set to look like snow but might
+      Creates particles using points and sprites.
+      Currently set to look like snow but might
       change parameter and material later.
     */
     function initParticles(){
@@ -49,7 +49,7 @@
     }
 
     /*
-      animates each particle and makes
+      Animates each particle and makes
       it move randomly.
       Might change parameters later
     */
@@ -66,10 +66,9 @@
     }
 
     /*
-      creates the icicles in the room.
-      parameters (x,y,z,radius,height,segments, rotation)
-      icicles are in order from left to right.
-      Is no longer a group object.
+      Creates the icicles in the room.
+      Parameters (x,y,z,radius,height,segments, rotation).
+      Icicles are in order from left to right.
     */
     function initIcicles(){
       // outer ring bottom
@@ -101,9 +100,10 @@
     }
 
     /*
-      creates icicles of varying sizes
+      Creates icicles of varying sizes
       to be used in the function initIcicles
-      * might play with transparency and refraction or reflection
+      * might play with transparency and refraction or reflection.
+      * Need to add icicles to other rooms.
     */
     function createIcicle(x,y,z,radius, height, rotation){
       var geometryco = new THREE.ConeGeometry( radius, height, 32 );
@@ -117,26 +117,32 @@
                           reflectivity: .5
                         } );
       var pmaterialco = new Physijs.createMaterial(materialco,0.9,0.5);
-      //var stalactite = new THREE.Mesh( geometryco, materialco );
       var stalactite = new Physijs.ConeMesh( geometryco, pmaterialco,0 );
       stalactite.position.set(x,y,z);
       stalactite.rotation.x = THREE.Math.degToRad( rotation );
       stalactite.castShadow = true;
       return stalactite;
     }
-	function createSkyBox(image,k){  //added by Victor
-		// creating a textured plane which receives shadows
-		var geometry = new THREE.SphereGeometry( 80, 80, 80 );
-		var texture = new THREE.TextureLoader().load( image );
-		texture.wrapS = THREE.RepeatWrapping;
-		texture.wrapT = THREE.RepeatWrapping;
-		texture.repeat.set( k, k );
-		var material = new THREE.MeshLambertMaterial( {
-												color: 0xffffff,
-												map: texture ,
-												side:THREE.DoubleSide
-											} );
-		var mesh = new THREE.Mesh( geometry, material, 0 );
-		mesh.receiveShadow = false;
-		return mesh
-	}
+
+    /*
+      Creates a skybox for use in
+      scenes other than the main scene.
+
+      Victor Kubatin
+    */
+  	function createSkyBox(image,k){
+  		// creating a textured plane which receives shadows
+  		var geometry = new THREE.SphereGeometry( 80, 80, 80 );
+  		var texture = new THREE.TextureLoader().load( image );
+  		texture.wrapS = THREE.RepeatWrapping;
+  		texture.wrapT = THREE.RepeatWrapping;
+  		texture.repeat.set( k, k );
+  		var material = new THREE.MeshLambertMaterial( {
+  												color: 0xffffff,
+  												map: texture ,
+  												side:THREE.DoubleSide
+  											} );
+  		var mesh = new THREE.Mesh( geometry, material, 0 );
+  		mesh.receiveShadow = false;
+  		return mesh
+  	}

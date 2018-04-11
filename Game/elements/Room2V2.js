@@ -23,15 +23,13 @@
     function initWall(){
        var geometryWa = new THREE.CylinderGeometry( 200, 200, 300, 64, 64, true, 0, -2.4);
        var textureWa = new THREE.TextureLoader().load('libs/Images/wall1.png');
-       //var normalTextureLa = new THREE.TextureLoader().load('libs/Images/ice-cave-2c.png');
        var bumpTextureWa = new THREE.TextureLoader().load('libs/Images/wall1-b.png');
        var materialWa = new THREE.MeshPhongMaterial( {
                           color: 0xe6f2ff,
                           map:textureWa,
                           specular: 0xe6f2ff,
-                          emissive: 0x0d1e26, //0b2441
+                          emissive: 0x0d1e26,
                           bumpMap: bumpTextureWa,
-                          //normalMap: normalTextureWa,
                           shininess: 100,
                           reflectivity: .5,
                           side:THREE.DoubleSide
@@ -48,7 +46,7 @@
     }
 
     /*
-      Creates the column for the character to jump on.
+      Creates the columns for the character to jump on.
     */
     function initFloors(){
       createBox(50,100,-72, -94.5, -250);
@@ -100,7 +98,7 @@
     }
 
     /*
-
+      Creates a passage wall into the next room.
     */
     function createCylinderPass(){
       var geometryWa = new THREE.CylinderGeometry( 30, 30, 70, 64, 64, true, 0, -2.4);
@@ -111,7 +109,7 @@
                          color: 0xe6f2ff,
                          map:textureWa,
                          specular: 0xe6f2ff,
-                         emissive: 0x0d1e26, //0b2441
+                         emissive: 0x0d1e26,
                          bumpMap: bumpTextureWa,
                          //normalMap: normalTextureWa,
                          shininess: 100,
@@ -131,7 +129,7 @@
     }
 
     /*
-
+      Creates a passage floor into the next room.
     */
     function createLinearPass(){
       var geometryPF = new THREE.PlaneBufferGeometry( 50, 100, 199, 199 );
@@ -148,9 +146,8 @@
                        } );
       var pmaterialPF = new Physijs.createMaterial(materialPF,0,0.5);
       passFoo = new Physijs.BoxMesh( geometryPF, materialPF,0 );
-      //passFoo.rotation.y = THREE.Math.degToRad( 90 );
       passFoo.rotation.x = THREE.Math.degToRad( 90 );
-      passFoo.position.y = -79.5;
+      passFoo.position.y = -79.3;
       passFoo.position.x = 0;
       passFoo.position.z = -565;
       scene.add(passFoo);
