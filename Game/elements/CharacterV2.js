@@ -18,7 +18,7 @@
 
 	// information to be displayed on screen
 	var info = document.createElement('div');
-	var instructions = "Controls: AWSD to move, Space to jump, C to toggle info, P to exit Start Screen"
+	var instructions = "Controls: WASD to move, Space to jump, C to toggle info, P to exit Start Screen"
 	var showControls = true;
 	info.style.position = 'absolute';
 	info.style.width = 100;
