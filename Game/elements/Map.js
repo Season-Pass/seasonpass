@@ -124,3 +124,19 @@
       stalactite.castShadow = true;
       return stalactite;
     }
+	function createSkyBox(image,k){  //added by Victor
+		// creating a textured plane which receives shadows
+		var geometry = new THREE.SphereGeometry( 80, 80, 80 );
+		var texture = new THREE.TextureLoader().load( image );
+		texture.wrapS = THREE.RepeatWrapping;
+		texture.wrapT = THREE.RepeatWrapping;
+		texture.repeat.set( k, k );
+		var material = new THREE.MeshLambertMaterial( {
+												color: 0xffffff,
+												map: texture ,
+												side:THREE.DoubleSide
+											} );
+		var mesh = new THREE.Mesh( geometry, material, 0 );
+		mesh.receiveShadow = false;
+		return mesh
+	}
