@@ -82,7 +82,7 @@
     */
     function charControls(){
       var y = -50;
-      var velocity = sphere.getLinearVelocity();
+      var velocity = avatar.getLinearVelocity();
 
       if(controls.jump){
         jump();
@@ -95,9 +95,9 @@
       } else if (controls.right){
         move(0, y, -controls.speed);
       } else {
-        var velocity = sphere.getLinearVelocity();
+        var velocity = avatar.getLinearVelocity();
         velocity.x=velocity.z=0;
-        sphere.setLinearVelocity(velocity); //stop the xz motion
+        avatar.setLinearVelocity(velocity); //stop the xz motion
       }
     }
 
@@ -107,13 +107,13 @@
       x-z plane.
     */
     function move(x,y,z){
-      var velocity = sphere.getLinearVelocity();
+      var velocity = avatar.getLinearVelocity();
       if(velocity.y>0){
         velocity.x = x;
         velocity.z = z;
-        sphere.setLinearVelocity(velocity);
+        avatar.setLinearVelocity(velocity);
       } else{
-        sphere.setLinearVelocity(new THREE.Vector3(x, y, z));
+        avatar.setLinearVelocity(new THREE.Vector3(x, y, z));
       }
     }
 
@@ -123,32 +123,32 @@
       It may need refactoring.
     */
     function jump(){
-      if(sphere.position.y<position() && sphere.position.y>position()-5){
-          var velocity = sphere.getLinearVelocity();
+      if(avatar.position.y<position() && avatar.position.y>position()-5){
+          var velocity = avatar.getLinearVelocity();
           velocity.y = 15;
-          sphere.setLinearVelocity(velocity);
+          avatar.setLinearVelocity(velocity);
           controls.jump = false;
         }
         if (controls.fwd){
-          var velocity = sphere.getLinearVelocity();
+          var velocity = avatar.getLinearVelocity();
           velocity.x = -controls.speed;
-          sphere.setLinearVelocity(velocity);
+          avatar.setLinearVelocity(velocity);
         } else if (controls.bwd){
-          var velocity = sphere.getLinearVelocity();
+          var velocity = avatar.getLinearVelocity();
           velocity.x = controls.speed;
-          sphere.setLinearVelocity(velocity);
+          avatar.setLinearVelocity(velocity);
         } else if (controls.left){
-          var velocity = sphere.getLinearVelocity();
+          var velocity = avatar.getLinearVelocity();
           velocity.z = controls.speed;
-          sphere.setLinearVelocity(velocity);
+          avatar.setLinearVelocity(velocity);
         } else if (controls.right){
-          var velocity = sphere.getLinearVelocity();
+          var velocity = avatar.getLinearVelocity();
           velocity.z = -controls.speed;
-          sphere.setLinearVelocity(velocity);
+          avatar.setLinearVelocity(velocity);
         } else {
-          var velocity = sphere.getLinearVelocity();
+          var velocity = avatar.getLinearVelocity();
           velocity.x=velocity.z=0;
-          sphere.setLinearVelocity(velocity);
+          avatar.setLinearVelocity(velocity);
         }
     }
 
@@ -157,11 +157,11 @@
       back to a spot on the map in case it falls off.
     */
     function charReset(){
-      if(sphere.position.y < -110){
-        sphere.__dirtyPosition = true;
-        sphere.position.x = 10;
-        sphere.position.y = -70;
-        sphere.position.z = -215;
+      if(avatar.position.y < -110){
+        avatar.__dirtyPosition = true;
+        avatar.position.x = 10;
+        avatar.position.y = -70;
+        avatar.position.z = -215;
       }
     }
 
@@ -171,11 +171,11 @@
       depending on where it is on the map.
     */
     function position(){
-      if(sphere.position.z>-98){
+      if(avatar.position.z>-98){
         return 5;
-      } else if(sphere.position.z<-98 && sphere.position.z>-215){
+      } else if(avatar.position.z<-98 && avatar.position.z>-215){
         return -200;
-      } else if(sphere.position.z<-215){
+      } else if(avatar.position.z<-215){
         return -75;
       }
     }

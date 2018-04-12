@@ -30,7 +30,8 @@
 	document.body.appendChild(info);
 
 	// scene variables
-  var sphere; // model for small scale tests. Will be removed
+	var avatar;
+	var loader;
   var controls =
           { fwd: false, bwd: false, left: false, right: false,
             jump: false, speed: 30, devCameraActive: false
@@ -39,23 +40,32 @@
 
 
 
-	  /*
-	    Creates a geometry and texture for a sphere.
-	    It also sets the position of the sphere.
-	    * This sphere is a temporary placement for
-	    * a future character model.
-	    * It will be replaced by a blender object.
-	  */
-	  function initSphere(){
-	    var geometrysp = new THREE.SphereGeometry(3, 40, 40);
-	    var materialsp = new THREE.MeshLambertMaterial( { color: 0xff0000} );
-	    var pmaterialsp = new Physijs.createMaterial(materialsp, 1, 0);
-	    sphere = new Physijs.SphereMesh( geometrysp, pmaterialsp, 1 );
-	    sphere.position.y = 5;
-	    sphere.setDamping(0.1,0.1);
-	    sphere.castShadow = true;
-	    scene.add(sphere);
-	  }
+					/*
+				    Creates a geometry and texture of avatar. A sample model loaded, animations and redone model to be added later
+						fix later: * no more rotating boy :( fix rotation to be based on controls?
+												* remove black lines from texture
+						-K
+				  */
+				  function initAvatar(){
+						// BEGIN Clara.io JSON loader code
+						loader = new THREE.JSONLoader();
+						loader.load("../libs/penguin.json",
+						function ( geometry, materials ) {
+							var texture = new THREE.TextureLoader().load( "../libs/Images/penguintexture.png" );
+							texture.magFilter = THREE.LinearFilter; //probably dont need, trying to remove black lines from in between texture :(
+							var pmaterial = new Physijs.createMaterial(new THREE.MeshBasicMaterial({map: texture}),0.9,0.5);
+							var penguin = new Physijs.BoxMesh(	geometry,pmaterial	);
+
+							penguin.setDamping(0.1,0.1);
+				 	    penguin.position.y = 5;
+							penguin.castShadow = true;
+							penguin.receiveShadow = false;
+							scene.add( penguin );
+							penguin.scale.set(3,3,3);
+							avatar = penguin;
+						});
+				  }
+
 
 	  /*
 	    Creates a geometry and texture for a sphere.
