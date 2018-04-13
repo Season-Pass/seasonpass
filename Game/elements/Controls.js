@@ -91,7 +91,8 @@
     */
     function charControls(){
       var y = -50;
-      var velocity = avatar.getLinearVelocity();
+      var velocity = sphere.getLinearVelocity(); // replace with avatar
+      // var velocity = avatar.getLinearVelocity();
 
       if(controls.jump){
         jump();
@@ -104,9 +105,11 @@
       } else if (controls.right){
         move(0, y, -controls.speed);
       } else {
-        var velocity = avatar.getLinearVelocity();
+        var velocity = sphere.getLinearVelocity(); // replace with avatar
+        // var velocity = avatar.getLinearVelocity();
         velocity.x=velocity.z=0;
-        avatar.setLinearVelocity(velocity); //stop the xz motion
+        sphere.setLinearVelocity(velocity); // replace with avatar
+        // avatar.setLinearVelocity(velocity); //stop the xz motion
       }
     }
 
@@ -116,13 +119,16 @@
       x-z plane.
     */
     function move(x,y,z){
-      var velocity = avatar.getLinearVelocity();
+      var velocity = sphere.getLinearVelocity(); // replace with avatar
+      // var velocity = avatar.getLinearVelocity();
       if(velocity.y>0){
         velocity.x = x;
         velocity.z = z;
-        avatar.setLinearVelocity(velocity);
+        sphere.setLinearVelocity(velocity); // replace with avatar
+        // avatar.setLinearVelocity(velocity);
       } else{
-        avatar.setLinearVelocity(new THREE.Vector3(x, y, z));
+        sphere.setLinearVelocity(new THREE.Vector3(x, y, z)); // replace with avatar
+        // avatar.setLinearVelocity(new THREE.Vector3(x, y, z));
       }
     }
 
@@ -132,32 +138,38 @@
       It may need refactoring.
     */
     function jump(){
-      if(avatar.position.y<position() && avatar.position.y>position()-5){
+      if(sphere.position.y<position() && sphere.position.y>position()-5){ // replace with avatar
           var velocity = avatar.getLinearVelocity();
           velocity.y = 15;
-          avatar.setLinearVelocity(velocity);
+          sphere.setLinearVelocity(velocity); // replace with avatar
+          // avatar.setLinearVelocity(velocity);
           controls.jump = false;
         }
         if (controls.fwd){
           var velocity = avatar.getLinearVelocity();
           velocity.x = -controls.speed;
-          avatar.setLinearVelocity(velocity);
+          sphere.setLinearVelocity(velocity); // replace with avatar
+          // avatar.setLinearVelocity(velocity);
         } else if (controls.bwd){
           var velocity = avatar.getLinearVelocity();
           velocity.x = controls.speed;
-          avatar.setLinearVelocity(velocity);
+          sphere.setLinearVelocity(velocity); // replace with avatar
+          // avatar.setLinearVelocity(velocity);
         } else if (controls.left){
           var velocity = avatar.getLinearVelocity();
           velocity.z = controls.speed;
-          avatar.setLinearVelocity(velocity);
+          sphere.setLinearVelocity(velocity); // replace with avatar
+          // avatar.setLinearVelocity(velocity);
         } else if (controls.right){
           var velocity = avatar.getLinearVelocity();
           velocity.z = -controls.speed;
-          avatar.setLinearVelocity(velocity);
+          sphere.setLinearVelocity(velocity); // replace with avatar
+          // avatar.setLinearVelocity(velocity);
         } else {
           var velocity = avatar.getLinearVelocity();
           velocity.x=velocity.z=0;
-          avatar.setLinearVelocity(velocity);
+          sphere.setLinearVelocity(velocity); // replace with avatar
+          // avatar.setLinearVelocity(velocity);
         }
     }
 
@@ -166,11 +178,17 @@
       back to a spot on the map in case it falls off.
     */
     function charReset(){
-      if(avatar.position.y < -110){
+      if(sphere.position.y < -110){ // replace with avatar
+        sphere.__dirtyPosition = true;
+        sphere.position.x = 10;
+        sphere.position.y = -70;
+        sphere.position.z = -215;
+        /*
         avatar.__dirtyPosition = true;
         avatar.position.x = 10;
         avatar.position.y = -70;
         avatar.position.z = -215;
+        */
       }
     }
 
@@ -180,11 +198,11 @@
       depending on where it is on the map.
     */
     function position(){
-      if(avatar.position.z>-98){
+      if(sphere.position.z>-98){ // replace with avatar
         return 5;
-      } else if(avatar.position.z<-98 && avatar.position.z>-215){
+      } else if(sphere.position.z<-98 && avatar.position.z>-215){ // replace with avatar
         return -200;
-      } else if(avatar.position.z<-215){
+      } else if(sphere.position.z<-215){ // replace with avatar
         return -75;
       }
     }
