@@ -7,6 +7,15 @@
 
 
 
+  // Variables
+  var controls =
+        { fwd: false, bwd: false, left: false, right: false,
+          jump: false, speed: 30, devCameraActive: false
+        }
+
+
+
+
     /*
       These are the controls for the character model.
       wsda will be used to move the character.

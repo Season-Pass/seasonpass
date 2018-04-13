@@ -31,10 +31,6 @@
 
 	// scene variables
   var sphere; // model for small scale tests. Will be removed
-  var controls =
-          { fwd: false, bwd: false, left: false, right: false,
-            jump: false, speed: 30, devCameraActive: false
-          }
 
 
 
