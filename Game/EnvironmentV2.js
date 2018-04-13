@@ -77,7 +77,7 @@
         initLight();
         initShadows();
         // Character.js
-        initSphere(); // - temporary character model
+        initAvatar(); // - temporary character model
         initPosTest(); // will be removed later
         // SoundV2.js
         // add helpers (will be removed at a later time)
