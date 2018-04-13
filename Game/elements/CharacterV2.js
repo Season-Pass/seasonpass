@@ -31,6 +31,8 @@
 
 	// scene variables
   var sphere; // model for small scale tests. Will be removed
+	var avatar;
+	var loader;
 
 
 
