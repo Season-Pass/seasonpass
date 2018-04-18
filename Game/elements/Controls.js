@@ -40,9 +40,11 @@
           controls.bwd = true; break;
         case "a":
           //case "ArrowLeft":
-          controls.left = true; break;
+          console.log(sphere.position.z); //remove later
+		  controls.left = true; break;
         case "d":
           //case "ArrowRight":
+		  console.log(sphere.position.z); //remove later
           controls.right = true; break;
 
         // switch cameras (will be removed at another time)
@@ -58,7 +60,7 @@
       * Might add more possible controls later.
     */
     function keyup(){
-      switch (event.key){
+	  switch (event.key){
         case "w":
           //case "ArrowUp":
           controls.fwd = false;  break;
@@ -67,10 +69,10 @@
           controls.bwd = false; break;
         case "a":
           //case "ArrowLeft":
-          controls.left = false; break;
+		  controls.left = false; break;
         case "d":
           //case "ArrowRight":
-          controls.right = false; break;
+		  controls.right = false; break;
         case " ":
           controls.jump = true; break;
         case "c":

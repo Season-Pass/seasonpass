@@ -118,3 +118,36 @@
 
 			charReset();
 	  }
+	 
+
+
+	//this is for the function below
+	var story = document.createElement('div');
+	var story1 = "story 1 placeholder";
+	story.style.position = 'absolute';
+	//story.style.width = window.innerWidth;
+	//story.style.height = window.innerHeight/4;
+	story.style.width = 100;
+	story.style.width = 100;
+	story.style.color = "white";
+	story.style.top = window.innerHeight * 0.75 + 'px';
+	//story.style.top = 10 + 'px';
+	story.style.left = 10 + 'px';
+	document.body.appendChild(story);
+	 
+	 /*
+		This updates the text at the bottom of the screen based on
+		the horizontal position of the avatar to make some sort of 
+		story. 
+		
+		I'm not really sure which file to put this in, so I can move
+		it to a different file later. Right now it is being called
+		in States.js
+		-Zeline
+	*/
+	function updateStory(){
+		//change sphere to avatar later
+		if(sphere.position.z < 95 && sphere.position.z > -95){
+			story.innerHTML = story1;
+		}
+	}
