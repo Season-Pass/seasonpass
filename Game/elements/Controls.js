@@ -202,7 +202,7 @@
     function position(){
       if(sphere.position.z>-98){ // replace with avatar
         return 5;
-      } else if(sphere.position.z<-98 && avatar.position.z>-215){ // replace with avatar
+      } else if(sphere.position.z<-98 && sphere.position.z>-215){ // replace with avatar
         return -200;
       } else if(sphere.position.z<-215){ // replace with avatar
         return -75;

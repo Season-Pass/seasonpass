@@ -18,7 +18,7 @@
 
 	// information to be displayed on screen
 	var info = document.createElement('div');
-	var instructions = "Controls: WASD to move, Space to jump, C to toggle info, P to exit Start Screen"
+	var instructions = "Controls: WASD to move, Space to jump, C to toggle info, P to exit Start Screen";
 	var showControls = true;
 	info.style.position = 'absolute';
 	info.style.width = 100;
@@ -124,14 +124,12 @@
 	//this is for the function below
 	var story = document.createElement('div');
 	var story1 = "story 1 placeholder";
+	var story2 = "story 2 placeholder";
 	story.style.position = 'absolute';
-	//story.style.width = window.innerWidth;
-	//story.style.height = window.innerHeight/4;
-	story.style.width = 100;
-	story.style.width = 100;
+	story.style.width = window.innerWidth;
+	story.style.height = window.innerHeight/4;
 	story.style.color = "white";
 	story.style.top = window.innerHeight * 0.75 + 'px';
-	//story.style.top = 10 + 'px';
 	story.style.left = 10 + 'px';
 	document.body.appendChild(story);
 	 
@@ -148,6 +146,10 @@
 	function updateStory(){
 		//change sphere to avatar later
 		if(sphere.position.z < 95 && sphere.position.z > -95){
-			story.innerHTML = story1;
+			story.innerHTML = '<font size="24"><i>' + story1 + '</i></font>';
+		} else if(sphere.position.z < -200){
+			story.innerHTML = '<font size="24"><i>' + story2 + '</i></font>';
+		} else{
+			story.innerHTML = '';
 		}
 	}
