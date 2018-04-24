@@ -141,34 +141,34 @@
     */
     function jump(){
       if(sphere.position.y<position() && sphere.position.y>position()-5){ // replace with avatar
-          var velocity = avatar.getLinearVelocity();
+          var velocity = sphere.getLinearVelocity(); // replace with avatar
           velocity.y = 15;
           sphere.setLinearVelocity(velocity); // replace with avatar
           // avatar.setLinearVelocity(velocity);
           controls.jump = false;
         }
         if (controls.fwd){
-          var velocity = avatar.getLinearVelocity();
+          var velocity = sphere.getLinearVelocity(); // replace with avatar
           velocity.x = -controls.speed;
           sphere.setLinearVelocity(velocity); // replace with avatar
           // avatar.setLinearVelocity(velocity);
         } else if (controls.bwd){
-          var velocity = avatar.getLinearVelocity();
+          var velocity = sphere.getLinearVelocity(); // replace with avatar
           velocity.x = controls.speed;
           sphere.setLinearVelocity(velocity); // replace with avatar
           // avatar.setLinearVelocity(velocity);
         } else if (controls.left){
-          var velocity = avatar.getLinearVelocity();
+          var velocity = sphere.getLinearVelocity(); // replace with avatar
           velocity.z = controls.speed;
           sphere.setLinearVelocity(velocity); // replace with avatar
           // avatar.setLinearVelocity(velocity);
         } else if (controls.right){
-          var velocity = avatar.getLinearVelocity();
+          var velocity = sphere.getLinearVelocity(); // replace with avatar
           velocity.z = -controls.speed;
           sphere.setLinearVelocity(velocity); // replace with avatar
           // avatar.setLinearVelocity(velocity);
         } else {
-          var velocity = avatar.getLinearVelocity();
+          var velocity = sphere.getLinearVelocity(); // replace with avatar
           velocity.x=velocity.z=0;
           sphere.setLinearVelocity(velocity); // replace with avatar
           // avatar.setLinearVelocity(velocity);
