@@ -43,16 +43,20 @@
       pointLight2 = new THREE.PointLight( 0xffffff, 1.2, 250 );
       pointLight3 = new THREE.PointLight( 0xffffff, 3, 350, .5 );
       pointLight4 = new THREE.PointLight( 0xffffff, 1.2, 350, .5 );
+      pointLight5 = new THREE.PointLight( 0xffffff, 1.2, 250 );
       pointLight.position.set( 0, 15, 0 );
       pointLight2.position.set( 0, 15, -130 );
       pointLight3.position.set( -300, 15, -300 );
       pointLight4.position.set( -200, 15, -570 );
+      pointLight5.position.set( 0, 120, -950 );
       pointLight.castShadow = true;
       pointLight3.castShadow = true;
+      pointLight5.castShadow = true;
       scene.add(pointLight);
       scene.add(pointLight2);
       scene.add(pointLight3);
       scene.add(pointLight4);
+      scene.add(pointLight5);
     }
 
     /*

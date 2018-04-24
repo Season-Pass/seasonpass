@@ -56,7 +56,7 @@
     function initDevCamera(){
       devCamera.position.x = 200;
       devCamera.position.y = 50;
-      devCamera.position.z = -10;
+      devCamera.position.z = -200;
     }
 
     /*

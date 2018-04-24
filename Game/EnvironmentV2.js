@@ -70,6 +70,10 @@
         createLinearPass();
         // Room3V2.js
         initThirdFloor();
+        initThirdWall();
+        initRoomPass2()
+        // Room4V2.js
+        initBossFloor();
         // Map.js
         initIcicles();
         initParticles();
@@ -170,7 +174,7 @@
       scene.add( pointLightHelper3 );
       var pointLightHelper4 = new THREE.PointLightHelper( pointLight4, sphereSize );
       scene.add( pointLightHelper4 );
+      var pointLightHelper5 = new THREE.PointLightHelper( pointLight5, sphereSize );
+      scene.add( pointLightHelper5 );
       //scene.add(gridHelper);
     }
-	
-
