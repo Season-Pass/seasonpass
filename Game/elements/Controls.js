@@ -42,7 +42,6 @@
           //case "ArrowLeft":
 		  //Add restriction to not go back to room 1
           if(sphere.position.z >= -95 || sphere.position.z <= -200){ //change to avatar
-			console.log(sphere.position.z); //remove later
 			controls.left = true; 
 		  } else{
 			controls.left = false;
@@ -50,7 +49,6 @@
 		  break;
         case "d":
           //case "ArrowRight":
-		  console.log(sphere.position.z); //remove later
           controls.right = true; break;
 
         // switch cameras (will be removed at another time)
