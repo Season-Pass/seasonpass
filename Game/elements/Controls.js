@@ -40,8 +40,14 @@
           controls.bwd = true; break;
         case "a":
           //case "ArrowLeft":
-          console.log(sphere.position.z); //remove later
-		  controls.left = true; break;
+		  //Add restriction to not go back to room 1
+          if(sphere.position.z >= -95 || sphere.position.z <= -200){ //change to avatar
+			console.log(sphere.position.z); //remove later
+			controls.left = true; 
+		  } else{
+			controls.left = false;
+		  }
+		  break;
         case "d":
           //case "ArrowRight":
 		  console.log(sphere.position.z); //remove later
