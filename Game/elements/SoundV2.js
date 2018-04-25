@@ -75,7 +75,7 @@
       var sound = new THREE.Audio(soundEffect);
 
       var soundLoader = new THREE.AudioLoader();
-      soundLoader.load( 'libs/sounds/'+effect+'.wav', function(buffer){
+      soundLoader.load( 'libs/sounds/'+effect+, function(buffer){
         sound.setBuffer( buffer );
         sound.setLoop( true );
         sound.setVolume( 0.5 );
