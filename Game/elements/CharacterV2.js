@@ -25,7 +25,7 @@
 	info.style.heght = 100;
 	info.style.color = "white";
 	info.innerHTML = instructions;
-	info.style.top = 10 + 'px';
+	info.style.top = window.innerHeight * 0.95 + 'px';
 	info.style.left = 10 + 'px';
 	document.body.appendChild(info);
 
@@ -124,15 +124,16 @@
 	//this is for the function below
 	var story = document.createElement('div');
 	var display;
-	const story1 = "story 1 placeholder";
-	const story2 = "story 2 placeholder";
-	const story3 = "story 3 placeholder";
-	const story4 = "story 4 placeholder";
+	const story1 = "It seems your companions left you alone in this cave.";
+	const story2 = "You know there must be a way out. After all, the others were able to escape without you.";
+	const story3 = "Of course, the others could actually fly past all the platforms.";
+	const story4 = "But you're determined to find your own way out.";
+	const story5 = "Despair seeps into the inner depths of your soul as you begin to realize your fate... "
+	const story6 = story5 + "Without a Season Pass, you are doomed to a life that ends right when it is just beginning.";
 	story.style.position = 'absolute';
-	story.style.width = window.innerWidth;
-	story.style.height = window.innerHeight/4;
-	story.style.color = "white";
-	story.style.top = window.innerHeight * 0.75 + 'px';
+	story.style.color = "maroon";
+	story.style.width = 100;
+	story.style.top = window.innerHeight * 0.05 + 'px';
 	story.style.left = 10 + 'px';
 	document.body.appendChild(story);
 	 
@@ -150,14 +151,18 @@
 		//change sphere to avatar later
 		if(sphere.position.z < 95 && sphere.position.z > -95){
 			display = story1;
-		} else if(sphere.position.z < -200 && sphere.position.z > -530){
+		} else if(sphere.position.z < -200 && sphere.position.z > -380){
 			display = story2;
-		} else if(sphere.position.z < -550 && sphere.position.z > -610){
+		} else if(sphere.position.z <= -380 && sphere.position.z > -530){
 			display = story3;
-		} else if(sphere.position.z < -660 && sphere.position.z > -805){
+		} else if(sphere.position.z < -550 && sphere.position.z > -610){
 			display = story4;
+		} else if(sphere.position.z < -650 && sphere.position.z > -740){
+			display = story5;
+		} else if(sphere.position.z <= -740 && sphere.position.z > -805){
+			display = story6;
 		} else if(!(display === "There's no going back.")){
 			display = '';
 		}
-		story.innerHTML = '<font size="24"><i>' + display + '</i></font>';
+		story.innerHTML = '<font size="20"><i><center>' + display + '</center></i></font>';
 	}
