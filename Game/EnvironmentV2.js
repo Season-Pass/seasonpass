@@ -71,7 +71,8 @@
         // Room3V2.js
         initThirdFloor();
         initThirdWall();
-        initRoomPass2()
+        initRoomPass2();
+        initPlatforms();
         // Room4V2.js
         initBossFloor();
         // Map.js

@@ -110,14 +110,14 @@
 
     */
     function initPlatforms(){
-
+      initCone(-30,20,-800);
     }
 
     /*
 
     */
-    function initCone(){
-      var geometryCo = new THREE.CylinderGeometry( 5, 5, 5, 64, 64);
+    function initCone(x,y,z){
+      var geometryCo = new THREE.CylinderGeometry( 10, 5, 5, 64, 64);
       var materialCo = new THREE.MeshPhongMaterial( {
                          color: 0xe6f2ff,
                          specular: 0xe6f2ff,
@@ -129,10 +129,10 @@
      var pmaterialCo = new Physijs.createMaterial(materialCo,0.9,0.5);
      //cone = new THREE.Mesh( geometryCo, materialCo );
      var cone = new Physijs.CylinderMesh( geometryCo, pmaterialCo,0 );
-     cone.position.y = 19.5;
-     cone.position.x = -5;
-     cone.position.z = -710;
+     cone.position.y = y;
+     cone.position.x = x;
+     cone.position.z = z;
      cone.receiveShadow = true;
      cone.castShadow = true;
-     return cone;
+     scene.add(cone);
     }
