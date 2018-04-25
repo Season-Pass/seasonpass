@@ -51,7 +51,7 @@
         audloader1.load( 'libs/sounds/BossThemeV1.m4a', function(buffer){
           sound.setBuffer( buffer );
           sound.setLoop( true );
-          sound.setVolume( 0.05 );
+          sound.setVolume( 1 );
           sound.play();
         });
       } else if (gameState.scene=='main'){
@@ -68,6 +68,17 @@
     /*
       This function creates sound effects.
     */
-    function initGameSounds(){
+    function initGameSounds(effect){
+      var soundEffect = new THREE.AudioListener();
+      scene.add(soundEffect);
 
+      var sound = new THREE.Audio(soundEffect);
+
+      var soundLoader = new THREE.AudioLoader();
+      soundLoader.load( 'libs/sounds/'+effect, function(buffer){
+        sound.setBuffer( buffer );
+        sound.setLoop( false );
+        sound.setVolume( 0.5 );
+        sound.play();
+      });
     }

@@ -123,8 +123,11 @@
 
 	//this is for the function below
 	var story = document.createElement('div');
-	var story1 = "story 1 placeholder";
-	var story2 = "story 2 placeholder";
+	var display;
+	const story1 = "story 1 placeholder";
+	const story2 = "story 2 placeholder";
+	const story3 = "story 3 placeholder";
+	const story4 = "story 4 placeholder";
 	story.style.position = 'absolute';
 	story.style.width = window.innerWidth;
 	story.style.height = window.innerHeight/4;
@@ -146,10 +149,15 @@
 	function updateStory(){
 		//change sphere to avatar later
 		if(sphere.position.z < 95 && sphere.position.z > -95){
-			story.innerHTML = '<font size="24"><i>' + story1 + '</i></font>';
-		} else if(sphere.position.z < -200){
-			story.innerHTML = '<font size="24"><i>' + story2 + '</i></font>';
-		} else{
-			story.innerHTML = '';
+			display = story1;
+		} else if(sphere.position.z < -200 && sphere.position.z > -530){
+			display = story2;
+		} else if(sphere.position.z < -550 && sphere.position.z > -610){
+			display = story3;
+		} else if(sphere.position.z < -660 && sphere.position.z > -805){
+			display = story4;
+		} else if(!(display === "There's no going back.")){
+			display = '';
 		}
+		story.innerHTML = '<font size="24"><i>' + display + '</i></font>';
 	}

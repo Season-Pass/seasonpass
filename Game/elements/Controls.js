@@ -40,12 +40,19 @@
           controls.bwd = true; break;
         case "a":
           //case "ArrowLeft":
-          console.log(sphere.position.z); //remove later
-		  controls.left = true; break;
+		  //Add restriction to not go back to room 1
+          if(sphere.position.z >= -95 || sphere.position.z <= -200){ //change to avatar
+			controls.left = true;
+		  } else{
+			display = "There's no going back.";
+			controls.left = false;
+		  }
+
+		  break;
         case "d":
           //case "ArrowRight":
-		  console.log(sphere.position.z); //remove later
-          controls.right = true; break;
+          controls.right = true;
+          break;
 
         // switch cameras (will be removed at another time)
         case "1": devCameraActive = true; break;
@@ -69,12 +76,13 @@
           controls.bwd = false; break;
         case "a":
           //case "ArrowLeft":
+		  if(sphere.position.z <= -95 || sphere.position.z >= -200) display = ''; //change to avatar
 		  controls.left = false; break;
         case "d":
           //case "ArrowRight":
 		  controls.right = false; break;
         case " ":
-          controls.jump = true; break;
+          controls.jump = true; initGameSounds('Jump.wav'); break;
         case "c":
           if(showControls == true){
             showControls = false;
