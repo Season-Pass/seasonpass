@@ -44,6 +44,7 @@
           if(sphere.position.z >= -95 || sphere.position.z <= -200){ //change to avatar
 			controls.left = true; 
 		  } else{
+			display = "There's no going back.";
 			controls.left = false;
 		  }
 		  break;
@@ -73,6 +74,7 @@
           controls.bwd = false; break;
         case "a":
           //case "ArrowLeft":
+		  if(sphere.position.z <= -95 || sphere.position.z >= -200) display = ''; //change to avatar
 		  controls.left = false; break;
         case "d":
           //case "ArrowRight":

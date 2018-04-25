@@ -123,6 +123,7 @@
 
 	//this is for the function below
 	var story = document.createElement('div');
+	var display;
 	const story1 = "story 1 placeholder";
 	const story2 = "story 2 placeholder";
 	const story3 = "story 3 placeholder";
@@ -147,7 +148,6 @@
 	*/
 	function updateStory(){
 		//change sphere to avatar later
-		var display;
 		if(sphere.position.z < 95 && sphere.position.z > -95){
 			display = story1;
 		} else if(sphere.position.z < -200 && sphere.position.z > -530){
@@ -156,7 +156,7 @@
 			display = story3;
 		} else if(sphere.position.z < -660 && sphere.position.z > -805){
 			display = story4;
-		} else{
+		} else if(!(display === "There's no going back.")){
 			display = '';
 		}
 		story.innerHTML = '<font size="24"><i>' + display + '</i></font>';
