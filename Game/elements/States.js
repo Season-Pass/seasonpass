@@ -99,11 +99,10 @@
       the rest of the game".
       It may also contain credits.
     */
-    function createEnd(){
+    function createEnd(){  //Implemented-Victor
       endScreen = initScene();
-
-      // SCENE COMPONENTS GO HERE.
-      // THE ACTUAL SCENE HAS YET TO BE CREATED.
+	  endText = createSkyBox2('libs/Images/Good-bye.png', 10);
+      endScreen.add(endText);
 
       // lights
   		var light = createPointLight();
