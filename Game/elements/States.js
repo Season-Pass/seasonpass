@@ -159,10 +159,13 @@
           updateCamera();
           cameraZoom();
           updateCharacter();
-          animateParticles();
-		  updateStory();
+          animateParticles(snow1);
+          animateParticles(snow2);
+          animateParticles(snow3);
+          animateParticles(snow4);
+		      updateStory();
           scene.simulate();
-		  
+
 
           // Will be removed with devCamera at another time
           // renderer.render( scene, camera );

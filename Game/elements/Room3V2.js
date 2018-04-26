@@ -185,3 +185,48 @@
      })
      scene.add(cone);
     }
+
+    /*
+
+    */
+    function initCrystals(){
+      createCrystal(0,-90,-710,10,10,10,90,25);
+      createCrystal(-5,-90,-735,10,10,10,45,10);
+      createCrystal(20,-90,-743,10,10,10,20,25);
+      createCrystal(0,-77,-728,10,10,10,-90,55);
+    }
+
+    /*
+
+    */
+    function createCrystal(x,y,z,a,b,c,rot,rot2){
+      loader = new THREE.JSONLoader();
+      loader.load('libs/Crystal.json',
+      function (geometry, materials){
+        var material = new THREE.MeshPhongMaterial( {
+                        color: 0x993399,
+                        emissive: 0x000059,
+                        emissiveIntensity: 1,
+                        specular: 0x1a1aff,
+                        transparent: true,
+                        opacity: .9,
+                        shininess: 100,
+                        reflectivity: .5,
+                        side:THREE.DoubleSide
+                      } );
+        var pmaterial = new Physijs.createMaterial(material,0.9,0.5);
+        var crystal2 = new Physijs.BoxMesh( geometry, pmaterial,0 );
+
+        crystal2.scale.set(a,b,c);
+        crystal2.position.set(x,y,z);
+        crystal2.rotation.y = THREE.Math.degToRad( rot );
+        crystal2.rotation.z = THREE.Math.degToRad( rot2 );
+        crystal2.castShadow = true;
+        crystal2.receiveShadow = true;
+        scene.add( crystal2  );
+
+      }, function(xhr){
+              console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );},
+        function(err){console.log("error in loading: "+err);}
+      );
+    }

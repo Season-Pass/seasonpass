@@ -8,7 +8,7 @@
 
 
 
-  var bossFloor, bossWall, exit, boss, door;
+  var bossFloor, bossWall, exit, boss, crystal, door;
 
 
 
@@ -73,12 +73,39 @@
       bossWall.position.z = z;
       scene.add(bossWall);
     }
-
+    
     /*
 
     */
     function initBoss(){
+      loader = new THREE.JSONLoader();
+  		loader.load('libs/Crystal.json',
+  		function (geometry, materials){
+  			var material = new THREE.MeshPhongMaterial( {
+                        color: 0x993399,
+                        emissive: 0x000059,
+                        emissiveIntensity: 1,
+                        specular: 0x1a1aff,
+                        transparent: true,
+                        opacity: .9,
+                        shininess: 100,
+                        reflectivity: .5,
+                        side:THREE.DoubleSide
+                      } );
+  			var pmaterial = new Physijs.createMaterial(material,0.9,0.5);
+  			crystal = new Physijs.BoxMesh( geometry, pmaterial,0 );
 
+        crystal.scale.set(25,25,25);
+  			crystal.position.set(0,55,-980);
+  			crystal.castShadow = true;
+        crystal.receiveShadow = true;
+  			scene.add( crystal  );
+  			boss=crystal;
+
+  		}, function(xhr){
+  						console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );},
+  			function(err){console.log("error in loading: "+err);}
+  		);
     }
 
     /*
@@ -110,11 +137,4 @@
        }
      })
      scene.add(exit);
-    }
-
-    /*
-
-    */
-    function initDoor(){
-
     }

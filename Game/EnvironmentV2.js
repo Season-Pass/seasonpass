@@ -74,10 +74,12 @@
         initRoomPass2();
         initPlatforms();
         initRoomPass1();
+        initCrystals();
         // Room4V2.js
         initBossFloor();
         initBossWall();
         initExit();
+        initBoss();
         // Map.js
         initIcicles();
         initParticles();

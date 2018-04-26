@@ -212,10 +212,12 @@
         return 5;
       } else if(sphere.position.z<-98 && sphere.position.z>-215){ // replace with avatar
         return -200;
-      } else if(sphere.position.z<-215 && !controls.plat){ // replace with avatar
+      } else if(sphere.position.z<-215 && !controls.plat && sphere.position.z>-799){ // replace with avatar
         return -75;
       } else if(controls.plat){
         controls.plat = false;
         return pos.y + 5;
+      } else if(sphere.position.z<-800){
+        return 85;
       }
     }
