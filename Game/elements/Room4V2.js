@@ -42,14 +42,36 @@
 
     */
     function initBossWall(){
-
+      createWall(250, 150, -75, -980, 90);
+      createWall(150, 150, 0, -1105, 0);
+      createWall(50, 150, -50, -855, 0);
     }
 
     /*
 
     */
-    function initSides(){
-
+    function createWall(w, h, x, z, rot){
+      var geometryBW = new THREE.PlaneBufferGeometry( w, h, 199, 199 );
+      var textureBW = new THREE.TextureLoader().load('libs/Images/ice-cave-c2.png');
+      var normalTextureBW = new THREE.TextureLoader().load('libs/Images/ice-cave-2c.png');
+      var bumpTextureBW = new THREE.TextureLoader().load('libs/Images/ice-cave-3-b.png');
+      var materialBW = new THREE.MeshPhongMaterial( {
+                          color: 0x66b3ff,
+                          map:textureBW,
+                          emissive: 0x000000,
+                          emissiveIntensity: 10,
+                          bumpMap: bumpTextureBW,
+                          shininess: 100,
+                          reflectivity: .5,
+                          side:THREE.DoubleSide
+                       } );
+      var pmaterialBW = new Physijs.createMaterial(materialBW,0,0.5);
+      bossWall = new Physijs.BoxMesh( geometryBW, materialBW,0 );
+      bossWall.rotation.y = THREE.Math.degToRad( rot );
+      bossWall.position.y = 155;
+      bossWall.position.x = x;
+      bossWall.position.z = z;
+      scene.add(bossWall);
     }
 
     /*
@@ -63,7 +85,31 @@
 
     */
     function initExit(){
-
+      var geometryE = new THREE.CylinderGeometry( 30, 30, 6, 64, 64);
+      var materialE = new THREE.MeshPhongMaterial( {
+                         color: 0x000000,
+                         specular: 0x000000,
+                         emissive: 0x000000,
+                         emissiveIntensity: 10,
+                         shininess: 100,
+                         reflectivity: .5,
+                         side:THREE.DoubleSide
+                       } );
+     var pmaterialE = new Physijs.createMaterial(materialE,0.9,0.5);
+     //cone = new THREE.Mesh( geometryCo, materialCo );
+     exit = new Physijs.CylinderMesh( geometryE, pmaterialE,0 );
+     exit.position.y = 100;
+     exit.position.x = 0;
+     exit.position.z = -1105;
+     exit.rotation.x = THREE.Math.degToRad( 90 );
+     exit.receiveShadow = true;
+     exit.castShadow = true;
+     exit.addEventListener('collision',function(other_object){
+       if (other_object==sphere){ // change to avatar later
+         gameState.scene = 'end';
+       }
+     })
+     scene.add(exit);
     }
 
     /*

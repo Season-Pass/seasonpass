@@ -38,9 +38,11 @@
       createBlock(60,40,10,-80,-383,0,90,0);
       createBlock(60,40,10,-80,-458,0,90,0);
       createBlock(60,40,10,-80,-533,0,90,0);
+      // Third Room
+      createBlock(34,60,-20,-50,-614,-12,0,0);
       // Large Restrictions
       createBlock(600,200,25,-50,-390,90,0,0); // large vertical closer to camera
-      createBlock(600,200,-4,-50,-390,90,0,0); // large vertical further from camera
+      createBlock(520,200,-4,-50,-350,90,0,0); // large vertical further from camera
       createBlock(100,200,-70,-10,-200,0,0,1);
     }
 

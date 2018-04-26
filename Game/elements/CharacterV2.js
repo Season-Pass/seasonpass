@@ -83,7 +83,8 @@
 			var materialsp = new THREE.MeshLambertMaterial( { color: 0xff0000} );
 			var pmaterialsp = new Physijs.createMaterial(materialsp, 1, 0);
 			sphere = new Physijs.SphereMesh( geometrysp, pmaterialsp, 1 );
-			sphere.position.y = 5;
+			sphere.position.y = -75;
+			sphere.position.z = -700
 			sphere.setDamping(0.1,0.1);
 			sphere.castShadow = true;
 			scene.add(sphere);
@@ -118,7 +119,7 @@
 
 			charReset();
 	  }
-	 
+
 
 
 	//this is for the function below
@@ -135,12 +136,12 @@
 	story.style.top = window.innerHeight * 0.75 + 'px';
 	story.style.left = 10 + 'px';
 	document.body.appendChild(story);
-	 
+
 	 /*
 		This updates the text at the bottom of the screen based on
-		the horizontal position of the avatar to make some sort of 
-		story. 
-		
+		the horizontal position of the avatar to make some sort of
+		story.
+
 		I'm not really sure which file to put this in, so I can move
 		it to a different file later. Right now it is being called
 		in States.js

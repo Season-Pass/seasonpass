@@ -75,8 +75,21 @@
         if(camera.position.x<100){
           camera.position.x++;
         }
-      } else if(sphere.position.z<-610){
-        if(camera.position.x<100){
+      } else if(sphere.position.z<-610 && sphere.position.z>-845){
+        if(sphere.position.y>-70){
+          if(camera.position.x>sphere.position.x+70){
+            camera.position.x--;
+          }
+          if(camera.position.x<sphere.position.x+70){
+            camera.position.x++;
+          }
+        } else{
+          if(camera.position.x<100){
+            camera.position.x++;
+          }
+        }
+      } else if(sphere.position.z<-846){
+        if(camera.position.x<200){
           camera.position.x++;
         }
       }
