@@ -83,8 +83,8 @@
 			var materialsp = new THREE.MeshLambertMaterial( { color: 0xff0000} );
 			var pmaterialsp = new Physijs.createMaterial(materialsp, 1, 0);
 			sphere = new Physijs.SphereMesh( geometrysp, pmaterialsp, 1 );
-			sphere.position.y = -75;
-			sphere.position.z = -700
+			sphere.position.y = 5;
+			sphere.position.z = 0;
 			sphere.setDamping(0.1,0.1);
 			sphere.castShadow = true;
 			scene.add(sphere);
