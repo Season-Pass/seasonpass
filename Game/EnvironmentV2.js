@@ -73,8 +73,11 @@
         initThirdWall();
         initRoomPass2();
         initPlatforms();
+        initRoomPass1();
         // Room4V2.js
         initBossFloor();
+        initBossWall();
+        initExit();
         // Map.js
         initIcicles();
         initParticles();

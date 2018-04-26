@@ -10,7 +10,7 @@
   // Variables
   var controls =
         { fwd: false, bwd: false, left: false, right: false,
-          jump: false, speed: 30, devCameraActive: false
+          jump: false, speed: 30, devCameraActive: false, plat: false
         }
 
 
@@ -212,7 +212,10 @@
         return 5;
       } else if(sphere.position.z<-98 && sphere.position.z>-215){ // replace with avatar
         return -200;
-      } else if(sphere.position.z<-215){ // replace with avatar
+      } else if(sphere.position.z<-215 && !controls.plat){ // replace with avatar
         return -75;
+      } else if(controls.plat){
+        controls.plat = false;
+        return pos.y + 5;
       }
     }
