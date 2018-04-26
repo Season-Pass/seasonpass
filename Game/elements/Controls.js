@@ -108,16 +108,28 @@
       var velocity = sphere.getLinearVelocity(); // replace with avatar
       // var velocity = avatar.getLinearVelocity();
 
-      if(controls.jump){
+      if(controls.jump){ //add directional rotation here
         jump();
       } else if (controls.fwd){
         move(-controls.speed,y,0);
+        sphere.rotation.set(0, 0, 0);
+        sphere.__dirtyRotation = true;
+
       } else if (controls.bwd){
         move(controls.speed,y,0);
+        sphere.rotation.set(0, Math.PI, 0);
+        sphere.__dirtyRotation = true;
+
       } else if (controls.left){
         move(0, y, controls.speed);
+        sphere.rotation.set(0, Math.PI/2, 0);
+        sphere.__dirtyRotation = true;
+
       } else if (controls.right){
         move(0, y, -controls.speed);
+        sphere.rotation.set(0, -Math.PI/2, 0);
+        sphere.__dirtyRotation = true;
+
       } else {
         var velocity = sphere.getLinearVelocity(); // replace with avatar
         // var velocity = avatar.getLinearVelocity();

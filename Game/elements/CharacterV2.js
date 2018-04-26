@@ -52,14 +52,13 @@
 			-N (I will delete this message later)
 	  */
 	  function initAvatar(){
-			// BEGIN Clara.io JSON loader code
 			loader = new THREE.JSONLoader();
-			loader.load("libs/penguin.json",
+			loader.load("libs/penguin5.json",
 			function ( geometry, materials ) {
 				var texture = new THREE.TextureLoader().load( "../libs/Images/penguintexture.png" );
-				texture.magFilter = THREE.LinearFilter; //probably dont need, trying to remove black lines from in between texture :(
-				var pmaterial = new Physijs.createMaterial(new THREE.MeshBasicMaterial({map: texture}),0.9,0.5);
-				var penguin = new Physijs.BoxMesh(	geometry,pmaterial	);
+				//texture.magFilter = THREE.LinearFilter; //probably dont need, trying to remove black lines from in between texture :(
+				var pmaterial = new Physijs.createMaterial(new THREE.MeshBasicMaterial({map: texture}),1, 0);
+				var penguin = new Physijs.BoxMesh(	geometry,pmaterial,1	);
 
 				penguin.setDamping(0.1,0.1);
 	 	    penguin.position.y = 5;
@@ -67,7 +66,7 @@
 				penguin.receiveShadow = false;
 				scene.add( penguin );
 				penguin.scale.set(3,3,3);
-				avatar = penguin;
+				sphere = penguin;//last problem: set directions penguin is facing!!
 			});
 	  }
 
@@ -87,7 +86,7 @@
 			sphere.position.z = 0;
 			sphere.setDamping(0.1,0.1);
 			sphere.castShadow = true;
-			scene.add(sphere);
+			//scene.add(sphere);
 		}
 
 
