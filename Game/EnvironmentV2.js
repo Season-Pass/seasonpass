@@ -89,10 +89,10 @@
         // Character.js
         initAvatar();
         initSphere(); // - temporary character model
-        initPosTest(); // will be removed later
+      //  initPosTest(); // will be removed later
         // SoundV2.js
         // add helpers (will be removed at a later time)
-        initHelpers();
+       // initHelpers();
 
         window.addEventListener('resize',onWindowResize, false);
     }
