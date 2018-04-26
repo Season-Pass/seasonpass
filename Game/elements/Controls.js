@@ -34,23 +34,26 @@
       switch (event.key){
         case "w":
           //case "ArrowUp":
+          //initGameSounds('SnowWalk.wav');
           controls.fwd = true;  break;
         case "s":
           //case "ArrowDown":
+          //initGameSounds('SnowWalk.wav');
           controls.bwd = true; break;
         case "a":
           //case "ArrowLeft":
+          //initGameSounds('SnowWalk.wav');
 		  //Add restriction to not go back to room 1
           if(sphere.position.z >= -105 || sphere.position.z <= -200){ //change to avatar
-			controls.left = true;
-		  } else{
-			display = "There's no going back.";
-			controls.left = false;
-		  }
-
-		  break;
+			         controls.left = true;
+		      } else{
+			         display = "There's no going back.";
+			            controls.left = false;
+		      }
+          break;
         case "d":
           //case "ArrowRight":
+          //initGameSounds('SnowWalk.wav');
           controls.right = true;
           break;
 
@@ -70,19 +73,20 @@
 	  switch (event.key){
         case "w":
           //case "ArrowUp":
-          controls.fwd = false;  break;
+          controls.fwd = false; break;
         case "s":
           //case "ArrowDown":
           controls.bwd = false; break;
         case "a":
           //case "ArrowLeft":
-		  if(sphere.position.z <= -95 || sphere.position.z >= -200) display = ''; //change to avatar
-		  controls.left = false; break;
+    		  if(sphere.position.z <= -95 || sphere.position.z >= -200) display = ''; //change to avatar
+    		  controls.left = false; break;
         case "d":
           //case "ArrowRight":
-		  controls.right = false; break;
+		      controls.right = false; break;
         case " ":
-          controls.jump = true; initGameSounds('Jump.wav'); break;
+          controls.jump = true;
+          initGameSounds('Jump.wav'); break;
         case "c":
           if(showControls == true){
             showControls = false;
@@ -193,6 +197,10 @@
         sphere.position.x = 10;
         sphere.position.y = -70;
         sphere.position.z = -215;
+        gameState.lives--;
+        if(gameState.lives == 0){
+          gameState.scene = 'gameover';
+        }
         /*
         avatar.__dirtyPosition = true;
         avatar.position.x = 10;
