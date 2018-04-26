@@ -132,11 +132,11 @@
     */
   	function createSkyBox(image,k){
   		// creating a textured plane which receives shadows
-  		var geometry = new THREE.SphereGeometry( 80, 80, 80 );
+  		var geometry = new THREE.BoxGeometry( 40, 80, 20 );
   		var texture = new THREE.TextureLoader().load( image );
-  		texture.wrapS = THREE.RepeatWrapping;
-  		texture.wrapT = THREE.RepeatWrapping;
-  		texture.repeat.set( k, k );
+  		//texture.wrapS = THREE.RepeatWrapping;
+  		//texture.wrapT = THREE.RepeatWrapping;
+  		//texture.repeat.set( k, k );
   		var material = new THREE.MeshLambertMaterial( {
   												color: 0xffffff,
   												map: texture ,
