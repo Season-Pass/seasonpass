@@ -26,7 +26,6 @@
     */
     function keydown(event){
       console.log("Keydown:"+event.key);
-      //
       if (gameState.scene == 'start' && event.key=='p') {
         gameState.scene = 'main';
         return;

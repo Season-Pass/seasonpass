@@ -14,7 +14,7 @@
 
 
     /*
-
+      This function creates the floor of the third room.
     */
     function initThirdFloor(){
       var geometryC = new THREE.CircleGeometry( 98, 32 );
@@ -44,7 +44,7 @@
     }
 
     /*
-
+      This function creates the wall of the third room
     */
     function initThirdWall(){
       var geometryWa3 = new THREE.CylinderGeometry( 97, 97, 200, 64, 64, true, 0, -2.63);
@@ -76,7 +76,8 @@
     }
 
     /*
-
+      This function creates the floor of the passage
+      into the next room.
     */
     function initRoomPass1(){
       var geometryRP = new THREE.PlaneBufferGeometry( 50, 50, 199, 199 );
@@ -103,7 +104,7 @@
     }
 
     /*
-
+      This function creates a wall for the passage into the next room
     */
     function initRoomPass2(){
       var geometryRP2 = new THREE.PlaneBufferGeometry( 50, 60, 199, 199 );
@@ -128,10 +129,11 @@
     }
 
     /*
-
+      This function creates a staircase leading to the next room
+      starting with the bottom stair to the top in order.
     */
     function initPlatforms(){
-      initCone(-40,-75,-625);
+      initCone(-40,-75,-625); // bottom stair on left
       initCone(-50,-68,-632);
       initCone(-60,-61,-639);
       initCone(-69,-54,-646);
@@ -152,11 +154,11 @@
       initCone(-59,51,-785);
       initCone(-49,58,-792);
       initCone(-39,65,-799);
-      initCone(-28,72,-796);
+      initCone(-28,72,-796); // top stair on right
     }
 
     /*
-
+      This function creates a single stair step
     */
     function initCone(x,y,z){
       var geometryCo = new THREE.CylinderGeometry( 10, 5, 6, 64, 64);
@@ -187,7 +189,8 @@
     }
 
     /*
-
+      This function adds crystals to the third room
+      for decoration.
     */
     function initCrystals(){
       createCrystal(0,-90,-710,10,10,10,90,25);
@@ -197,7 +200,7 @@
     }
 
     /*
-
+      This function loads the model for the crystals
     */
     function createCrystal(x,y,z,a,b,c,rot,rot2){
       loader = new THREE.JSONLoader();

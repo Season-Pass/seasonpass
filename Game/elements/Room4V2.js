@@ -14,7 +14,7 @@
 
 
     /*
-
+      This functions creates the floor of the final room.
     */
     function initBossFloor(){
       var geometryBF = new THREE.PlaneBufferGeometry( 150, 250, 199, 199 );
@@ -39,7 +39,7 @@
     }
 
     /*
-
+      This function creates the walls of the final room
     */
     function initBossWall(){
       createWall(250, 150, -75, -980, 90);
@@ -48,7 +48,7 @@
     }
 
     /*
-
+      This function creates a single wall for the final room.
     */
     function createWall(w, h, x, z, rot){
       var geometryBW = new THREE.PlaneBufferGeometry( w, h, 199, 199 );
@@ -73,9 +73,11 @@
       bossWall.position.z = z;
       scene.add(bossWall);
     }
-    
-    /*
 
+    /*
+      This function was orginally meant to contain an enemy
+      but attacks and the boss battle have not been implemented.
+      For now, it acts as decor for the final room.
     */
     function initBoss(){
       loader = new THREE.JSONLoader();
@@ -109,7 +111,8 @@
     }
 
     /*
-
+      This creates the exit for the final room
+      and touching it ends the game.
     */
     function initExit(){
       var geometryE = new THREE.CylinderGeometry( 30, 30, 6, 64, 64);

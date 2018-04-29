@@ -25,11 +25,7 @@
 
     /*
       This creates the start screen of the game.
-      For now, it will only contain a play button.
-      It may also contain a credits button that will
-      take you to a credits page.
-      * It may show a close up of the character model?
-      * It may show some other scene.
+      It contains a picture of the first room.
 
       Victor Kubatin
     */
@@ -98,8 +94,10 @@
       "You must buy the season pass to unlock
       the rest of the game".
       It may also contain credits.
+
+      - Victor
     */
-    function createEnd(){  //Implemented-Victor
+    function createEnd(){
       endScreen = initScene();
 	  endText = createSkyBox2('libs/Images/Good-bye.png', 10);
       endScreen.add(endText);

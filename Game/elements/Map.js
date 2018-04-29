@@ -184,19 +184,24 @@
   		mesh.receiveShadow = false;
   		return mesh
   	}
-	function createSkyBox2(image,k){  //for end scene-Victor
-  		// creating a textured plane which receives shadows
-  		var geometry = new THREE.BoxGeometry( 40, 70, 30 );
-  		var texture = new THREE.TextureLoader().load( image );
-  		//texture.wrapS = THREE.RepeatWrapping;
-  		//texture.wrapT = THREE.RepeatWrapping;
-  		//texture.repeat.set( k, k );
-  		var material = new THREE.MeshLambertMaterial( {
-  												color: 0xffffff,
-  												map: texture ,
-  												side:THREE.DoubleSide
-  											} );
-  		var mesh = new THREE.Mesh( geometry, material, 0 );
-  		mesh.receiveShadow = false;
-  		return mesh
-  	}
+
+    /*
+      Creates the skybox for the end scene
+       - Victor
+    */
+  	function createSkyBox2(image,k){
+    		// creating a textured plane which receives shadows
+    		var geometry = new THREE.BoxGeometry( 40, 70, 30 );
+    		var texture = new THREE.TextureLoader().load( image );
+    		//texture.wrapS = THREE.RepeatWrapping;
+    		//texture.wrapT = THREE.RepeatWrapping;
+    		//texture.repeat.set( k, k );
+    		var material = new THREE.MeshLambertMaterial( {
+    												color: 0xffffff,
+    												map: texture ,
+    												side:THREE.DoubleSide
+    											} );
+    		var mesh = new THREE.Mesh( geometry, material, 0 );
+    		mesh.receiveShadow = false;
+    		return mesh
+    	}
